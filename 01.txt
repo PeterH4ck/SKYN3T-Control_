@@ -1,0 +1,92 @@
+
+
+
+
+skyn3t-access-control/
+├── docker-compose.yml
+├── .env.example
+├── .gitignore
+├── README.md
+├── backend/
+│   ├── package.json
+│   ├── tsconfig.json
+│   ├── .env
+│   ├── src/
+│   │   ├── server.ts
+│   │   ├── app.ts
+│   │   ├── config/
+│   │   │   ├── database.ts
+│   │   │   ├── redis.ts
+│   │   │   └── constants.ts
+│   │   ├── models/
+│   │   │   ├── index.ts
+│   │   │   ├── User.ts
+│   │   │   ├── Role.ts
+│   │   │   ├── Permission.ts
+│   │   │   ├── Community.ts
+│   │   │   └── Device.ts
+│   │   ├── controllers/
+│   │   │   ├── authController.ts
+│   │   │   ├── userController.ts
+│   │   │   ├── permissionController.ts
+│   │   │   └── communityController.ts
+│   │   ├── middleware/
+│   │   │   ├── auth.ts
+│   │   │   ├── permissions.ts
+│   │   │   └── errorHandler.ts
+│   │   ├── routes/
+│   │   │   ├── index.ts
+│   │   │   ├── auth.ts
+│   │   │   ├── users.ts
+│   │   │   ├── permissions.ts
+│   │   │   └── communities.ts
+│   │   ├── services/
+│   │   │   ├── authService.ts
+│   │   │   ├── permissionService.ts
+│   │   │   └── websocketService.ts
+│   │   ├── utils/
+│   │   │   ├── logger.ts
+│   │   │   └── validators.ts
+│   │   └── database/
+│   │       ├── migrations/
+│   │       ├── seeds/
+│   │       └── schema.sql
+├── frontend/
+│   ├── package.json
+│   ├── tsconfig.json
+│   ├── public/
+│   │   ├── index.html
+│   │   └── images/
+│   │       ├── logo.png
+│   │       └── login-background.jpeg
+│   ├── src/
+│   │   ├── index.tsx
+│   │   ├── App.tsx
+│   │   ├── components/
+│   │   │   ├── Layout/
+│   │   │   ├── Auth/
+│   │   │   ├── Dashboard/
+│   │   │   ├── Permissions/
+│   │   │   └── Common/
+│   │   ├── pages/
+│   │   │   ├── Login.tsx
+│   │   │   ├── Dashboard.tsx
+│   │   │   ├── Users.tsx
+│   │   │   ├── Permissions.tsx
+│   │   │   └── Communities.tsx
+│   │   ├── services/
+│   │   │   ├── api.ts
+│   │   │   ├── auth.ts
+│   │   │   └── websocket.ts
+│   │   ├── store/
+│   │   │   ├── index.ts
+│   │   │   └── slices/
+│   │   ├── hooks/
+│   │   ├── utils/
+│   │   └── styles/
+│   │       └── globals.css
+├── nginx/
+│   └── nginx.conf
+└── scripts/
+    ├── init-db.sh
+    └── backup.sh

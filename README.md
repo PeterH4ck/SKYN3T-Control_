@@ -1,724 +1,605 @@
-# 🏢 SKYN3T ACCESS CONTROL SYSTEM
+# 🏗️ SKYN3T ACCESS CONTROL SYSTEM
 
-![SKYN3T Banner](https://via.placeholder.com/1200x300/1a1a2e/ffffff?text=SKYN3T+ACCESS+CONTROL+SYSTEM)
+[![GitHub release](https://img.shields.io/github/release/PeterH4ck/SKYN3T-Control_.svg)](https://github.com/PeterH4ck/SKYN3T-Control_/releases)
+[![Build Status](https://img.shields.io/badge/build-passing-brightgreen.svg)](https://github.com/PeterH4ck/SKYN3T-Control_/actions)
+[![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
+[![Docker](https://img.shields.io/badge/docker-ready-blue.svg)](docker-compose.yml)
+[![Kubernetes](https://img.shields.io/badge/kubernetes-ready-blue.svg)](helm/)
+[![TypeScript](https://img.shields.io/badge/typescript-100%25-blue.svg)](tsconfig.json)
 
-[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
-[![Node.js](https://img.shields.io/badge/Node.js-20.x-green.svg)](https://nodejs.org/)
-[![TypeScript](https://img.shields.io/badge/TypeScript-5.x-blue.svg)](https://www.typescriptlang.org/)
-[![PostgreSQL](https://img.shields.io/badge/PostgreSQL-15+-blue.svg)](https://www.postgresql.org/)
-[![Docker](https://img.shields.io/badge/Docker-24.x-blue.svg)](https://www.docker.com/)
-[![Development Status](https://img.shields.io/badge/Status-25%25%20Complete-orange.svg)](#desarrollo)
+> **Sistema de Control de Acceso Multi-tenant de Nivel Enterprise**  
+> Arquitectura de microservicios cloud-native diseñada para comunidades residenciales, edificios corporativos y conjuntos habitacionales
 
-## 📋 Descripción
+---
 
-**SKYN3T Access Control System** es una plataforma integral de gestión de accesos y seguridad para comunidades residenciales, condominios y edificios comerciales. Ofrece un sistema completo de control de acceso multi-tenant con características avanzadas de IoT, gestión financiera, comunicaciones y análisis predictivo.
+## 🎯 **Descripción del Proyecto**
 
-### 🎯 Características Principales
+**SKYN3T Access Control** es una plataforma completa de control de acceso que combina **IoT**, **inteligencia artificial**, **fintech** y **comunicaciones omnicanal** en una solución integrada de nivel enterprise.
 
-- **🔐 Control de Acceso Multi-método**: QR, facial, biométrico, RFID, placas vehiculares
-- **🏢 Multi-tenant**: Gestión independiente por comunidades
-- **👥 Sistema de Permisos Jerárquico**: 11 niveles con herencia granular
-- **💰 Gestión Financiera**: Integración con bancos chilenos y pasarelas de pago
-- **📱 Invitaciones Inteligentes**: QR dinámicos, validación GPS, reconocimiento vehicular
-- **🔌 IoT & Dispositivos**: Control en tiempo real de dispositivos de acceso
-- **📊 Analytics & ML**: Predicción de comportamientos y anomalías
-- **💬 Comunicaciones**: Email, SMS, WhatsApp, notificaciones push
-- **🌍 Multi-región**: Soporte inicial para Chile, expansible
+### **🏢 Características Principales**
 
-## 🚀 Estado Actual del Proyecto
+- 🔐 **Control de Acceso Inteligente**: Facial, RFID, QR, PIN, placas vehiculares
+- 🏠 **Multi-tenant Avanzado**: Aislamiento completo por comunidad con 11 niveles jerárquicos
+- 💰 **Sistema Financiero**: Integración con bancos chilenos y pasarelas internacionales
+- 🤖 **AI/ML Integrado**: Reconocimiento facial, OCR, predicciones y detección de anomalías
+- 📱 **Comunicaciones**: Email, SMS, WhatsApp, push notifications
+- 🔌 **IoT Native**: MQTT, control de dispositivos, monitoreo en tiempo real
+- 📊 **Business Intelligence**: Dashboards, reportes, analytics avanzados
 
-### ✅ Completado (25%)
-- **Backend Core**: Arquitectura base, autenticación, permisos
-- **Base de Datos**: Esquema completo (150+ tablas)
-- **Infraestructura**: Docker Compose con 25+ servicios
-- **Sistema Multi-tenant**: Comunidades independientes
-- **WebSocket**: Comunicación tiempo real
+---
 
-### 🚧 En Desarrollo (Etapa 3)
-- **Controladores CRUD**: 40% completado
-- **Modelos adicionales**: Floor, Unit, DeviceStatus
-- **Servicios especializados**: Payment, Device, OCR
+## 🏗️ **Arquitectura del Sistema**
 
-### 📋 Próximas Etapas
-- **Etapa 4**: Frontend React con Material-UI
-- **Etapa 5**: Gestión de comunidades completa
-- **Etapa 6**: Sistema IoT y dispositivos
-- **Etapa 7**: Sistema financiero integral
+### **Microservicios**
 
-## 🛠️ Tecnologías
+```mermaid
+graph TB
+    subgraph "Frontend Layer"
+        WEB[Web App React]
+        MOBILE[Mobile Apps]
+        IOT[IoT Devices]
+    end
+    
+    subgraph "API Gateway"
+        KONG[Kong API Gateway]
+        NGINX[Nginx Proxy]
+    end
+    
+    subgraph "Microservices"
+        AUTH[auth-service :3001]
+        USER[user-service :3003]
+        PERM[permission-service :3002]
+        DEV[device-service :3004]
+        PAY[payment-service :3005]
+        NOTIF[notification-service :3006]
+        ANALYTICS[analytics-service :3007]
+    end
+    
+    subgraph "Data Layer"
+        PG[(PostgreSQL)]
+        REDIS[(Redis Cluster)]
+        INFLUX[(InfluxDB)]
+        ELASTIC[(Elasticsearch)]
+    end
+    
+    WEB --> KONG
+    MOBILE --> KONG
+    IOT --> DEV
+    KONG --> AUTH
+    KONG --> USER
+    KONG --> PERM
+    AUTH --> PG
+    USER --> REDIS
+    DEV --> INFLUX
+```
 
-### Backend
-- **Runtime**: Node.js 20.x + TypeScript 5.x
-- **Framework**: Express.js con arquitectura modular
-- **Base de Datos**: PostgreSQL 15+ con Sequelize ORM
-- **Cache**: Redis con clustering
-- **Queue**: RabbitMQ para procesamiento asíncrono
-- **WebSocket**: Socket.io para tiempo real
-- **Autenticación**: JWT + 2FA + OAuth2
+### **Stack Tecnológico**
 
-### Frontend (Planificado)
-- **Framework**: React 18 + TypeScript
-- **UI Library**: Material-UI v5 con tema glassmorphism
-- **Estado**: Redux Toolkit + RTK Query
-- **Routing**: React Router v6
-- **Charts**: Recharts + D3.js
-- **Real-time**: Socket.io Client
+| Componente | Tecnología | Propósito |
+|------------|------------|-----------|
+| **Backend** | Node.js + TypeScript + Express | API REST y lógica de negocio |
+| **Base de Datos** | PostgreSQL 15 (Master/Replica) | Datos principales con HA |
+| **Cache** | Redis Cluster + Sentinel | Cache distribuido y sesiones |
+| **Message Queue** | RabbitMQ | Comunicación asíncrona |
+| **Time Series** | InfluxDB | Métricas IoT y telemetría |
+| **Search** | Elasticsearch + Kibana | Logs y búsqueda avanzada |
+| **Storage** | MinIO (S3-compatible) | Archivos y documentos |
+| **Monitoring** | Prometheus + Grafana | Métricas y alertas |
+| **IoT** | MQTT (Mosquitto) | Comunicación con dispositivos |
+| **API Gateway** | Kong + Nginx | Routing y load balancing |
 
-### Infraestructura
-- **Contenedores**: Docker + Docker Compose
-- **Proxy**: Nginx + Kong API Gateway
-- **Monitoreo**: Grafana + Prometheus + InfluxDB
-- **Logs**: ELK Stack (Elasticsearch + Kibana)
-- **Storage**: MinIO (S3 compatible)
-- **MQTT**: Eclipse Mosquitto
+---
 
-### Microservicios (Futuros)
-- **Payment Service**: Node.js + Integración bancaria
-- **OCR Service**: Python + Tesseract + YOLO
-- **ML Service**: Python + TensorFlow + Scikit-learn
-- **Notification Service**: Node.js + Multi-canal
-- **Analytics Service**: Node.js + Data processing
+## 🚀 **Quick Start**
 
-## 📦 Instalación
+### **Prerrequisitos**
 
-### Prerrequisitos
-- Docker Engine 24.0+
+```bash
+# Software requerido
+- Docker 24.0+
 - Docker Compose 2.20+
+- Node.js 20.x
 - Git
 - Make (opcional)
 
-### Instalación Rápida
+# Verificar instalaciones
+docker --version
+docker-compose --version
+node --version
+```
+
+### **Instalación Rápida**
 
 ```bash
-# 1. Clonar repositorio
-git clone https://github.com/your-org/skyn3t-access-control.git
-cd skyn3t-access-control
+# 1. Clonar el repositorio
+git clone https://github.com/PeterH4ck/SKYN3T-Control_.git
+cd SKYN3T-Control_
 
 # 2. Configurar variables de entorno
 cp .env.example .env
 # Editar .env con tu configuración
 
-# 3. Instalación automática
+# 3. Iniciar todos los servicios
 make install
-
-# O instalación manual:
-docker-compose build
+# O manualmente:
 docker-compose up -d
+
+# 4. Verificar instalación
+make health-check
 ```
 
-### Acceso al Sistema
+### **Acceso al Sistema**
 
-Una vez instalado:
+Una vez instalado, accede a:
 
-- **API**: http://localhost:8000
-- **Frontend**: http://localhost:3000 (en desarrollo)
-- **Grafana**: http://localhost:3000/grafana (admin/grafana123)
-- **Kibana**: http://localhost:3000/kibana
-- **RabbitMQ**: http://localhost:15672 (admin/rabbitmq123)
-- **MinIO**: http://localhost:9001 (minioadmin/minioadmin123)
+- **🌐 Frontend**: http://localhost:3000
+- **🔧 API**: http://localhost:8000/api/v1
+- **📊 Grafana**: http://localhost:3000/grafana (admin/grafana123)
+- **📋 Kibana**: http://localhost:3000/kibana
+- **💾 MinIO**: http://localhost:9001 (minioadmin/minioadmin123)
 
-## 🏗️ Arquitectura
+---
 
-### Estructura del Proyecto
+## 📁 **Estructura del Proyecto**
 
 ```
 skyn3t-access-control/
-├── 📁 backend/                    # API Principal (Node.js/TypeScript)
-│   ├── src/
-│   │   ├── controllers/           # Controladores REST
-│   │   ├── models/               # Modelos Sequelize
-│   │   ├── middleware/           # Middleware (auth, permisos)
-│   │   ├── services/             # Lógica de negocio
-│   │   ├── routes/               # Rutas API
-│   │   └── utils/                # Utilidades
-│   └── database/
-│       ├── schema.sql            # Esquema completo BD
-│       └── seeds/                # Datos iniciales
+├── 📄 docker-compose.yml           # Orquestación de servicios
+├── 📄 Makefile                     # Comandos de desarrollo
+├── 📄 .env.example                 # Variables de entorno
 │
-├── 📁 frontend/                   # React App (En desarrollo)
-│   ├── src/
-│   │   ├── components/           # Componentes React
-│   │   ├── pages/                # Páginas principales
-│   │   ├── services/             # API clients
-│   │   └── store/                # Redux store
+├── 📁 backend/                     # ✅ API Principal (Node.js + TypeScript)
+│   ├── 📁 src/
+│   │   ├── 📁 controllers/         # Controladores REST
+│   │   ├── 📁 models/              # Modelos de datos (Sequelize)
+│   │   ├── 📁 services/            # Lógica de negocio
+│   │   ├── 📁 middleware/          # Middlewares personalizados
+│   │   ├── 📁 routes/              # Definición de rutas
+│   │   └── 📁 utils/               # Utilidades compartidas
+│   └── 📄 package.json
 │
-├── 📁 permission-service/         # Microservicio permisos
-├── 📁 payment-service/           # Microservicio pagos
-├── 📁 notification-service/      # Microservicio notificaciones
-├── 📁 analytics-service/         # Microservicio analytics
-├── 📁 ocr-service/              # Microservicio OCR (Python)
-├── 📁 ml-service/               # Microservicio ML (Python)
+├── 📁 permission-service/          # 🚧 Motor de Permisos
+├── 📁 payment-service/             # 🚧 Integración Bancaria
+├── 📁 notification-service/        # 🚧 Comunicaciones
+├── 📁 analytics-service/           # 🚧 Business Intelligence
+├── 📁 ocr-service/                 # 🚧 OCR y Computer Vision
+├── 📁 ml-service/                  # 🚧 Machine Learning
 │
-├── 📁 nginx/                     # Configuración proxy
-├── 📁 config/                    # Configuraciones servicios
-├── 📁 scripts/                   # Scripts utilidad
-│
-├── 📄 docker-compose.yml         # Orquestación servicios
-├── 📄 Makefile                   # Comandos automatización
-└── 📄 INSTALLATION.md            # Guía instalación detallada
+├── 📁 frontend/                    # 🔄 React + TypeScript (En desarrollo)
+├── 📁 nginx/                       # ✅ Reverse Proxy
+├── 📁 config/                      # ⚙️ Configuraciones
+├── 📁 scripts/                     # 🛠️ Scripts de utilidad
+└── 📁 docs/                        # 📚 Documentación técnica
 ```
 
-### Arquitectura de Datos
+---
 
-```mermaid
-graph TD
-    A[NGINX] --> B[Kong API Gateway]
-    B --> C[Express API]
-    C --> D[PostgreSQL Master]
-    C --> E[Redis Cache]
-    C --> F[RabbitMQ]
-    C --> G[MinIO Storage]
-    
-    D --> H[PostgreSQL Replica]
-    E --> I[Redis Sentinel]
-    
-    J[Microservices] --> F
-    J --> E
-    J --> D
-    
-    K[Frontend] --> B
-    L[Mobile Apps] --> B
-    M[IoT Devices] --> N[MQTT Broker]
-    N --> C
-```
+## 🎯 **Estado del Desarrollo**
 
-## 🔐 Sistema de Permisos
+### **✅ Etapas Completadas (25%)**
 
-### Jerarquía de Roles
+#### **Etapa 1: Fundación del Sistema**
+- ✅ Estructura base de microservicios
+- ✅ Docker Compose con 27 servicios
+- ✅ Esquema de BD completo (100+ tablas)
+- ✅ API de autenticación con JWT + 2FA
+- ✅ Sistema de usuarios y roles básico
 
-**Roles del Sistema (11 niveles)**
-1. **SUPER_ADMIN** - Administrador supremo
-2. **SYSTEM_ADMIN** - Administrador del sistema
-3. **FINANCIAL_ADMIN** - Administrador financiero
-4. **HARDWARE_ADMIN** - Administrador de hardware
-5. **SECURITY_ADMIN** - Administrador de seguridad
-6. **AUDIT_ADMIN** - Administrador de auditoría
-7. **OPERATIONS_MANAGER** - Gerente de operaciones
-8. **COMMUNITY_MANAGER** - Gerente de comunidad
-9. **SUPPORT_SUPERVISOR** - Supervisor de soporte
-10. **SUPPORT_AGENT** - Agente de soporte
-11. **REPORT_VIEWER** - Visualizador de reportes
+#### **Etapa 2: Core Backend**
+- ✅ Modelos de datos principales (User, Role, Permission, Community)
+- ✅ Controladores CRUD básicos
+- ✅ Middleware de autenticación y autorización
+- ✅ Sistema de permisos granulares (11 niveles)
+- ✅ WebSocket service para tiempo real
 
-**Roles de Comunidad (11 niveles)**
-1. **COMMUNITY_ADMIN** - Administrador de comunidad
-2. **BOARD_PRESIDENT** - Presidente del directorio
-3. **TREASURER** - Tesorero
-4. **BOARD_MEMBER** - Miembro del directorio
-5. **SECURITY_CHIEF** - Jefe de seguridad
-6. **SECURITY_GUARD** - Guardia de seguridad
-7. **MAINTENANCE_CHIEF** - Jefe de mantenimiento
-8. **STAFF** - Personal
-9. **OWNER** - Propietario
-10. **TENANT** - Arrendatario
-11. **AUTHORIZED_PERSON** - Persona autorizada
+### **🚧 En Desarrollo (Etapa 3)**
 
-### Permisos Granulares
+#### **Sistema de Permisos Avanzado**
+- 🔄 Engine de permisos con herencia
+- 🔄 Propagación automática de cambios
+- 🔄 Templates de permisos reutilizables
+- 🔄 GUI con checkboxes jerárquicos
 
-Los permisos se organizan por módulos y acciones:
+#### **Gestión de Usuarios**
+- 🔄 Frontend React completo
+- 🔄 DataTable con Material-UI X-Data-Grid
+- 🔄 CRUD visual con formularios avanzados
+- 🔄 Sistema de importación/exportación
 
-```typescript
-// Ejemplos de permisos
-access.doors.open          // Abrir puertas
-access.doors.emergency     // Anulación de emergencia
-users.create              // Crear usuarios
-users.permissions.manage  // Gestionar permisos
-financial.approve         // Aprobar transacciones
-devices.control           // Controlar dispositivos
-```
+### **📋 Roadmap (Etapas 4-14)**
 
-## 🌐 API Reference
+| Etapa | Componente | Descripción | ETA |
+|-------|------------|-------------|-----|
+| **4** | 🎨 GUI Completa | Frontend React + Material-UI | Q2 2024 |
+| **5** | 🏢 Comunidades | Multi-tenant + Features management | Q2 2024 |
+| **6** | 🔌 IoT Devices | Control de dispositivos + MQTT | Q3 2024 |
+| **7** | 💰 Sistema Financiero | Bancos chilenos + Pasarelas | Q3 2024 |
+| **8** | 🎫 Invitaciones | QR dinámicos + Control de acceso | Q4 2024 |
+| **9** | 📢 Comunicaciones | Email, SMS, WhatsApp, Push | Q4 2024 |
+| **10** | 📊 Analytics/BI | Dashboards + Machine Learning | Q1 2025 |
+| **11** | ⚙️ Administración | Panel admin + Configuraciones | Q1 2025 |
+| **12** | 🚀 Producción | DevOps + Monitoreo + Testing | Q2 2025 |
+| **13** | 📱 Mobile Apps | iOS + Android nativas | Q2 2025 |
+| **14** | 🌍 Internacionalización | Multi-país + Compliance | Q3 2025 |
 
-### Autenticación
+---
 
-```http
-POST /api/v1/auth/login
-Content-Type: application/json
+## 🔧 **Comandos de Desarrollo**
 
-{
-  "username": "admin",
-  "password": "password",
-  "remember": true
-}
-```
-
-### Usuarios
-
-```http
-GET /api/v1/users
-Authorization: Bearer {token}
-X-Community-ID: {community_id}
-```
-
-### Permisos
-
-```http
-GET /api/v1/permissions/user/{user_id}
-Authorization: Bearer {token}
-```
-
-### WebSocket Events
-
-```javascript
-// Conectar
-socket.emit('join:community', 'community-id');
-
-// Escuchar eventos
-socket.on('access.new', (data) => {
-  console.log('Nuevo acceso:', data);
-});
-
-socket.on('device.alert', (data) => {
-  console.log('Alerta dispositivo:', data);
-});
-```
-
-## 🧪 Testing
-
-```bash
-# Backend tests
-cd backend
-npm test
-
-# Frontend tests (cuando esté disponible)
-cd frontend
-npm test
-
-# Tests de integración
-make test-integration
-
-# Tests E2E
-make test-e2e
-```
-
-## 📊 Monitoreo
-
-### Dashboards Disponibles
-
-- **Sistema**: CPU, memoria, disco, red
-- **Base de Datos**: Conexiones, queries, performance
-- **API**: Response time, error rate, throughput
-- **Dispositivos**: Estado, conectividad, comandos
-
-### Métricas Clave
-
-- **Uptime**: >99.9%
-- **API Response Time**: <200ms promedio
-- **Error Rate**: <1%
-- **Database Connections**: Pool no saturado
-
-## 🔧 Comandos Útiles
+### **Gestión del Entorno**
 
 ```bash
 # Desarrollo
-make dev                 # Iniciar en modo desarrollo
-make logs               # Ver logs de todos los servicios
-make restart            # Reiniciar todos los servicios
+make dev                    # Iniciar entorno de desarrollo
+make dev-logs              # Ver logs en tiempo real
+make dev-shell             # Acceder al contenedor principal
 
 # Base de datos
-make db-backup          # Backup de la base de datos
-make db-restore         # Restaurar backup
-make db-migrate         # Ejecutar migraciones
-make db-seed            # Cargar datos iniciales
+make db-reset              # Resetear base de datos
+make db-migrate            # Ejecutar migraciones
+make db-seed               # Cargar datos de prueba
+make db-backup             # Backup de desarrollo
 
-# Mantenimiento
-make update             # Actualizar sistema
-make clean              # Limpiar containers y volúmenes
-make status             # Estado de todos los servicios
+# Testing
+make test                  # Ejecutar todos los tests
+make test-unit             # Tests unitarios
+make test-integration      # Tests de integración
+make test-e2e              # Tests end-to-end
+
+# Código
+make lint                  # Linting con ESLint
+make format                # Formatear con Prettier
+make type-check            # Verificar TypeScript
+
+# Producción
+make build                 # Construir para producción
+make deploy-staging        # Deploy a staging
+make deploy-production     # Deploy a producción
 ```
 
-## 🌍 Internacionalización
+### **Docker Commands**
 
-### Regiones Soportadas
+```bash
+# Servicios individuales
+docker-compose up postgres redis rabbitmq    # Solo BD
+docker-compose up auth-service               # Solo autenticación
+docker-compose logs -f auth-service          # Logs específicos
 
-- **🇨🇱 Chile**: Implementación completa
-  - Bancos: Banco Estado, Santander, BCI, Banco de Chile
-  - Moneda: CLP
-  - Zona horaria: America/Santiago
-  - Idioma: Español (es_CL)
-
-### Regiones Planificadas
-
-- **🇲🇽 México**: Q2 2024
-- **🇦🇷 Argentina**: Q3 2024
-- **🇨🇴 Colombia**: Q4 2024
-- **🇺🇸 Estados Unidos**: 2025
-
-## 🤝 Contribución
-
-### Flujo de Desarrollo
-
-1. Fork el repositorio
-2. Crear branch feature: `git checkout -b feature/nueva-funcionalidad`
-3. Commit cambios: `git commit -am 'Agregar nueva funcionalidad'`
-4. Push al branch: `git push origin feature/nueva-funcionalidad`
-5. Crear Pull Request
-
-### Estándares de Código
-
-- **TypeScript**: Strict mode habilitado
-- **ESLint**: Configuración estricta
-- **Prettier**: Formateo automático
-- **Husky**: Pre-commit hooks
-- **Tests**: Cobertura mínima 80%
-
-### Estructura de Commits
-
-```
-tipo(alcance): descripción corta
-
-- feat: nueva funcionalidad
-- fix: corrección de bug
-- docs: cambios en documentación
-- style: formateo, punto y coma faltante, etc.
-- refactor: refactoring de código
-- test: agregar tests faltantes
-- chore: cambios en build, dependencies, etc.
+# Limpieza
+docker-compose down -v                       # Detener y limpiar volúmenes
+make clean                                   # Limpieza completa
 ```
 
-## 📈 Roadmap
+---
 
-### 2024 Q1 - Foundation ✅
-- [x] Arquitectura base
-- [x] Sistema de permisos
-- [x] Multi-tenant
-- [x] Infraestructura Docker
+## 🔐 **Seguridad**
 
-### 2024 Q2 - Core Features 🚧
-- [ ] Frontend completo
-- [ ] Sistema IoT básico
-- [ ] Gestión financiera
-- [ ] APIs REST completas
+### **Características de Seguridad**
 
-### 2024 Q3 - Advanced Features
-- [ ] Apps móviles
-- [ ] Machine Learning
-- [ ] OCR avanzado
-- [ ] Integraciones bancarias
+- 🔒 **Autenticación**: JWT + Refresh Tokens + 2FA (TOTP, SMS)
+- 🛡️ **Autorización**: RBAC con 11 niveles jerárquicos + ABAC
+- 🔐 **Encriptación**: AES-256-GCM para datos sensibles
+- 🚫 **Rate Limiting**: Protección contra ataques de fuerza bruta
+- 📝 **Auditoría**: Log completo de todas las acciones
+- 🌐 **Network Security**: Policies, firewalls, VPC isolation
+- 📋 **Compliance**: GDPR ready, OWASP Top 10 protected
 
-### 2024 Q4 - Scale & Expansion
-- [ ] Multi-región
-- [ ] Performance optimization
-- [ ] Enterprise features
-- [ ] Marketplace integraciones
+### **Variables de Entorno Críticas**
 
-## 🐛 Issues Conocidos
+```bash
+# Cambiar en producción
+JWT_SECRET=your-super-secret-jwt-key
+POSTGRES_PASSWORD=secure-db-password
+REDIS_PASSWORD=secure-redis-password
+ENCRYPTION_KEY=your-32-character-encryption-key
 
-- Frontend no implementado (0%)
-- Controladores CRUD incompletos (60%)
-- Microservicios pendientes
-- Apps móviles no iniciadas
+# APIs externas
+BANCO_ESTADO_API_KEY=your-banco-estado-key
+TWILIO_AUTH_TOKEN=your-twilio-token
+SMTP_PASS=your-email-password
+```
 
-RUTAS y LINKS:
+---
 
-skyn3t-access-control/
-│
-├── 📄 Makefile                                    ✅ CREADO	<----	https://github.com/PeterH4ck/SKYN3T-Control_/tree/main
-├── 📄 docker-compose.yml                          ✅ CREADO	<----	https://raw.githubusercontent.com/PeterH4ck/SKYN3T-Control_/refs/heads/main/docker-compose.yml
-├── 📄 .env.example                                ✅ CREADO	<----	https://raw.githubusercontent.com/PeterH4ck/SKYN3T-Control_/refs/heads/main/.env.example
-├── 📄 .env                                        ❌ CREAR
-├── 📄 INSTALLATION.md                             ✅ CREADO	<----	https://raw.githubusercontent.com/PeterH4ck/SKYN3T-Control_/refs/heads/main/INSTALLATION.md
-├── 📄 README.md                                   ❌ FALTA
-├── 📄 .gitignore                                  ❌ FALTA
-├── 📄 .dockerignore                               ❌ FALTA
-│
-├── 📁 backend/
-│   ├── 📄 package.json                            ✅ CREADO	<----	https://raw.githubusercontent.com/PeterH4ck/SKYN3T-Control_/refs/heads/main/backend/package.json
-│   ├── 📄 package-lock.json                       ❌ FALTA
-│   ├── 📄 tsconfig.json                           ✅ CREADO	<----	https://raw.githubusercontent.com/PeterH4ck/SKYN3T-Control_/refs/heads/main/backend/tsconfig.ts
-│   ├── 📄 .env.example                            ❌ FALTA
-│   ├── 📄 Dockerfile                              ❌ FALTA
-│   ├── 📄 Dockerfile.auth                         ❌ FALTA
-│   ├── 📄 Dockerfile.users                        ❌ FALTA
-│   ├── 📄 Dockerfile.devices                      ❌ FALTA
-│   │
-│   └── 📁 src/
-│       ├── 📄 server.ts                           ✅ EXISTE	<----	https://raw.githubusercontent.com/PeterH4ck/SKYN3T-Control_/refs/heads/main/backend/src/server.ts
-│       ├── 📄 app.ts                              ✅ EXISTE	<----	https://raw.githubusercontent.com/PeterH4ck/SKYN3T-Control_/refs/heads/main/backend/src/app.ts
-│       │
-│       ├── 📁 config/
-│       │   ├── 📄 database.ts                     ✅ EXISTE	<----	https://raw.githubusercontent.com/PeterH4ck/SKYN3T-Control_/refs/heads/main/backend/src/config/database.ts
-│       │   ├── 📄 redis.ts                        ✅ EXISTE	<----	https://raw.githubusercontent.com/PeterH4ck/SKYN3T-Control_/refs/heads/main/backend/src/config/redis.ts
-│       │   └── 📄 constants.ts                    ✅ EXISTE	<----	https://raw.githubusercontent.com/PeterH4ck/SKYN3T-Control_/refs/heads/main/backend/src/config/constants.ts
-│       │
-│       ├── 📁 models/
-│       │   ├── 📄 index.ts                        ❌ FALTA
-│       │   ├── 📄 User.ts                         ✅ EXISTE	<----	https://raw.githubusercontent.com/PeterH4ck/SKYN3T-Control_/refs/heads/main/backend/src/models/User.ts
-│       │   ├── 📄 Building.ts                     ✅ EXISTE	<----	https://raw.githubusercontent.com/PeterH4ck/SKYN3T-Control_/refs/heads/main/backend/src/models/Building.ts
-│       │   ├── 📄 Permission.ts                   ✅ EXISTE	<----	https://raw.githubusercontent.com/PeterH4ck/SKYN3T-Control_/refs/heads/main/backend/src/models/Permission.ts
-│       │   ├── 📄 Community.ts                    ✅ EXISTE	<----	https://raw.githubusercontent.com/PeterH4ck/SKYN3T-Control_/refs/heads/main/backend/src/models/Community.ts
-│       │   ├── 📄 AccessLog.ts                    ✅ EXISTE	<----	https://raw.githubusercontent.com/PeterH4ck/SKYN3T-Control_/refs/heads/main/backend/src/models/AccessLog.ts
-│       │   ├── 📄 UserRole.ts                     ✅ EXISTE	<----	https://raw.githubusercontent.com/PeterH4ck/SKYN3T-Control_/refs/heads/main/backend/src/models/UserRole.ts
-│       │   ├── 📄 Vehicle.ts                      ✅ EXISTE	<----	https://raw.githubusercontent.com/PeterH4ck/SKYN3T-Control_/refs/heads/main/backend/src/models/Vehicle.ts
-│       │   ├── 📄 Role.ts                         ✅ EXISTE	<----	https://raw.githubusercontent.com/PeterH4ck/SKYN3T-Control_/refs/heads/main/backend/src/models/Role.ts
-│       │   ├── 📄 Invitation.ts                   ✅ EXISTE	<----	https://raw.githubusercontent.com/PeterH4ck/SKYN3T-Control_/refs/heads/main/backend/src/models/Invitation.ts
-│       │   ├── 📄 Feature.ts                      ✅ EXISTE	<----	https://raw.githubusercontent.com/PeterH4ck/SKYN3T-Control_/refs/heads/main/backend/src/models/Feature.ts
-│       │   ├── 📄 Device.ts                       ✅ EXISTE	<----	https://raw.githubusercontent.com/PeterH4ck/SKYN3T-Control_/refs/heads/main/backend/src/models/Device.ts
-│       │   └── 📁 relations/
-│       │       └── 📄 index.ts                    ❌ FALTA
-│       │
-│       ├── 📁 controllers/
-│       │   ├── 📄 authController.ts               ✅ EXISTE	<----	https://raw.githubusercontent.com/PeterH4ck/SKYN3T-Control_/refs/heads/main/backend/src/controllers/authController.ts
-│       │   ├── 📄 userController.ts               ✅ EXISTE	<----	https://raw.githubusercontent.com/PeterH4ck/SKYN3T-Control_/refs/heads/main/backend/src/controllers/userController.ts
-│       │   ├── 📄 permissionController.ts         ✅ EXISTE	<----	https://raw.githubusercontent.com/PeterH4ck/SKYN3T-Control_/refs/heads/main/backend/src/controllers/permissionController.ts
-│       │   ├── 📄 communityController.ts          ✅ EXISTE	<----	https://raw.githubusercontent.com/PeterH4ck/SKYN3T-Control_/refs/heads/main/backend/src/controllers/communityController.ts
-│       │   ├── 📄 deviceController.ts             ❌ FALTA
-│       │   ├── 📄 paymentController.ts            ❌ FALTA
-│       │   └── 📄 notificationController.ts       ❌ FALTA
-│       │
-│       ├── 📁 middleware/
-│       │   ├── 📄 auth.ts                         ✅ EXISTE	<----	https://raw.githubusercontent.com/PeterH4ck/SKYN3T-Control_/refs/heads/main/backend/src/middleware/auth.ts
-│       │   ├── 📄 permissions.ts                  ❌ FALTA
-│       │   ├── 📄 validate.ts                     ✅ EXISTE	<----	https://raw.githubusercontent.com/PeterH4ck/SKYN3T-Control_/refs/heads/main/backend/src/middleware/validate.ts
-│       │   ├── 📄 errorHandler.ts                 ✅ EXISTE	<----	https://raw.githubusercontent.com/PeterH4ck/SKYN3T-Control_/refs/heads/main/backend/src/middleware/errorHandler.ts
-│       │   └── 📄 rateLimiter.ts                  ❌ FALTA
-│       │
-│       ├── 📁 routes/
-│       │   ├── 📄 index.ts                        ✅ EXISTE	<----	https://raw.githubusercontent.com/PeterH4ck/SKYN3T-Control_/refs/heads/main/backend/src/routes/index.ts
-│       │   ├── 📄 auth.ts                         ✅ EXISTE	<----	https://raw.githubusercontent.com/PeterH4ck/SKYN3T-Control_/refs/heads/main/backend/src/routes/auth.ts
-│       │   ├── 📄 users.ts                        ✅ EXISTE	<----	https://raw.githubusercontent.com/PeterH4ck/SKYN3T-Control_/refs/heads/main/backend/src/routes/users.ts
-│       │   ├── 📄 permissions.ts                  ✅ EXISTE	<----	https://raw.githubusercontent.com/PeterH4ck/SKYN3T-Control_/refs/heads/main/backend/src/routes/permissions.ts
-│       │   ├── 📄 communities.ts                  ✅ EXISTE	<----	https://raw.githubusercontent.com/PeterH4ck/SKYN3T-Control_/refs/heads/main/backend/src/routes/communities.ts
-│       │   ├── 📄 devices.ts                      ❌ FALTA
-│       │   ├── 📄 payments.ts                     ❌ FALTA
-│       │   └── 📄 notifications.ts                ❌ FALTA
-│       │
-│       ├── 📁 services/
-│       │   ├── 📄 authService.ts                  ❌ FALTA
-│       │   ├── 📄 emailService.ts                 ✅ EXISTE	<----	https://raw.githubusercontent.com/PeterH4ck/SKYN3T-Control_/refs/heads/main/backend/src/services/emailService.ts
-│       │   ├── 📄 uploadService.ts                ✅ EXISTE	<----	https://raw.githubusercontent.com/PeterH4ck/SKYN3T-Control_/refs/heads/main/backend/src/services/uploadService.ts
-│       │   ├── 📄 permissionService.ts            ❌ FALTA
-│       │   ├── 📄 websocketService.ts             ✅ EXISTE	<----	https://raw.githubusercontent.com/PeterH4ck/SKYN3T-Control_/refs/heads/main/backend/src/services/websocketService.ts
-│       │   ├── 📄 paymentService.ts               ❌ FALTA
-│       │   ├── 📄 notificationService.ts          ❌ FALTA
-│       │   └── 📄 deviceService.ts                ❌ FALTA
-│       │
-│       ├── 📁 utils/
-│       │   ├── 📄 logger.ts                       ✅ EXISTE	<----	https://raw.githubusercontent.com/PeterH4ck/SKYN3T-Control_/refs/heads/main/backend/src/utils/logger.ts
-│       │   ├── 📄 index.ts                        ✅ EXISTE	<----	https://raw.githubusercontent.com/PeterH4ck/SKYN3T-Control_/refs/heads/main/backend/src/utils/index.ts
-│       │   ├── 📄 validators.ts                   ✅ EXISTE	<----	https://raw.githubusercontent.com/PeterH4ck/SKYN3T-Control_/refs/heads/main/backend/src/utils/validators.ts
-│       │   ├── 📄 AppError.ts						 ✅ EXISTE	<----	https://raw.githubusercontent.com/PeterH4ck/SKYN3T-Control_/refs/heads/main/backend/src/utils/AppError.ts
-│       │   └── 📄 crypto.ts                       ❌ FALTA
-│       │
-│       └── 📁 database/
-│           ├── 📄 schema.sql                      ✅ CREADO	<----	https://raw.githubusercontent.com/PeterH4ck/SKYN3T-Control_/refs/heads/main/backend/src/database/schema.sql
-│           ├── 📁 migrations/
-│           │   └── 📄 001_initial_schema.sql      ❌ FALTA
-│           └── 📁 seeds/
-│               ├── 📄 01_countries.sql            ❌ FALTA
-│               ├── 📄 02_roles.sql                ❌ FALTA
-│               ├── 📄 03_permissions.sql          ❌ FALTA
-│               └── 📄 04_demo_data.sql            ❌ FALTA
-│
-├── 📁 permission-service/
-│   ├── 📄 package.json                            ❌ FALTA (crear manualmente)
-│   ├── 📄 package-lock.json                       ❌ FALTA
-│   ├── 📄 Dockerfile                              ❌ FALTA (crear manualmente)
-│   ├── 📄 .env.example                            ❌ FALTA
-│   ├── 📄 README.md                               ❌ FALTA
-│   │
-│   └── 📁 src/
-│       ├── 📄 index.js                            ❌ FALTA
-│       ├── 📄 permissionEngine.js                 ❌ FALTA (extraer de index.js)
-│       ├── 📄 permissionPropagator.js             ❌ FALTA (extraer de index.js)
-│       └── 📁 tests/
-│           └── 📄 permissions.test.js             ❌ FALTA
-│
-├── 📁 payment-service/
-│   ├── 📄 package.json                            ❌ FALTA
-│   ├── 📄 Dockerfile                              ❌ FALTA
-│   │
-│   └── 📁 src/
-│       ├── 📄 index.js                            ❌ FALTA
-│       ├── 📁 banks/
-│       │   ├── 📄 bancoEstado.adapter.js          ❌ FALTA
-│       │   ├── 📄 santander.adapter.js            ❌ FALTA
-│       │   ├── 📄 bci.adapter.js                  ❌ FALTA
-│       │   └── 📄 bancoChile.adapter.js           ❌ FALTA
-│       └── 📁 gateways/
-│           ├── 📄 paypal.gateway.js               ❌ FALTA
-│           └── 📄 mercadopago.gateway.js          ❌ FALTA
-│
-├── 📁 notification-service/
-│   ├── 📄 package.json                            ❌ FALTA
-│   ├── 📄 Dockerfile                              ❌ FALTA
-│   │
-│   └── 📁 src/
-│       ├── 📄 index.js                            ❌ FALTA
-│       ├── 📁 channels/
-│       │   ├── 📄 email.channel.js                ❌ FALTA
-│       │   ├── 📄 sms.channel.js                  ❌ FALTA
-│       │   ├── 📄 whatsapp.channel.js             ❌ FALTA
-│       │   └── 📄 push.channel.js                 ❌ FALTA
-│       └── 📁 templates/
-│           └── 📄 index.js                        ❌ FALTA
-│
-├── 📁 analytics-service/
-│   ├── 📄 package.json                            ❌ FALTA
-│   ├── 📄 Dockerfile                              ❌ FALTA
-│   │
-│   └── 📁 src/
-│       └── 📄 index.js                            ❌ FALTA
-│
-├── 📁 ocr-service/
-│   ├── 📄 requirements.txt                        ❌ FALTA
-│   ├── 📄 Dockerfile                              ❌ FALTA
-│   │
-│   ├── 📁 src/
-│   │   ├── 📄 main.py                             ❌ FALTA
-│   │   ├── 📄 receipt_ocr.py                      ❌ FALTA
-│   │   └── 📄 plate_ocr.py                        ❌ FALTA
-│   │
-│   └── 📁 models/
-│       └── 📄 chilean_plates.pkl                  ❌ FALTA
-│
-├── 📁 ml-service/
-│   ├── 📄 requirements.txt                        ❌ FALTA
-│   ├── 📄 Dockerfile                              ❌ FALTA
-│   │
-│   ├── 📁 src/
-│   │   ├── 📄 main.py                             ❌ FALTA
-│   │   ├── 📄 payment_predictor.py                ❌ FALTA
-│   │   └── 📄 anomaly_detector.py                 ❌ FALTA
-│   │
-│   └── 📁 models/
-│       └── 📄 payment_model.pkl                   ❌ FALTA
-│
-├── 📁 scheduler/
-│   ├── 📄 package.json                            ❌ FALTA
-│   ├── 📄 Dockerfile                              ❌ FALTA
-│   │
-│   └── 📁 src/
-│       └── 📄 index.js                            ❌ FALTA
-│
-├── 📁 backup/
-│   ├── 📄 Dockerfile                              ❌ FALTA
-│   │
-│   └── 📁 scripts/
-│       └── 📄 backup.sh                           ❌ FALTA
-│
-├── 📁 nginx/
-│   ├── 📄 nginx.conf                              ✅ CREADO	<----	https://raw.githubusercontent.com/PeterH4ck/SKYN3T-Control_/refs/heads/main/nginx/nginx.conf
-│   ├── 📄 frontend.conf                           ❌ FALTA
-│   │
-│   ├── 📁 conf.d/
-│   │   ├── 📄 api.conf                            ❌ FALTA
-│   │   ├── 📄 monitoring.conf                     ❌ FALTA
-│   │   └── 📄 security.conf                       ❌ FALTA
-│   │
-│   └── 📁 ssl/
-│       ├── 📄 cert.pem                            ❌ FALTA (generar)
-│       └── 📄 key.pem                             ❌ FALTA (generar)
-│
-├── 📁 config/
-│   ├── 📄 prometheus.yml                          ❌ FALTA
-│   ├── 📄 kong.yml                                ❌ FALTA
-│   ├── 📄 mosquitto.conf                          ❌ FALTA
-│   ├── 📄 redis-sentinel.conf                     ❌ FALTA
-│   │
-│   └── 📁 grafana/
-│       ├── 📁 dashboards/
-│       │   ├── 📄 system-dashboard.json           ❌ FALTA
-│       │   ├── 📄 access-dashboard.json           ❌ FALTA
-│       │   └── 📄 financial-dashboard.json        ❌ FALTA
-│       │
-│       └── 📁 datasources/
-│           └── 📄 datasources.yml                 ❌ FALTA
-│
-├── 📁 scripts/
-│   ├── 📄 init-db.sh                              ❌ FALTA
-│   ├── 📄 backup.sh                               ❌ FALTA
-│   ├── 📄 restore.sh                              ❌ FALTA
-│   ├── 📄 support-bundle.sh                       ❌ FALTA
-│   └── 📄 install.sh                              ❌ FALTA
-│
-├── 📁 frontend/                                   ❌ TODO FALTA (Fase 4)
-│   ├── 📄 package.json                            ❌ FALTA
-│   ├── 📄 tsconfig.json                           ✅ CREADO	<----	https://raw.githubusercontent.com/PeterH4ck/SKYN3T-Control_/refs/heads/main/frontend/tsconfig.json
-│   ├── 📄 .env.example                            ❌ FALTA
-│   │
-│   ├── 📁 public/
-│   │   ├── 📄 index.html                          ❌ FALTA
-│   │   └── 📁 images/
-│   │       ├── 📄 logo.png                        ❌ FALTA
-│   │       └── 📄 login-background.jpeg           ❌ FALTA
-│   │
-│   ├── 📁 src/
-│   │   ├── 📄 index.tsx                           ❌ FALTA
-│   │   ├── 📄 App.tsx                             ❌ FALTA
-│   │   │
-│   │   ├── 📁 components/
-│   │   │   ├── 📁 Layout/
-│   │   │   ├── 📁 Auth/
-│   │   │   ├── 📁 Dashboard/
-│   │   │   ├── 📁 Permissions/
-│   │   │   └── 📁 Common/
-│   │   │
-│   │   ├── 📁 pages/
-│   │   │   ├── 📄 Login.tsx                       ❌ FALTA
-│   │   │   ├── 📄 Dashboard.tsx                   ❌ FALTA
-│   │   │   ├── 📄 Users.tsx                       ❌ FALTA
-│   │   │   ├── 📄 Permissions.tsx                 ❌ FALTA
-│   │   │   └── 📄 Communities.tsx                 ❌ FALTA
-│   │   │
-│   │   ├── 📁 services/
-│   │   │   ├── 📄 api.ts                          ❌ FALTA
-│   │   │   ├── 📄 auth.ts                         ❌ FALTA
-│   │   │   └── 📄 websocket.ts                    ❌ FALTA
-│   │   │
-│   │   ├── 📁 store/
-│   │   │   └── 📄 index.ts                        ❌ FALTA
-│   │   │
-│   │   ├── 📁 hooks/
-│   │   │   └── 📄 useAuth.ts                      ❌ FALTA
-│   │   │
-│   │   ├── 📁 utils/
-│   │   │   └── 📄 index.ts                        ❌ FALTA
-│   │   │
-│   │   └── 📁 styles/
-│   │       └── 📄 globals.css                     ❌ FALTA
-│   │
-│   └── 📁 build/                                  ❌ (generado al compilar)
-│
-└── 📁 docs/
-    ├── 📄 API.md                                  ✅ CREADO	<----	https://raw.githubusercontent.com/PeterH4ck/SKYN3T-Control_/refs/heads/main/docs/API.md
-    ├── 📄 ARCHITECTURE.md                         ✅ CREADO	<----	https://raw.githubusercontent.com/PeterH4ck/SKYN3T-Control_/refs/heads/main/docs/ARCHITECTURE.md
-    └── 📄 DEPLOYMENT.md                           ✅ CREADO	<----	https://raw.githubusercontent.com/PeterH4ck/SKYN3T-Control_/refs/heads/main/docs/DEPLOYMENT.md
+## 🌐 **API Documentation**
 
+### **Endpoints Principales**
 
-Ver [Issues](https://github.com/your-org/skyn3t-access-control/issues) para lista completa.
+| Método | Endpoint | Descripción | Auth |
+|--------|----------|-------------|------|
+| `POST` | `/api/v1/auth/login` | Autenticación de usuario | ❌ |
+| `GET` | `/api/v1/users` | Listar usuarios | ✅ |
+| `POST` | `/api/v1/users` | Crear usuario | ✅ |
+| `GET` | `/api/v1/permissions` | Listar permisos | ✅ |
+| `POST` | `/api/v1/devices/{id}/command` | Controlar dispositivo | ✅ |
+| `GET` | `/api/v1/access/logs` | Logs de acceso | ✅ |
+| `POST` | `/api/v1/payments` | Procesar pago | ✅ |
 
-## 📄 Licencia
+### **Documentación Completa**
 
-Este proyecto está licenciado bajo la Licencia MIT - ver [LICENSE](LICENSE) para detalles.
+- 📖 **[API Reference](docs/API.md)** - Endpoints, schemas, ejemplos
+- 🏗️ **[Architecture Guide](docs/ARCHITECTURE.md)** - Diseño del sistema
+- 🚀 **[Deployment Guide](docs/DEPLOYMENT.md)** - Instalación y despliegue
 
-## 👥 Equipo
+### **Swagger UI**
 
-- **Arquitecto Lead**: PETERH4CK
-- **Backend Developer**: PETERH4CK
-- **Frontend Developer**: PETERH4CK
-- **DevOps Engineer**: PETERH4CK
+```bash
+# Desarrollo
+http://localhost:8000/api/v1/docs
 
-## 📞 Soporte
+# Generar OpenAPI spec
+make generate-docs
+```
 
-- **Documentación**: [Wiki del proyecto]
-- **Issues**: [GitHub Issues](https://github.com/your-org/skyn3t-access-control/issues)
-- **Discussions**: [GitHub Discussions](https://github.com/your-org/skyn3t-access-control/discussions)
-- **Email**: support@skyn3t.com
+---
 
-## 🙏 Agradecimientos
+## 🔌 **Integraciones**
 
-- **ClaudeAI** por las capacidades de IA
-- **Sequelize** por el excelente ORM
-- **Material-UI** por los componentes
-- **Docker** por la containerización
-- **PostgreSQL** por la robustez
+### **🏦 Bancos Chilenos**
+
+| Banco | API | Estado | Documentación |
+|-------|-----|--------|---------------|
+| **Banco Estado** | REST API | ✅ Integrado | [Docs](src/services/banks/bancoEstado.ts) |
+| **Santander** | Open Banking | 🚧 En desarrollo | [Docs](src/services/banks/santander.ts) |
+| **BCI** | Transbank | 🚧 En desarrollo | [Docs](src/services/banks/bci.ts) |
+| **Banco de Chile** | API Edwards | 🚧 En desarrollo | [Docs](src/services/banks/bancoChile.ts) |
+
+### **💳 Pasarelas de Pago**
+
+- ✅ **PayPal** - Pagos internacionales
+- ✅ **MercadoPago** - Mercado LATAM
+- 🚧 **Stripe** - En desarrollo
+- 🚧 **Culqi** - Perú (futuro)
+
+### **📱 Comunicaciones**
+
+- ✅ **Email** - SMTP configurado
+- 🚧 **SMS** - Twilio integration
+- 🚧 **WhatsApp** - Business API
+- 🚧 **Push** - Firebase + APNs
+
+### **🔌 IoT Devices**
+
+| Tipo | Protocolo | Estado | Ejemplo |
+|------|-----------|--------|---------|
+| **Lectores RFID** | MQTT/HTTP | ✅ | HID, Suprema |
+| **Cámaras IP** | ONVIF/RTSP | 🚧 | Hikvision, Dahua |
+| **Barreras** | Modbus/TCP | 🚧 | CAME, FAAC |
+| **Biométricos** | SDK/HTTP | 🚧 | ZKTeco, Suprema |
+
+---
+
+## 📊 **Monitoreo y Observabilidad**
+
+### **Métricas Clave (SLOs)**
+
+```yaml
+Availability: 99.9% uptime
+Performance: 
+  - API p95 < 500ms
+  - API p99 < 1s
+Error Rate: < 0.1% críticos, < 1% generales
+Capacity: 10K usuarios concurrentes
+```
+
+### **Dashboards Disponibles**
+
+- 🖥️ **System Dashboard** - CPU, memoria, red, disco
+- 🔐 **Access Dashboard** - Logs de acceso, dispositivos
+- 💰 **Financial Dashboard** - Transacciones, pagos
+- 📊 **Business Dashboard** - KPIs, métricas de negocio
+
+### **Alertas Configuradas**
+
+- 🚨 **High Error Rate** (>5%)
+- ⚡ **High Response Time** (>1s)
+- 💾 **Database Issues** (connections, replication)
+- 🔴 **Pod Crash Looping**
+- 📈 **High Resource Usage** (>80%)
+
+---
+
+## 🧪 **Testing**
+
+### **Estrategia de Testing**
+
+```bash
+# Tests unitarios (>80% coverage)
+npm run test
+
+# Tests de integración
+npm run test:integration
+
+# Tests end-to-end
+npm run test:e2e
+
+# Load testing
+npm run test:load
+
+# Security testing
+npm run test:security
+```
+
+### **Coverage Objetivos**
+
+| Componente | Coverage | Estado |
+|------------|----------|--------|
+| **Controllers** | >90% | 🚧 |
+| **Services** | >85% | 🚧 |
+| **Models** | >80% | ✅ |
+| **Utils** | >95% | ✅ |
+
+---
+
+## 🚀 **Deployment**
+
+### **Entornos**
+
+| Entorno | URL | Descripción |
+|---------|-----|-------------|
+| **Development** | http://localhost:3000 | Docker Compose local |
+| **Staging** | https://staging.skyn3t.com | Kubernetes (EKS) |
+| **Production** | https://app.skyn3t.com | Kubernetes HA + Istio |
+
+### **Infraestructura**
+
+```yaml
+# Kubernetes (Production)
+Nodes: 6+ (3 master, 3+ worker)
+CPU: 16+ cores per worker
+Memory: 32+ GB per worker
+Storage: 500+ GB SSD per node
+
+# Database
+PostgreSQL 15 Multi-AZ
+Instance: db.r5.xlarge
+Storage: 500GB - 2TB GP3
+IOPS: 12,000+
+Backup: 30 días retention
+```
+
+### **CI/CD Pipeline**
+
+```mermaid
+graph LR
+    A[Git Push] --> B[GitHub Actions]
+    B --> C[Build & Test]
+    C --> D[Security Scan]
+    D --> E[Docker Build]
+    E --> F[Deploy Staging]
+    F --> G[E2E Tests]
+    G --> H[Deploy Production]
+```
+
+---
+
+## 🤝 **Contribución**
+
+### **Cómo Contribuir**
+
+1. **Fork** el repositorio
+2. **Crear** una rama feature (`git checkout -b feature/amazing-feature`)
+3. **Commit** los cambios (`git commit -m 'Add amazing feature'`)
+4. **Push** a la rama (`git push origin feature/amazing-feature`)
+5. **Abrir** un Pull Request
+
+### **Coding Standards**
+
+```bash
+# Linting
+npm run lint              # ESLint + Prettier
+npm run lint:fix          # Auto-fix issues
+
+# Type checking
+npm run type-check        # TypeScript validation
+
+# Pre-commit hooks
+npm run prepare           # Setup Husky hooks
+```
+
+### **Commit Convention**
+
+```bash
+# Tipos de commit
+feat: nueva funcionalidad
+fix: corrección de bug
+docs: documentación
+style: formato de código
+refactor: refactoring
+test: tests
+chore: tareas de mantenimiento
+
+# Ejemplos
+feat(auth): add 2FA support
+fix(payment): resolve bank API timeout
+docs(api): update endpoint documentation
+```
+
+---
+
+## 📄 **Licencia**
+
+Este proyecto está licenciado bajo la **MIT License** - ver el archivo [LICENSE](LICENSE) para detalles.
+
+---
+
+## 👥 **Equipo**
+
+### **Core Team**
+
+- **PeterH4ck** - *Lead Developer & Architect* - [@PeterH4ck](https://github.com/PeterH4ck)
+
+### **Contributors**
+
+Ver la lista completa de [contributors](https://github.com/PeterH4ck/SKYN3T-Control_/contributors) que han participado en este proyecto.
+
+---
+
+## 📞 **Soporte**
+
+### **Canales de Soporte**
+
+- 🐛 **Bug Reports**: [GitHub Issues](https://github.com/PeterH4ck/SKYN3T-Control_/issues)
+- 💡 **Feature Requests**: [GitHub Discussions](https://github.com/PeterH4ck/SKYN3T-Control_/discussions)
+- 📧 **Email**: support@skyn3t.com
+- 💬 **Discord**: [SKYN3T Community](https://discord.gg/skyn3t)
+
+### **Enterprise Support**
+
+Para soporte enterprise, consultoría o licencias comerciales:
+- 📧 **Enterprise**: enterprise@skyn3t.com
+- 🏢 **Sales**: sales@skyn3t.com
+
+---
+
+## 🎯 **Roadmap & Vision**
+
+### **Visión 2025**
+
+Convertir a **SKYN3T** en la **plataforma líder de control de acceso** en Latinoamérica, combinando:
+
+- 🤖 **Inteligencia Artificial** avanzada
+- 🌐 **Ecosistema IoT** completo  
+- 💰 **Fintech** integrado
+- 📱 **Experiencia mobile-first**
+- 🌍 **Expansión internacional**
+
+### **Mercado Objetivo**
+
+- 🏢 **Edificios Corporativos** (500+ empleados)
+- 🏠 **Condominios Residenciales** (100+ unidades)
+- 🏭 **Complejos Industriales** 
+- 🏫 **Instituciones Educativas**
+- 🏥 **Centros de Salud**
+
+---
+
+## 📈 **Métricas del Proyecto**
+
+![GitHub repo size](https://img.shields.io/github/repo-size/PeterH4ck/SKYN3T-Control_)
+![GitHub code size](https://img.shields.io/github/languages/code-size/PeterH4ck/SKYN3T-Control_)
+![GitHub commit activity](https://img.shields.io/github/commit-activity/m/PeterH4ck/SKYN3T-Control_)
+![GitHub last commit](https://img.shields.io/github/last-commit/PeterH4ck/SKYN3T-Control_)
+
+### **Statistics**
+
+- 📁 **7 Microservices** implementados
+- 💾 **100+ Database Tables** diseñadas
+- 🔌 **27 Docker Services** orquestados
+- 📚 **50+ API Endpoints** documentados
+- 🧪 **11 Testing Levels** configurados
+- 🌍 **4 Deployment Environments** soportados
 
 ---
 
 <div align="center">
 
-**[🏠 Homepage](https://skyn3t.com) • [📚 Documentation](https://docs.skyn3t.com) • [🎯 Demo](https://demo.skyn3t.com)**
+### **⭐ Si este proyecto te resulta útil, considera darle una estrella ⭐**
 
-Made with ❤️ for the future of access control
+**Hecho con ❤️ para la comunidad de desarrolladores LATAM**
+
+---
+
+**© 2024 SKYN3T Access Control. Todos los derechos reservados.**
 
 </div>

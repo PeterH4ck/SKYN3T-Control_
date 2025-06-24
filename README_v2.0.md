@@ -416,10 +416,10 @@ Este proyecto está licenciado bajo la Licencia MIT - ver [LICENSE](LICENSE) par
 
 ## 👥 Equipo
 
-- **Arquitecto Lead**: [Tu Nombre]
-- **Backend Developer**: [Tu Nombre]
-- **Frontend Developer**: [Pendiente]
-- **DevOps Engineer**: [Pendiente]
+- **Arquitecto Lead**: PETERH4CK
+- **Backend Developer**: PETERH4CK
+- **Frontend Developer**: PETERH4CK
+- **DevOps Engineer**: PETERH4CK
 
 ## 📞 Soporte
 
@@ -430,7 +430,7 @@ Este proyecto está licenciado bajo la Licencia MIT - ver [LICENSE](LICENSE) par
 
 ## 🙏 Agradecimientos
 
-- **OpenAI** por las capacidades de IA
+- **ClaudeAI** por las capacidades de IA
 - **Sequelize** por el excelente ORM
 - **Material-UI** por los componentes
 - **Docker** por la containerización

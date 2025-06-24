@@ -1,0 +1,460 @@
+# ==============================================
+# SKYN3T ACCESS CONTROL - GIT IGNORE RULES
+# ==============================================
+
+# ==============================================
+# ENVIRONMENT & SECRETS
+# ==============================================
+.env
+.env.local
+.env.production
+.env.staging
+.env.development
+.env.test
+*.env
+secrets/
+credentials/
+.secrets
+
+# ==============================================
+# NODE.JS & NPM
+# ==============================================
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.npm
+.yarn
+.yarn-integrity
+.pnp
+.pnp.js
+
+# Runtime data
+pids
+*.pid
+*.seed
+*.pid.lock
+
+# Coverage directory used by tools like istanbul
+coverage/
+*.lcov
+.nyc_output
+
+# ==============================================
+# LOGS & TEMPORARY FILES
+# ==============================================
+logs/
+*.log
+log/
+temp/
+tmp/
+.tmp/
+
+# Debug logs
+debug.log
+error.log
+access.log
+combined.log
+
+# ==============================================
+# COMPILED & BUILD OUTPUT
+# ==============================================
+dist/
+build/
+out/
+.next/
+.nuxt/
+.vuepress/dist
+
+# TypeScript compiled output
+*.tsbuildinfo
+.tscache/
+
+# ==============================================
+# DATABASES & STORAGE
+# ==============================================
+*.sqlite
+*.db
+*.db3
+*.sqlite3
+database/
+db/
+data/
+
+# Backup files
+*.bak
+*.backup
+*.dump
+*.sql.gz
+
+# ==============================================
+# UPLOADS & USER CONTENT
+# ==============================================
+uploads/
+files/
+attachments/
+images/
+documents/
+avatars/
+media/
+static/uploads/
+
+# ==============================================
+# DOCKER & CONTAINERS
+# ==============================================
+.dockerignore
+docker-compose.override.yml
+docker-compose.local.yml
+.docker/
+
+# Docker volumes data
+postgres_data/
+redis_data/
+minio_data/
+
+# ==============================================
+# KUBERNETES & DEPLOYMENT
+# ==============================================
+*.kubeconfig
+kubeconfig
+.kube/
+k8s/secrets/
+helm/charts/*.tgz
+.helm/
+
+# Terraform
+*.tfstate
+*.tfstate.*
+.terraform/
+.terraform.lock.hcl
+terraform.tfvars
+*.tfvars
+
+# ==============================================
+# IDE & EDITOR FILES
+# ==============================================
+
+# Visual Studio Code
+.vscode/
+*.code-workspace
+
+# IntelliJ IDEA
+.idea/
+*.iml
+*.iws
+*.ipr
+
+# Sublime Text
+*.sublime-project
+*.sublime-workspace
+
+# Vim
+*.swp
+*.swo
+*~
+.vim/
+
+# Emacs
+*~
+\#*\#
+/.emacs.desktop
+/.emacs.desktop.lock
+*.elc
+auto-save-list
+tramp
+.\#*
+
+# ==============================================
+# OPERATING SYSTEM FILES
+# ==============================================
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+Icon
+._*
+.DocumentRevisions-V100
+.fseventsd
+.Spotlight-V100
+.TemporaryItems
+.Trashes
+.VolumeIcon.icns
+.com.apple.timemachine.donotpresent
+
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+*.cab
+*.msi
+*.msm
+*.msp
+*.lnk
+
+# Linux
+*~
+.fuse_hidden*
+.directory
+.Trash-*
+.nfs*
+
+# ==============================================
+# DEVELOPMENT & TESTING
+# ==============================================
+.cache/
+.parcel-cache/
+.eslintcache
+.stylelintcache
+
+# Testing
+test-results/
+playwright-report/
+coverage/
+.coverage
+htmlcov/
+.pytest_cache/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Mock data
+mocks/generated/
+test-data/
+
+# ==============================================
+# CERTIFICATES & KEYS
+# ==============================================
+*.pem
+*.key
+*.crt
+*.csr
+*.p12
+*.pfx
+ssl/
+certs/
+certificates/
+
+# SSH keys
+id_rsa
+id_rsa.pub
+*.pub
+
+# ==============================================
+# MONITORING & OBSERVABILITY
+# ==============================================
+grafana/data/
+prometheus/data/
+elasticsearch/data/
+jaeger/data/
+
+# Log files from monitoring tools
+grafana.log
+prometheus.log
+alertmanager.log
+
+# ==============================================
+# BACKUPS & ARCHIVES
+# ==============================================
+backup/
+backups/
+*.tar
+*.tar.gz
+*.zip
+*.rar
+*.7z
+
+# Database dumps
+*.dump
+*.sql.bz2
+dump_*
+
+# ==============================================
+# CONFIGURATION FILES (Local)
+# ==============================================
+config/local.json
+config/local.js
+config/local.yml
+config/development.json
+config/production.json
+config/staging.json
+
+# Local overrides
+local.*
+*.local
+
+# ==============================================
+# PAYMENT & INTEGRATION CONFIGS
+# ==============================================
+payment-configs/
+bank-certificates/
+webhook-configs/local/
+
+# ==============================================
+# MACHINE LEARNING & AI
+# ==============================================
+models/
+*.pkl
+*.model
+*.h5
+*.pb
+training_data/
+ml_outputs/
+
+# ==============================================
+# FRONTEND SPECIFIC
+# ==============================================
+
+# React/Next.js
+.next/
+out/
+next-env.d.ts
+
+# Vue.js
+.nuxt/
+dist/
+
+# Angular
+dist/
+.angular/
+
+# Static file serving
+public/uploads/
+public/temp/
+public/generated/
+
+# ==============================================
+# MOBILE DEVELOPMENT
+# ==============================================
+
+# React Native
+# Xcode
+*.pbxuser
+!default.pbxuser
+*.mode1v3
+!default.mode1v3
+*.mode2v3
+!default.mode2v3
+*.perspectivev3
+!default.perspectivev3
+xcuserdata
+*.xccheckout
+*.moved-aside
+DerivedData
+*.hmap
+*.ipa
+*.xcuserstate
+
+# Android
+*.apk
+*.ap_
+*.dex
+*.class
+bin/
+gen/
+obj/
+
+# ==============================================
+# TEMPORARY & CACHE FILES
+# ==============================================
+.temp/
+.cache/
+.swc/
+.turbo/
+.rollup.cache/
+.rpt2_cache/
+.rts2_cache_cjs/
+.rts2_cache_es/
+.rts2_cache_umd/
+
+# ==============================================
+# PACKAGE MANAGER LOCKS (keep these)
+# ==============================================
+# We keep package-lock.json and yarn.lock for reproducible builds
+# !package-lock.json
+# !yarn.lock
+
+# But ignore other lock files
+pnpm-lock.yaml
+bun.lockb
+
+# ==============================================
+# CUSTOM APPLICATION SPECIFIC
+# ==============================================
+
+# SKYN3T specific ignores
+device-configs/local/
+community-configs/local/
+ocr-training-data/
+facial-recognition-models/
+vehicle-detection-models/
+
+# Temporary API documentation
+api-docs/generated/
+swagger-ui/temp/
+
+# Local development scripts
+scripts/local/
+scripts/dev/
+dev-setup/
+
+# User-specific configs
+.user-config
+user-settings.json
+
+# ==============================================
+# VENDOR & THIRD-PARTY
+# ==============================================
+vendor/
+third-party/
+external/
+
+# Bower (if used)
+bower_components/
+
+# ==============================================
+# DOCUMENTATION BUILD
+# ==============================================
+docs/build/
+docs/dist/
+site/
+
+# ==============================================
+# PERFORMANCE & PROFILING
+# ==============================================
+*.cpuprofile
+*.heapprofile
+.clinic/
+flamegraph.html
+
+# ==============================================
+# DEVELOPMENT UTILITIES
+# ==============================================
+.history/
+.vscode/settings.json
+
+# Storybook
+storybook-static/
+
+# ==============================================
+# NOTES & TODO
+# ==============================================
+# Feel free to add project-specific patterns above
+# Remember to never commit sensitive information:
+# - API keys and secrets
+# - Database credentials
+# - Personal information
+# - Production configurations
+# - SSL certificates
+# - User uploaded content
+
+# ==============================================
+# KEEP THESE FILES (examples of what NOT to ignore)
+# ==============================================
+# !.env.example
+# !docker-compose.yml
+# !package.json
+# !README.md
+# !LICENSE

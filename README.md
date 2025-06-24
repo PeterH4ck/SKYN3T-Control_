@@ -408,6 +408,283 @@ tipo(alcance): descripción corta
 - Microservicios pendientes
 - Apps móviles no iniciadas
 
+RUTAS y LINKS:
+
+skyn3t-access-control/
+│
+├── 📄 Makefile                                    ✅ CREADO	<----	https://github.com/PeterH4ck/SKYN3T-Control_/tree/main
+├── 📄 docker-compose.yml                          ✅ CREADO	<----	https://raw.githubusercontent.com/PeterH4ck/SKYN3T-Control_/refs/heads/main/docker-compose.yml
+├── 📄 .env.example                                ✅ CREADO	<----	https://raw.githubusercontent.com/PeterH4ck/SKYN3T-Control_/refs/heads/main/.env.example
+├── 📄 .env                                        ❌ CREAR
+├── 📄 INSTALLATION.md                             ✅ CREADO	<----	https://raw.githubusercontent.com/PeterH4ck/SKYN3T-Control_/refs/heads/main/INSTALLATION.md
+├── 📄 README.md                                   ❌ FALTA
+├── 📄 .gitignore                                  ❌ FALTA
+├── 📄 .dockerignore                               ❌ FALTA
+│
+├── 📁 backend/
+│   ├── 📄 package.json                            ✅ CREADO	<----	https://raw.githubusercontent.com/PeterH4ck/SKYN3T-Control_/refs/heads/main/backend/package.json
+│   ├── 📄 package-lock.json                       ❌ FALTA
+│   ├── 📄 tsconfig.json                           ✅ CREADO	<----	https://raw.githubusercontent.com/PeterH4ck/SKYN3T-Control_/refs/heads/main/backend/tsconfig.ts
+│   ├── 📄 .env.example                            ❌ FALTA
+│   ├── 📄 Dockerfile                              ❌ FALTA
+│   ├── 📄 Dockerfile.auth                         ❌ FALTA
+│   ├── 📄 Dockerfile.users                        ❌ FALTA
+│   ├── 📄 Dockerfile.devices                      ❌ FALTA
+│   │
+│   └── 📁 src/
+│       ├── 📄 server.ts                           ✅ EXISTE	<----	https://raw.githubusercontent.com/PeterH4ck/SKYN3T-Control_/refs/heads/main/backend/src/server.ts
+│       ├── 📄 app.ts                              ✅ EXISTE	<----	https://raw.githubusercontent.com/PeterH4ck/SKYN3T-Control_/refs/heads/main/backend/src/app.ts
+│       │
+│       ├── 📁 config/
+│       │   ├── 📄 database.ts                     ✅ EXISTE	<----	https://raw.githubusercontent.com/PeterH4ck/SKYN3T-Control_/refs/heads/main/backend/src/config/database.ts
+│       │   ├── 📄 redis.ts                        ✅ EXISTE	<----	https://raw.githubusercontent.com/PeterH4ck/SKYN3T-Control_/refs/heads/main/backend/src/config/redis.ts
+│       │   └── 📄 constants.ts                    ✅ EXISTE	<----	https://raw.githubusercontent.com/PeterH4ck/SKYN3T-Control_/refs/heads/main/backend/src/config/constants.ts
+│       │
+│       ├── 📁 models/
+│       │   ├── 📄 index.ts                        ❌ FALTA
+│       │   ├── 📄 User.ts                         ✅ EXISTE	<----	https://raw.githubusercontent.com/PeterH4ck/SKYN3T-Control_/refs/heads/main/backend/src/models/User.ts
+│       │   ├── 📄 Building.ts                     ✅ EXISTE	<----	https://raw.githubusercontent.com/PeterH4ck/SKYN3T-Control_/refs/heads/main/backend/src/models/Building.ts
+│       │   ├── 📄 Permission.ts                   ✅ EXISTE	<----	https://raw.githubusercontent.com/PeterH4ck/SKYN3T-Control_/refs/heads/main/backend/src/models/Permission.ts
+│       │   ├── 📄 Community.ts                    ✅ EXISTE	<----	https://raw.githubusercontent.com/PeterH4ck/SKYN3T-Control_/refs/heads/main/backend/src/models/Community.ts
+│       │   ├── 📄 AccessLog.ts                    ✅ EXISTE	<----	https://raw.githubusercontent.com/PeterH4ck/SKYN3T-Control_/refs/heads/main/backend/src/models/AccessLog.ts
+│       │   ├── 📄 UserRole.ts                     ✅ EXISTE	<----	https://raw.githubusercontent.com/PeterH4ck/SKYN3T-Control_/refs/heads/main/backend/src/models/UserRole.ts
+│       │   ├── 📄 Vehicle.ts                      ✅ EXISTE	<----	https://raw.githubusercontent.com/PeterH4ck/SKYN3T-Control_/refs/heads/main/backend/src/models/Vehicle.ts
+│       │   ├── 📄 Role.ts                         ✅ EXISTE	<----	https://raw.githubusercontent.com/PeterH4ck/SKYN3T-Control_/refs/heads/main/backend/src/models/Role.ts
+│       │   ├── 📄 Invitation.ts                   ✅ EXISTE	<----	https://raw.githubusercontent.com/PeterH4ck/SKYN3T-Control_/refs/heads/main/backend/src/models/Invitation.ts
+│       │   ├── 📄 Feature.ts                      ✅ EXISTE	<----	https://raw.githubusercontent.com/PeterH4ck/SKYN3T-Control_/refs/heads/main/backend/src/models/Feature.ts
+│       │   ├── 📄 Device.ts                       ✅ EXISTE	<----	https://raw.githubusercontent.com/PeterH4ck/SKYN3T-Control_/refs/heads/main/backend/src/models/Device.ts
+│       │   └── 📁 relations/
+│       │       └── 📄 index.ts                    ❌ FALTA
+│       │
+│       ├── 📁 controllers/
+│       │   ├── 📄 authController.ts               ✅ EXISTE	<----	https://raw.githubusercontent.com/PeterH4ck/SKYN3T-Control_/refs/heads/main/backend/src/controllers/authController.ts
+│       │   ├── 📄 userController.ts               ✅ EXISTE	<----	https://raw.githubusercontent.com/PeterH4ck/SKYN3T-Control_/refs/heads/main/backend/src/controllers/userController.ts
+│       │   ├── 📄 permissionController.ts         ✅ EXISTE	<----	https://raw.githubusercontent.com/PeterH4ck/SKYN3T-Control_/refs/heads/main/backend/src/controllers/permissionController.ts
+│       │   ├── 📄 communityController.ts          ✅ EXISTE	<----	https://raw.githubusercontent.com/PeterH4ck/SKYN3T-Control_/refs/heads/main/backend/src/controllers/communityController.ts
+│       │   ├── 📄 deviceController.ts             ❌ FALTA
+│       │   ├── 📄 paymentController.ts            ❌ FALTA
+│       │   └── 📄 notificationController.ts       ❌ FALTA
+│       │
+│       ├── 📁 middleware/
+│       │   ├── 📄 auth.ts                         ✅ EXISTE	<----	https://raw.githubusercontent.com/PeterH4ck/SKYN3T-Control_/refs/heads/main/backend/src/middleware/auth.ts
+│       │   ├── 📄 permissions.ts                  ❌ FALTA
+│       │   ├── 📄 validate.ts                     ✅ EXISTE	<----	https://raw.githubusercontent.com/PeterH4ck/SKYN3T-Control_/refs/heads/main/backend/src/middleware/validate.ts
+│       │   ├── 📄 errorHandler.ts                 ✅ EXISTE	<----	https://raw.githubusercontent.com/PeterH4ck/SKYN3T-Control_/refs/heads/main/backend/src/middleware/errorHandler.ts
+│       │   └── 📄 rateLimiter.ts                  ❌ FALTA
+│       │
+│       ├── 📁 routes/
+│       │   ├── 📄 index.ts                        ✅ EXISTE	<----	https://raw.githubusercontent.com/PeterH4ck/SKYN3T-Control_/refs/heads/main/backend/src/routes/index.ts
+│       │   ├── 📄 auth.ts                         ✅ EXISTE	<----	https://raw.githubusercontent.com/PeterH4ck/SKYN3T-Control_/refs/heads/main/backend/src/routes/auth.ts
+│       │   ├── 📄 users.ts                        ✅ EXISTE	<----	https://raw.githubusercontent.com/PeterH4ck/SKYN3T-Control_/refs/heads/main/backend/src/routes/users.ts
+│       │   ├── 📄 permissions.ts                  ✅ EXISTE	<----	https://raw.githubusercontent.com/PeterH4ck/SKYN3T-Control_/refs/heads/main/backend/src/routes/permissions.ts
+│       │   ├── 📄 communities.ts                  ✅ EXISTE	<----	https://raw.githubusercontent.com/PeterH4ck/SKYN3T-Control_/refs/heads/main/backend/src/routes/communities.ts
+│       │   ├── 📄 devices.ts                      ❌ FALTA
+│       │   ├── 📄 payments.ts                     ❌ FALTA
+│       │   └── 📄 notifications.ts                ❌ FALTA
+│       │
+│       ├── 📁 services/
+│       │   ├── 📄 authService.ts                  ❌ FALTA
+│       │   ├── 📄 emailService.ts                 ✅ EXISTE	<----	https://raw.githubusercontent.com/PeterH4ck/SKYN3T-Control_/refs/heads/main/backend/src/services/emailService.ts
+│       │   ├── 📄 uploadService.ts                ✅ EXISTE	<----	https://raw.githubusercontent.com/PeterH4ck/SKYN3T-Control_/refs/heads/main/backend/src/services/uploadService.ts
+│       │   ├── 📄 permissionService.ts            ❌ FALTA
+│       │   ├── 📄 websocketService.ts             ✅ EXISTE	<----	https://raw.githubusercontent.com/PeterH4ck/SKYN3T-Control_/refs/heads/main/backend/src/services/websocketService.ts
+│       │   ├── 📄 paymentService.ts               ❌ FALTA
+│       │   ├── 📄 notificationService.ts          ❌ FALTA
+│       │   └── 📄 deviceService.ts                ❌ FALTA
+│       │
+│       ├── 📁 utils/
+│       │   ├── 📄 logger.ts                       ✅ EXISTE	<----	https://raw.githubusercontent.com/PeterH4ck/SKYN3T-Control_/refs/heads/main/backend/src/utils/logger.ts
+│       │   ├── 📄 index.ts                        ✅ EXISTE	<----	https://raw.githubusercontent.com/PeterH4ck/SKYN3T-Control_/refs/heads/main/backend/src/utils/index.ts
+│       │   ├── 📄 validators.ts                   ✅ EXISTE	<----	https://raw.githubusercontent.com/PeterH4ck/SKYN3T-Control_/refs/heads/main/backend/src/utils/validators.ts
+│       │   ├── 📄 AppError.ts						 ✅ EXISTE	<----	https://raw.githubusercontent.com/PeterH4ck/SKYN3T-Control_/refs/heads/main/backend/src/utils/AppError.ts
+│       │   └── 📄 crypto.ts                       ❌ FALTA
+│       │
+│       └── 📁 database/
+│           ├── 📄 schema.sql                      ✅ CREADO	<----	https://raw.githubusercontent.com/PeterH4ck/SKYN3T-Control_/refs/heads/main/backend/src/database/schema.sql
+│           ├── 📁 migrations/
+│           │   └── 📄 001_initial_schema.sql      ❌ FALTA
+│           └── 📁 seeds/
+│               ├── 📄 01_countries.sql            ❌ FALTA
+│               ├── 📄 02_roles.sql                ❌ FALTA
+│               ├── 📄 03_permissions.sql          ❌ FALTA
+│               └── 📄 04_demo_data.sql            ❌ FALTA
+│
+├── 📁 permission-service/
+│   ├── 📄 package.json                            ❌ FALTA (crear manualmente)
+│   ├── 📄 package-lock.json                       ❌ FALTA
+│   ├── 📄 Dockerfile                              ❌ FALTA (crear manualmente)
+│   ├── 📄 .env.example                            ❌ FALTA
+│   ├── 📄 README.md                               ❌ FALTA
+│   │
+│   └── 📁 src/
+│       ├── 📄 index.js                            ❌ FALTA
+│       ├── 📄 permissionEngine.js                 ❌ FALTA (extraer de index.js)
+│       ├── 📄 permissionPropagator.js             ❌ FALTA (extraer de index.js)
+│       └── 📁 tests/
+│           └── 📄 permissions.test.js             ❌ FALTA
+│
+├── 📁 payment-service/
+│   ├── 📄 package.json                            ❌ FALTA
+│   ├── 📄 Dockerfile                              ❌ FALTA
+│   │
+│   └── 📁 src/
+│       ├── 📄 index.js                            ❌ FALTA
+│       ├── 📁 banks/
+│       │   ├── 📄 bancoEstado.adapter.js          ❌ FALTA
+│       │   ├── 📄 santander.adapter.js            ❌ FALTA
+│       │   ├── 📄 bci.adapter.js                  ❌ FALTA
+│       │   └── 📄 bancoChile.adapter.js           ❌ FALTA
+│       └── 📁 gateways/
+│           ├── 📄 paypal.gateway.js               ❌ FALTA
+│           └── 📄 mercadopago.gateway.js          ❌ FALTA
+│
+├── 📁 notification-service/
+│   ├── 📄 package.json                            ❌ FALTA
+│   ├── 📄 Dockerfile                              ❌ FALTA
+│   │
+│   └── 📁 src/
+│       ├── 📄 index.js                            ❌ FALTA
+│       ├── 📁 channels/
+│       │   ├── 📄 email.channel.js                ❌ FALTA
+│       │   ├── 📄 sms.channel.js                  ❌ FALTA
+│       │   ├── 📄 whatsapp.channel.js             ❌ FALTA
+│       │   └── 📄 push.channel.js                 ❌ FALTA
+│       └── 📁 templates/
+│           └── 📄 index.js                        ❌ FALTA
+│
+├── 📁 analytics-service/
+│   ├── 📄 package.json                            ❌ FALTA
+│   ├── 📄 Dockerfile                              ❌ FALTA
+│   │
+│   └── 📁 src/
+│       └── 📄 index.js                            ❌ FALTA
+│
+├── 📁 ocr-service/
+│   ├── 📄 requirements.txt                        ❌ FALTA
+│   ├── 📄 Dockerfile                              ❌ FALTA
+│   │
+│   ├── 📁 src/
+│   │   ├── 📄 main.py                             ❌ FALTA
+│   │   ├── 📄 receipt_ocr.py                      ❌ FALTA
+│   │   └── 📄 plate_ocr.py                        ❌ FALTA
+│   │
+│   └── 📁 models/
+│       └── 📄 chilean_plates.pkl                  ❌ FALTA
+│
+├── 📁 ml-service/
+│   ├── 📄 requirements.txt                        ❌ FALTA
+│   ├── 📄 Dockerfile                              ❌ FALTA
+│   │
+│   ├── 📁 src/
+│   │   ├── 📄 main.py                             ❌ FALTA
+│   │   ├── 📄 payment_predictor.py                ❌ FALTA
+│   │   └── 📄 anomaly_detector.py                 ❌ FALTA
+│   │
+│   └── 📁 models/
+│       └── 📄 payment_model.pkl                   ❌ FALTA
+│
+├── 📁 scheduler/
+│   ├── 📄 package.json                            ❌ FALTA
+│   ├── 📄 Dockerfile                              ❌ FALTA
+│   │
+│   └── 📁 src/
+│       └── 📄 index.js                            ❌ FALTA
+│
+├── 📁 backup/
+│   ├── 📄 Dockerfile                              ❌ FALTA
+│   │
+│   └── 📁 scripts/
+│       └── 📄 backup.sh                           ❌ FALTA
+│
+├── 📁 nginx/
+│   ├── 📄 nginx.conf                              ✅ CREADO	<----	https://raw.githubusercontent.com/PeterH4ck/SKYN3T-Control_/refs/heads/main/nginx/nginx.conf
+│   ├── 📄 frontend.conf                           ❌ FALTA
+│   │
+│   ├── 📁 conf.d/
+│   │   ├── 📄 api.conf                            ❌ FALTA
+│   │   ├── 📄 monitoring.conf                     ❌ FALTA
+│   │   └── 📄 security.conf                       ❌ FALTA
+│   │
+│   └── 📁 ssl/
+│       ├── 📄 cert.pem                            ❌ FALTA (generar)
+│       └── 📄 key.pem                             ❌ FALTA (generar)
+│
+├── 📁 config/
+│   ├── 📄 prometheus.yml                          ❌ FALTA
+│   ├── 📄 kong.yml                                ❌ FALTA
+│   ├── 📄 mosquitto.conf                          ❌ FALTA
+│   ├── 📄 redis-sentinel.conf                     ❌ FALTA
+│   │
+│   └── 📁 grafana/
+│       ├── 📁 dashboards/
+│       │   ├── 📄 system-dashboard.json           ❌ FALTA
+│       │   ├── 📄 access-dashboard.json           ❌ FALTA
+│       │   └── 📄 financial-dashboard.json        ❌ FALTA
+│       │
+│       └── 📁 datasources/
+│           └── 📄 datasources.yml                 ❌ FALTA
+│
+├── 📁 scripts/
+│   ├── 📄 init-db.sh                              ❌ FALTA
+│   ├── 📄 backup.sh                               ❌ FALTA
+│   ├── 📄 restore.sh                              ❌ FALTA
+│   ├── 📄 support-bundle.sh                       ❌ FALTA
+│   └── 📄 install.sh                              ❌ FALTA
+│
+├── 📁 frontend/                                   ❌ TODO FALTA (Fase 4)
+│   ├── 📄 package.json                            ❌ FALTA
+│   ├── 📄 tsconfig.json                           ✅ CREADO	<----	https://raw.githubusercontent.com/PeterH4ck/SKYN3T-Control_/refs/heads/main/frontend/tsconfig.json
+│   ├── 📄 .env.example                            ❌ FALTA
+│   │
+│   ├── 📁 public/
+│   │   ├── 📄 index.html                          ❌ FALTA
+│   │   └── 📁 images/
+│   │       ├── 📄 logo.png                        ❌ FALTA
+│   │       └── 📄 login-background.jpeg           ❌ FALTA
+│   │
+│   ├── 📁 src/
+│   │   ├── 📄 index.tsx                           ❌ FALTA
+│   │   ├── 📄 App.tsx                             ❌ FALTA
+│   │   │
+│   │   ├── 📁 components/
+│   │   │   ├── 📁 Layout/
+│   │   │   ├── 📁 Auth/
+│   │   │   ├── 📁 Dashboard/
+│   │   │   ├── 📁 Permissions/
+│   │   │   └── 📁 Common/
+│   │   │
+│   │   ├── 📁 pages/
+│   │   │   ├── 📄 Login.tsx                       ❌ FALTA
+│   │   │   ├── 📄 Dashboard.tsx                   ❌ FALTA
+│   │   │   ├── 📄 Users.tsx                       ❌ FALTA
+│   │   │   ├── 📄 Permissions.tsx                 ❌ FALTA
+│   │   │   └── 📄 Communities.tsx                 ❌ FALTA
+│   │   │
+│   │   ├── 📁 services/
+│   │   │   ├── 📄 api.ts                          ❌ FALTA
+│   │   │   ├── 📄 auth.ts                         ❌ FALTA
+│   │   │   └── 📄 websocket.ts                    ❌ FALTA
+│   │   │
+│   │   ├── 📁 store/
+│   │   │   └── 📄 index.ts                        ❌ FALTA
+│   │   │
+│   │   ├── 📁 hooks/
+│   │   │   └── 📄 useAuth.ts                      ❌ FALTA
+│   │   │
+│   │   ├── 📁 utils/
+│   │   │   └── 📄 index.ts                        ❌ FALTA
+│   │   │
+│   │   └── 📁 styles/
+│   │       └── 📄 globals.css                     ❌ FALTA
+│   │
+│   └── 📁 build/                                  ❌ (generado al compilar)
+│
+└── 📁 docs/
+    ├── 📄 API.md                                  ✅ CREADO	<----	https://raw.githubusercontent.com/PeterH4ck/SKYN3T-Control_/refs/heads/main/docs/API.md
+    ├── 📄 ARCHITECTURE.md                         ✅ CREADO	<----	https://raw.githubusercontent.com/PeterH4ck/SKYN3T-Control_/refs/heads/main/docs/ARCHITECTURE.md
+    └── 📄 DEPLOYMENT.md                           ✅ CREADO	<----	https://raw.githubusercontent.com/PeterH4ck/SKYN3T-Control_/refs/heads/main/docs/DEPLOYMENT.md
+
+
 Ver [Issues](https://github.com/your-org/skyn3t-access-control/issues) para lista completa.
 
 ## 📄 Licencia

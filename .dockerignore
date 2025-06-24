@@ -1,0 +1,311 @@
+# ==============================================
+# SKYN3T ACCESS CONTROL - DOCKER IGNORE
+# ==============================================
+# This file excludes files and directories from Docker build context
+# Reduces build time and image size
+
+# ==============================================
+# VERSION CONTROL & GIT
+# ==============================================
+.git/
+.gitignore
+.gitattributes
+.gitmodules
+**/.git
+**/.gitignore
+
+# ==============================================
+# NODE.JS & DEPENDENCIES
+# ==============================================
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.npm
+.yarn
+coverage/
+.nyc_output
+
+# Only ignore node_modules, but keep package files
+!package.json
+!package-lock.json
+!yarn.lock
+
+# ==============================================
+# ENVIRONMENT & SECRETS
+# ==============================================
+.env
+.env.*
+!.env.example
+secrets/
+credentials/
+
+# ==============================================
+# DEVELOPMENT FILES
+# ==============================================
+README.md
+CHANGELOG.md
+CONTRIBUTING.md
+LICENSE
+.editorconfig
+
+# Documentation
+docs/
+*.md
+!README.md
+
+# ==============================================
+# BUILD ARTIFACTS & COMPILED OUTPUT
+# ==============================================
+dist/
+build/
+out/
+.next/
+.nuxt/
+
+# TypeScript
+*.tsbuildinfo
+tsconfig.json
+!tsconfig.json
+
+# ==============================================
+# TESTING & COVERAGE
+# ==============================================
+test/
+tests/
+spec/
+__tests__/
+*.test.js
+*.test.ts
+*.spec.js
+*.spec.ts
+coverage/
+.coverage
+htmlcov/
+.pytest_cache/
+jest.config.js
+jest.config.ts
+
+# ==============================================
+# IDE & EDITOR
+# ==============================================
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+Thumbs.db
+
+# ==============================================
+# LOGS & TEMPORARY FILES
+# ==============================================
+logs/
+*.log
+temp/
+tmp/
+.tmp/
+
+# ==============================================
+# DATABASE & STORAGE
+# ==============================================
+*.sqlite
+*.db
+data/
+uploads/
+files/
+media/
+backups/
+
+# ==============================================
+# DOCKER RELATED
+# ==============================================
+Dockerfile*
+!Dockerfile
+docker-compose*.yml
+.dockerignore
+.docker/
+
+# ==============================================
+# DEPLOYMENT & INFRASTRUCTURE
+# ==============================================
+k8s/
+kubernetes/
+helm/
+.kube/
+*.kubeconfig
+
+# Terraform
+*.tf
+*.tfstate
+*.tfvars
+.terraform/
+
+# CI/CD
+.github/
+.gitlab-ci.yml
+.travis.yml
+.circleci/
+Jenkinsfile
+
+# ==============================================
+# MONITORING & TOOLS
+# ==============================================
+grafana/
+prometheus/
+elasticsearch/
+.cache/
+.parcel-cache/
+
+# ==============================================
+# CERTIFICATES & KEYS
+# ==============================================
+*.pem
+*.key
+*.crt
+ssl/
+certs/
+
+# ==============================================
+# PACKAGE MANAGER FILES (Keep these)
+# ==============================================
+!package.json
+!package-lock.json
+!yarn.lock
+
+# ==============================================
+# UTILITIES & SCRIPTS
+# ==============================================
+scripts/
+tools/
+utilities/
+Makefile
+
+# ==============================================
+# FRONTEND ASSETS (if building backend only)
+# ==============================================
+public/
+static/
+assets/
+images/
+fonts/
+
+# ==============================================
+# DEVELOPMENT CONFIGS
+# ==============================================
+.eslintrc*
+.prettierrc*
+.stylelintrc*
+.babelrc*
+webpack.config.js
+rollup.config.js
+vite.config.js
+
+# ==============================================
+# OPERATING SYSTEM
+# ==============================================
+.DS_Store
+.AppleDouble
+.LSOverride
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# ==============================================
+# BACKUP & ARCHIVE FILES
+# ==============================================
+*.tar
+*.tar.gz
+*.zip
+*.rar
+*.7z
+*.bak
+*.backup
+
+# ==============================================
+# RUNTIME & DEVELOPMENT
+# ==============================================
+.cache/
+.swc/
+.turbo/
+.rollup.cache/
+
+# ==============================================
+# SPECIFIC TO SKYN3T PROJECT
+# ==============================================
+
+# Configuration directories
+config/local/
+config/development/
+config/test/
+
+# Local development data
+dev-data/
+mock-data/
+seed-data/
+
+# User generated content
+avatars/
+documents/
+attachments/
+
+# Device configurations
+device-configs/
+community-configs/
+
+# Machine learning models
+models/
+training-data/
+ml-outputs/
+
+# External services configs
+payment-configs/
+notification-configs/
+
+# ==============================================
+# KEEP THESE IMPORTANT FILES
+# ==============================================
+# These files should be included in Docker builds
+
+# Application source code
+!src/
+!lib/
+!api/
+
+# Essential configs
+!tsconfig.json
+!package.json
+!package-lock.json
+
+# Docker specific files
+!Dockerfile
+!docker-compose.yml
+
+# Essential documentation
+!README.md
+
+# ==============================================
+# MULTI-STAGE BUILD OPTIMIZATION
+# ==============================================
+# For multi-stage builds, you might want to include:
+# !jest.config.js (for test stage)
+# !tsconfig.json (for build stage)
+
+# ==============================================
+# SIZE OPTIMIZATION NOTES
+# ==============================================
+# This .dockerignore helps:
+# 1. Reduce Docker build context size
+# 2. Faster builds by excluding unnecessary files
+# 3. Smaller final images
+# 4. Better caching of Docker layers
+# 5. Security by excluding sensitive files
+
+# ==============================================
+# MICROSERVICE SPECIFIC IGNORES
+# ==============================================
+# For individual microservices, also exclude:
+# - Other microservice directories
+# - Frontend code (for backend services)
+# - Backend code (for frontend builds)
+# - Service-specific test files

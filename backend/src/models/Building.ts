@@ -10,20 +10,26 @@ import {
   HasMany,
   ForeignKey,
   Scopes,
-  BeforeCreate
+  DefaultScope
 } from 'sequelize-typescript';
 import { v4 as uuidv4 } from 'uuid';
 import { Community } from './Community';
 import { Floor } from './Floor';
 import { Unit } from './Unit';
-import { Device } from './Device';
 import { AccessPoint } from './AccessPoint';
+import { Device } from './Device';
 
+@DefaultScope(() => ({
+  attributes: {
+    exclude: ['deleted_at']
+  }
+}))
 @Scopes(() => ({
-  active: {
-    where: {
-      is_active: true
-    }
+  withCommunity: {
+    include: [{
+      model: Community,
+      as: 'community'
+    }]
   },
   withFloors: {
     include: [{
@@ -35,19 +41,23 @@ import { AccessPoint } from './AccessPoint';
       }]
     }]
   },
-  withStats: {
-    attributes: {
-      include: [
-        [sequelize.literal('(SELECT COUNT(*) FROM floors WHERE building_id = "Building"."id")'), 'floors_count'],
-        [sequelize.literal('(SELECT COUNT(*) FROM units WHERE building_id = "Building"."id")'), 'total_units'],
-        [sequelize.literal('(SELECT COUNT(*) FROM units WHERE building_id = "Building"."id" AND owner_id IS NOT NULL)'), 'occupied_units']
-      ]
+  withDevices: {
+    include: [{
+      model: Device,
+      as: 'devices',
+      where: { is_active: true }
+    }]
+  },
+  active: {
+    where: {
+      is_active: true
     }
   }
 }))
 @Table({
   tableName: 'buildings',
   timestamps: true,
+  paranoid: true,
   underscored: true
 })
 export class Building extends Model {
@@ -80,9 +90,21 @@ export class Building extends Model {
   @Column(DataType.INTEGER)
   units_count!: number;
 
+  @Column(DataType.INTEGER)
+  construction_year?: number;
+
+  @Column(DataType.STRING(50))
+  building_type?: string;
+
   @Default({})
   @Column(DataType.JSONB)
-  metadata!: any;
+  amenities!: any;
+
+  @Column(DataType.STRING(200))
+  emergency_contact_name?: string;
+
+  @Column(DataType.STRING(20))
+  emergency_contact_phone?: string;
 
   @Default(true)
   @Column(DataType.BOOLEAN)
@@ -94,70 +116,93 @@ export class Building extends Model {
   @Column(DataType.DATE)
   updated_at!: Date;
 
+  @Column(DataType.DATE)
+  deleted_at?: Date;
+
   // Asociaciones
   @BelongsTo(() => Community)
   community?: Community;
 
-  @HasMany(() => Floor)
+  @HasMany(() => Floor, { foreignKey: 'building_id' })
   floors?: Floor[];
 
-  @HasMany(() => Unit)
+  @HasMany(() => Unit, { foreignKey: 'building_id' })
   units?: Unit[];
 
-  @HasMany(() => Device)
-  devices?: Device[];
-
-  @HasMany(() => AccessPoint)
+  @HasMany(() => AccessPoint, { foreignKey: 'building_id' })
   accessPoints?: AccessPoint[];
 
-  // Hooks
-  @BeforeCreate
-  static async generateCode(building: Building) {
-    if (!building.code) {
-      const count = await Building.count({
-        where: { community_id: building.community_id }
-      });
-      building.code = `B${(count + 1).toString().padStart(3, '0')}`;
-    }
-  }
+  @HasMany(() => Device, { foreignKey: 'building_id' })
+  devices?: Device[];
 
   // Métodos de instancia
   async getOccupancyRate(): Promise<number> {
-    const units = await Unit.findAll({
+    const totalUnits = await Unit.count({
       where: { building_id: this.id }
     });
 
-    if (units.length === 0) return 0;
+    if (totalUnits === 0) return 0;
 
-    const occupiedUnits = units.filter(unit => unit.owner_id || unit.tenant_id);
-    return (occupiedUnits.length / units.length) * 100;
+    const occupiedUnits = await Unit.count({
+      where: { 
+        building_id: this.id,
+        is_occupied: true 
+      }
+    });
+
+    return Math.round((occupiedUnits / totalUnits) * 100 * 100) / 100;
   }
 
-  async createFloors(count: number): Promise<Floor[]> {
-    const floors: Floor[] = [];
-    
-    for (let i = 1; i <= count; i++) {
-      const floor = await Floor.create({
+  async getTotalDevices(): Promise<number> {
+    return await Device.count({
+      where: { 
         building_id: this.id,
-        floor_number: i,
-        name: `Piso ${i}`
-      });
-      floors.push(floor);
-    }
+        is_active: true 
+      }
+    });
+  }
 
-    this.floors_count = count;
-    await this.save();
+  async getOnlineDevices(): Promise<number> {
+    return await Device.count({
+      where: { 
+        building_id: this.id,
+        is_active: true,
+        status: 'online'
+      }
+    });
+  }
 
-    return floors;
+  async getActiveFloors(): Promise<Floor[]> {
+    return await Floor.findAll({
+      where: { building_id: this.id },
+      include: [{
+        model: Unit,
+        as: 'units'
+      }],
+      order: [['floor_number', 'ASC']]
+    });
   }
 
   // Métodos estáticos
+  static async findByCommunity(communityId: string): Promise<Building[]> {
+    return this.scope(['active', 'withFloors']).findAll({
+      where: { community_id: communityId },
+      order: [['name', 'ASC']]
+    });
+  }
+
   static async findByCode(communityId: string, code: string): Promise<Building | null> {
     return this.findOne({
-      where: {
+      where: { 
         community_id: communityId,
-        code: code
+        code: code 
       }
     });
+  }
+
+  toJSON() {
+    const values = super.toJSON() as any;
+    delete values.deleted_at;
+    return values;
   }
 }

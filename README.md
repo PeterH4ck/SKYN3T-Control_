@@ -1,605 +1,540 @@
-# 🏗️ SKYN3T ACCESS CONTROL SYSTEM
+# 🏢 SKYN3T ACCESS CONTROL SYSTEM
 
-[![GitHub release](https://img.shields.io/github/release/PeterH4ck/SKYN3T-Control_.svg)](https://github.com/PeterH4ck/SKYN3T-Control_/releases)
-[![Build Status](https://img.shields.io/badge/build-passing-brightgreen.svg)](https://github.com/PeterH4ck/SKYN3T-Control_/actions)
-[![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
-[![Docker](https://img.shields.io/badge/docker-ready-blue.svg)](docker-compose.yml)
-[![Kubernetes](https://img.shields.io/badge/kubernetes-ready-blue.svg)](helm/)
-[![TypeScript](https://img.shields.io/badge/typescript-100%25-blue.svg)](tsconfig.json)
+![SKYN3T Banner](https://via.placeholder.com/1200x300/1a1a2e/ffffff?text=SKYN3T+ACCESS+CONTROL+SYSTEM)
 
-> **Sistema de Control de Acceso Multi-tenant de Nivel Enterprise**  
-> Arquitectura de microservicios cloud-native diseñada para comunidades residenciales, edificios corporativos y conjuntos habitacionales
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
+[![Node.js](https://img.shields.io/badge/Node.js-20.x-green.svg)](https://nodejs.org/)
+[![TypeScript](https://img.shields.io/badge/TypeScript-5.x-blue.svg)](https://www.typescriptlang.org/)
+[![PostgreSQL](https://img.shields.io/badge/PostgreSQL-15+-blue.svg)](https://www.postgresql.org/)
+[![Docker](https://img.shields.io/badge/Docker-24.x-blue.svg)](https://www.docker.com/)
+[![Development Status](https://img.shields.io/badge/Status-25%25%20Complete-orange.svg)](#desarrollo)
 
----
+## 📋 Descripción
 
-## 🎯 **Descripción del Proyecto**
+**SKYN3T Access Control System** es una plataforma integral de gestión de accesos y seguridad para comunidades residenciales, condominios y edificios comerciales. Implementa una arquitectura de microservicios moderna con características avanzadas de IoT, gestión financiera, comunicaciones multicanal y análisis predictivo.
 
-**SKYN3T Access Control** es una plataforma completa de control de acceso que combina **IoT**, **inteligencia artificial**, **fintech** y **comunicaciones omnicanal** en una solución integrada de nivel enterprise.
+### 🎯 Características Principales
 
-### **🏢 Características Principales**
+- **🔐 Control de Acceso Multi-método**: QR dinámicos, reconocimiento facial, biometría, RFID, placas vehiculares
+- **🏢 Multi-tenant Avanzado**: Gestión independiente por comunidades con aislamiento completo de datos
+- **👥 Sistema de Permisos Jerárquico**: 22 roles (11 sistema + 11 comunidad) con herencia granular
+- **💰 Gestión Financiera Completa**: Integración con bancos chilenos, pasarelas de pago internacionales
+- **📱 Invitaciones Inteligentes**: QR dinámicos, validación GPS, reconocimiento vehicular automático
+- **🔌 IoT & Dispositivos en Tiempo Real**: Control MQTT, WebSocket, comandos bidireccionales
+- **📊 Analytics & ML**: Predicción de comportamientos, detección de anomalías, reportes avanzados
+- **💬 Comunicaciones Omnicanal**: Email, SMS, WhatsApp Business, notificaciones push, in-app
+- **🌍 Multi-región**: Soporte inicial Chile, expansible a LATAM y mundial
 
-- 🔐 **Control de Acceso Inteligente**: Facial, RFID, QR, PIN, placas vehiculares
-- 🏠 **Multi-tenant Avanzado**: Aislamiento completo por comunidad con 11 niveles jerárquicos
-- 💰 **Sistema Financiero**: Integración con bancos chilenos y pasarelas internacionales
-- 🤖 **AI/ML Integrado**: Reconocimiento facial, OCR, predicciones y detección de anomalías
-- 📱 **Comunicaciones**: Email, SMS, WhatsApp, push notifications
-- 🔌 **IoT Native**: MQTT, control de dispositivos, monitoreo en tiempo real
-- 📊 **Business Intelligence**: Dashboards, reportes, analytics avanzados
+## 🚀 Estado Actual del Proyecto
 
----
+### ✅ ETAPAS COMPLETADAS (25%)
 
-## 🏗️ **Arquitectura del Sistema**
+#### Etapa 1: Infraestructura y Base
+- ✅ **Arquitectura Docker Completa**: 27 servicios orquestados
+- ✅ **Base de Datos PostgreSQL**: Esquema completo con 150+ tablas
+- ✅ **Sistema Multi-tenant**: Aislamiento por comunidades con RLS
+- ✅ **Autenticación JWT**: Tokens, refresh, 2FA, rate limiting
+- ✅ **Cache Distribuido**: Redis Master/Slave con Sentinel
 
-### **Microservicios**
+#### Etapa 2: Permisos y Seguridad
+- ✅ **Sistema de Permisos Avanzado**: 22 roles jerárquicos con herencia
+- ✅ **RBAC + ABAC**: Role y Attribute-Based Access Control
+- ✅ **Middleware de Seguridad**: Autenticación, autorización, validación
+- ✅ **WebSocket en Tiempo Real**: Comunicación bidireccional
+- ✅ **Layout Principal Backend**: Estructura modular completa
 
-```mermaid
-graph TB
-    subgraph "Frontend Layer"
-        WEB[Web App React]
-        MOBILE[Mobile Apps]
-        IOT[IoT Devices]
-    end
-    
-    subgraph "API Gateway"
-        KONG[Kong API Gateway]
-        NGINX[Nginx Proxy]
-    end
-    
-    subgraph "Microservices"
-        AUTH[auth-service :3001]
-        USER[user-service :3003]
-        PERM[permission-service :3002]
-        DEV[device-service :3004]
-        PAY[payment-service :3005]
-        NOTIF[notification-service :3006]
-        ANALYTICS[analytics-service :3007]
-    end
-    
-    subgraph "Data Layer"
-        PG[(PostgreSQL)]
-        REDIS[(Redis Cluster)]
-        INFLUX[(InfluxDB)]
-        ELASTIC[(Elasticsearch)]
-    end
-    
-    WEB --> KONG
-    MOBILE --> KONG
-    IOT --> DEV
-    KONG --> AUTH
-    KONG --> USER
-    KONG --> PERM
-    AUTH --> PG
-    USER --> REDIS
-    DEV --> INFLUX
+### 🚧 ETAPA ACTUAL (3): MODELOS Y CONTROLADORES
+- 🔄 **Controladores CRUD**: 60% completado
+- 🔄 **Modelos Sequelize**: 80% completado  
+- 🔄 **Servicios Especializados**: Payment, Device, OCR en desarrollo
+- 🔄 **APIs RESTful**: Documentación Swagger en progreso
+
+### 📋 PRÓXIMAS ETAPAS
+
+**Etapa 4 (Frontend React)**: Sistema de gestión visual completo
+**Etapa 5 (Gestión Comunidades)**: Dashboard administrativo avanzado
+**Etapa 6 (Sistema IoT)**: Control dispositivos en tiempo real
+**Etapa 7 (Sistema Financiero)**: Integración bancaria completa
+
+## 🛠️ Arquitectura Técnica
+
+### Stack Tecnológico
+
+#### Backend (Microservicios)
+```typescript
+Core Services:
+├── auth-service (3001)        # Autenticación y seguridad
+├── permission-service (3002)  # Motor de permisos RBAC/ABAC
+├── user-service (3003)        # Gestión de usuarios y perfiles
+├── device-service (3004)      # Control IoT y dispositivos
+├── payment-service (3005)     # Procesamiento de pagos
+├── notification-service (3006) # Comunicaciones omnicanal
+└── analytics-service (3007)   # Business Intelligence y ML
 ```
 
-### **Stack Tecnológico**
+#### Infraestructura
+```yaml
+Data Layer:
+  - PostgreSQL 15+ (Master/Replica)
+  - Redis 7 (Master/Slave/Sentinel)
+  - InfluxDB 2.7 (Métricas IoT)
+  - Elasticsearch 8.11 (Logs y búsqueda)
 
-| Componente | Tecnología | Propósito |
-|------------|------------|-----------|
-| **Backend** | Node.js + TypeScript + Express | API REST y lógica de negocio |
-| **Base de Datos** | PostgreSQL 15 (Master/Replica) | Datos principales con HA |
-| **Cache** | Redis Cluster + Sentinel | Cache distribuido y sesiones |
-| **Message Queue** | RabbitMQ | Comunicación asíncrona |
-| **Time Series** | InfluxDB | Métricas IoT y telemetría |
-| **Search** | Elasticsearch + Kibana | Logs y búsqueda avanzada |
-| **Storage** | MinIO (S3-compatible) | Archivos y documentos |
-| **Monitoring** | Prometheus + Grafana | Métricas y alertas |
-| **IoT** | MQTT (Mosquitto) | Comunicación con dispositivos |
-| **API Gateway** | Kong + Nginx | Routing y load balancing |
+Message Layer:
+  - RabbitMQ 3.12 (Event bus)
+  - MQTT Mosquitto (IoT devices)
 
----
-
-## 🚀 **Quick Start**
-
-### **Prerrequisitos**
-
-```bash
-# Software requerido
-- Docker 24.0+
-- Docker Compose 2.20+
-- Node.js 20.x
-- Git
-- Make (opcional)
-
-# Verificar instalaciones
-docker --version
-docker-compose --version
-node --version
+Storage & Monitoring:
+  - MinIO (S3-compatible storage)
+  - Prometheus + Grafana (Métricas)
+  - Jaeger (Distributed tracing)
 ```
 
-### **Instalación Rápida**
+#### Frontend (Planificado - Etapa 4)
+```javascript
+Technology Stack:
+  - React 18 + TypeScript
+  - Material-UI v5 (Glassmorphism theme)
+  - Redux Toolkit + RTK Query
+  - Recharts + D3.js (Visualizaciones)
+  - Socket.io Client (Real-time)
+```
+
+### Características de Arquitectura
+
+- **🔧 Microservicios**: 7 servicios independientes especializados
+- **📡 Event-Driven**: Comunicación asíncrona mediante RabbitMQ
+- **🔐 Security-by-Design**: Seguridad integrada en cada capa
+- **📊 Observability**: Monitoreo, logging y tracing distribuido
+- **🚀 Cloud-Native**: Containerización completa con Docker
+- **⚡ High Performance**: Cache multinivel, conexión pooling
+- **🔄 Real-time**: WebSocket para actualizaciones instantáneas
+
+## 📦 Instalación y Configuración
+
+### Prerrequisitos del Sistema
+```bash
+Mínimo:
+  - CPU: 4 cores
+  - RAM: 8 GB (16 GB recomendado)
+  - Disco: 50 GB libres
+  - Red: Conexión estable
+
+Software:
+  - Docker Engine 24.0+
+  - Docker Compose 2.20+
+  - Git
+  - Make (opcional)
+```
+
+### Instalación Rápida
 
 ```bash
-# 1. Clonar el repositorio
+# 1. Clonar repositorio
 git clone https://github.com/PeterH4ck/SKYN3T-Control_.git
 cd SKYN3T-Control_
 
 # 2. Configurar variables de entorno
 cp .env.example .env
-# Editar .env con tu configuración
+# Editar .env con configuraciones específicas
 
-# 3. Iniciar todos los servicios
+# 3. Instalación automática
 make install
-# O manualmente:
+
+# O instalación manual:
+docker-compose build
 docker-compose up -d
 
-# 4. Verificar instalación
-make health-check
+# 4. Verificar servicios
+make status
 ```
 
-### **Acceso al Sistema**
+### Acceso al Sistema
 
-Una vez instalado, accede a:
+**URLs de Servicios:**
+```bash
+Core Services:
+├── API Gateway: http://localhost:8000
+├── Auth Service: http://localhost:3001  
+├── Permission Service: http://localhost:3002
+├── User Service: http://localhost:3003
+└── Device Service: http://localhost:3004
 
-- **🌐 Frontend**: http://localhost:3000
-- **🔧 API**: http://localhost:8000/api/v1
-- **📊 Grafana**: http://localhost:3000/grafana (admin/grafana123)
-- **📋 Kibana**: http://localhost:3000/kibana
-- **💾 MinIO**: http://localhost:9001 (minioadmin/minioadmin123)
+Monitoring & Management:
+├── Grafana: http://localhost:3000/grafana (admin/grafana123)
+├── Kibana: http://localhost:5601
+├── RabbitMQ: http://localhost:15672 (admin/rabbitmq123)
+├── MinIO Console: http://localhost:9001 (minioadmin/minioadmin123)
+└── Prometheus: http://localhost:9090
+```
 
----
+**Credenciales Predeterminadas:**
+- **Admin System**: admin@system.local / admin
+- **Grafana**: admin / grafana123
+- **RabbitMQ**: admin / rabbitmq123
+- **MinIO**: minioadmin / minioadmin123
 
-## 📁 **Estructura del Proyecto**
+## 🔐 Sistema de Permisos Avanzado
+
+### Jerarquía de Roles (22 Niveles)
+
+#### Roles del Sistema (11 niveles)
+```typescript
+System Roles:
+1. SUPER_ADMIN          # Control total del sistema
+2. SYSTEM_ADMIN         # Administración general
+3. FINANCIAL_ADMIN      # Gestión financiera
+4. HARDWARE_ADMIN       # Administración de hardware
+5. SECURITY_ADMIN       # Gestión de seguridad
+6. AUDIT_ADMIN          # Administración de auditoría
+7. OPERATIONS_MANAGER   # Gestión de operaciones
+8. COMMUNITY_MANAGER    # Gestión de comunidades
+9. SUPPORT_SUPERVISOR   # Supervisión de soporte
+10. SUPPORT_AGENT       # Agente de soporte
+11. REPORT_VIEWER       # Visualización de reportes
+```
+
+#### Roles de Comunidad (11 niveles)
+```typescript
+Community Roles:
+1. COMMUNITY_ADMIN      # Administrador de comunidad
+2. BOARD_PRESIDENT      # Presidente del directorio
+3. TREASURER            # Tesorero
+4. BOARD_MEMBER         # Miembro del directorio
+5. SECURITY_CHIEF       # Jefe de seguridad
+6. SECURITY_GUARD       # Guardia de seguridad
+7. MAINTENANCE_CHIEF    # Jefe de mantenimiento
+8. STAFF                # Personal
+9. OWNER                # Propietario
+10. TENANT              # Arrendatario
+11. AUTHORIZED_PERSON   # Persona autorizada
+```
+
+### Motor de Permisos Granulares
+
+```typescript
+Permission Structure:
+  - Module-based: access, users, financial, devices
+  - Action-based: create, read, update, delete, execute
+  - Risk levels: low, medium, high, critical
+  - Context-aware: community, building, unit specific
+  - Time-based: temporary permissions with expiration
+```
+
+## 🌐 Estructura del Proyecto
 
 ```
 skyn3t-access-control/
-├── 📄 docker-compose.yml           # Orquestación de servicios
-├── 📄 Makefile                     # Comandos de desarrollo
-├── 📄 .env.example                 # Variables de entorno
+├── 📁 backend/                     # API Principal (Node.js/TypeScript)
+│   ├── src/
+│   │   ├── controllers/            # ✅ Controladores REST (60%)
+│   │   ├── models/                 # ✅ Modelos Sequelize (80%)
+│   │   ├── middleware/             # ✅ Middleware completo
+│   │   ├── services/               # 🔄 Servicios de negocio (70%)
+│   │   ├── routes/                 # ✅ Rutas API
+│   │   └── utils/                  # ✅ Utilidades
+│   └── database/
+│       ├── schema.sql              # ✅ Esquema completo (150+ tablas)
+│       ├── migrations/             # ✅ Migraciones
+│       └── seeds/                  # ✅ Datos iniciales
 │
-├── 📁 backend/                     # ✅ API Principal (Node.js + TypeScript)
-│   ├── 📁 src/
-│   │   ├── 📁 controllers/         # Controladores REST
-│   │   ├── 📁 models/              # Modelos de datos (Sequelize)
-│   │   ├── 📁 services/            # Lógica de negocio
-│   │   ├── 📁 middleware/          # Middlewares personalizados
-│   │   ├── 📁 routes/              # Definición de rutas
-│   │   └── 📁 utils/               # Utilidades compartidas
-│   └── 📄 package.json
+├── 📁 permission-service/          # ✅ Microservicio de permisos completo
+│   ├── src/
+│   │   ├── core/                   # ✅ Motor de permisos RBAC/ABAC
+│   │   ├── controllers/            # ✅ API de permisos
+│   │   ├── services/               # ✅ Cache y propagación
+│   │   └── validators/             # ✅ Validaciones
 │
-├── 📁 permission-service/          # 🚧 Motor de Permisos
-├── 📁 payment-service/             # 🚧 Integración Bancaria
-├── 📁 notification-service/        # 🚧 Comunicaciones
-├── 📁 analytics-service/           # 🚧 Business Intelligence
-├── 📁 ocr-service/                 # 🚧 OCR y Computer Vision
-├── 📁 ml-service/                  # 🚧 Machine Learning
+├── 📁 payment-service/            # 🔄 Microservicio de pagos (en desarrollo)
+├── 📁 notification-service/       # 🔄 Microservicio de notificaciones
+├── 📁 analytics-service/          # 🔄 Microservicio de analytics
+├── 📁 ocr-service/               # 📋 Microservicio OCR (Python)
+├── 📁 ml-service/                # 📋 Microservicio ML (Python)
 │
-├── 📁 frontend/                    # 🔄 React + TypeScript (En desarrollo)
-├── 📁 nginx/                       # ✅ Reverse Proxy
-├── 📁 config/                      # ⚙️ Configuraciones
-├── 📁 scripts/                     # 🛠️ Scripts de utilidad
-└── 📁 docs/                        # 📚 Documentación técnica
+├── 📁 frontend/                   # 📋 React App (Etapa 4)
+│
+├── 📁 nginx/                      # ✅ Proxy y balanceador
+├── 📁 config/                     # ✅ Configuraciones servicios
+├── 📁 scripts/                    # ✅ Scripts de automatización
+├── 📁 docs/                       # ✅ Documentación completa
+│
+├── 📄 docker-compose.yml          # ✅ Orquestación de 27 servicios
+├── 📄 Makefile                    # ✅ Comandos de automatización
+└── 📄 .env.example                # ✅ Variables de entorno
 ```
 
----
+## 🔌 APIs y Integraciones
 
-## 🎯 **Estado del Desarrollo**
+### APIs RESTful Principales
 
-### **✅ Etapas Completadas (25%)**
-
-#### **Etapa 1: Fundación del Sistema**
-- ✅ Estructura base de microservicios
-- ✅ Docker Compose con 27 servicios
-- ✅ Esquema de BD completo (100+ tablas)
-- ✅ API de autenticación con JWT + 2FA
-- ✅ Sistema de usuarios y roles básico
-
-#### **Etapa 2: Core Backend**
-- ✅ Modelos de datos principales (User, Role, Permission, Community)
-- ✅ Controladores CRUD básicos
-- ✅ Middleware de autenticación y autorización
-- ✅ Sistema de permisos granulares (11 niveles)
-- ✅ WebSocket service para tiempo real
-
-### **🚧 En Desarrollo (Etapa 3)**
-
-#### **Sistema de Permisos Avanzado**
-- 🔄 Engine de permisos con herencia
-- 🔄 Propagación automática de cambios
-- 🔄 Templates de permisos reutilizables
-- 🔄 GUI con checkboxes jerárquicos
-
-#### **Gestión de Usuarios**
-- 🔄 Frontend React completo
-- 🔄 DataTable con Material-UI X-Data-Grid
-- 🔄 CRUD visual con formularios avanzados
-- 🔄 Sistema de importación/exportación
-
-### **📋 Roadmap (Etapas 4-14)**
-
-| Etapa | Componente | Descripción | ETA |
-|-------|------------|-------------|-----|
-| **4** | 🎨 GUI Completa | Frontend React + Material-UI | Q2 2024 |
-| **5** | 🏢 Comunidades | Multi-tenant + Features management | Q2 2024 |
-| **6** | 🔌 IoT Devices | Control de dispositivos + MQTT | Q3 2024 |
-| **7** | 💰 Sistema Financiero | Bancos chilenos + Pasarelas | Q3 2024 |
-| **8** | 🎫 Invitaciones | QR dinámicos + Control de acceso | Q4 2024 |
-| **9** | 📢 Comunicaciones | Email, SMS, WhatsApp, Push | Q4 2024 |
-| **10** | 📊 Analytics/BI | Dashboards + Machine Learning | Q1 2025 |
-| **11** | ⚙️ Administración | Panel admin + Configuraciones | Q1 2025 |
-| **12** | 🚀 Producción | DevOps + Monitoreo + Testing | Q2 2025 |
-| **13** | 📱 Mobile Apps | iOS + Android nativas | Q2 2025 |
-| **14** | 🌍 Internacionalización | Multi-país + Compliance | Q3 2025 |
-
----
-
-## 🔧 **Comandos de Desarrollo**
-
-### **Gestión del Entorno**
-
-```bash
-# Desarrollo
-make dev                    # Iniciar entorno de desarrollo
-make dev-logs              # Ver logs en tiempo real
-make dev-shell             # Acceder al contenedor principal
-
-# Base de datos
-make db-reset              # Resetear base de datos
-make db-migrate            # Ejecutar migraciones
-make db-seed               # Cargar datos de prueba
-make db-backup             # Backup de desarrollo
-
-# Testing
-make test                  # Ejecutar todos los tests
-make test-unit             # Tests unitarios
-make test-integration      # Tests de integración
-make test-e2e              # Tests end-to-end
-
-# Código
-make lint                  # Linting con ESLint
-make format                # Formatear con Prettier
-make type-check            # Verificar TypeScript
-
-# Producción
-make build                 # Construir para producción
-make deploy-staging        # Deploy a staging
-make deploy-production     # Deploy a producción
+#### Authentication API
+```http
+POST /api/v1/auth/login           # Login con 2FA
+POST /api/v1/auth/refresh         # Renovar tokens
+POST /api/v1/auth/2fa/enable      # Habilitar 2FA
+GET  /api/v1/auth/session         # Información de sesión
 ```
 
-### **Docker Commands**
-
-```bash
-# Servicios individuales
-docker-compose up postgres redis rabbitmq    # Solo BD
-docker-compose up auth-service               # Solo autenticación
-docker-compose logs -f auth-service          # Logs específicos
-
-# Limpieza
-docker-compose down -v                       # Detener y limpiar volúmenes
-make clean                                   # Limpieza completa
+#### Permissions API
+```http
+GET  /api/v1/permissions/user/{id}      # Permisos de usuario
+POST /api/v1/permissions/check          # Verificar permisos
+PUT  /api/v1/permissions/grant          # Otorgar permisos
+DEL  /api/v1/permissions/revoke         # Revocar permisos
 ```
 
----
+#### WebSocket Events
+```javascript
+// Eventos en tiempo real
+socket.on('access.granted', (data) => {
+  console.log('Acceso autorizado:', data);
+});
 
-## 🔐 **Seguridad**
+socket.on('device.status.changed', (data) => {
+  console.log('Estado dispositivo:', data);
+});
 
-### **Características de Seguridad**
-
-- 🔒 **Autenticación**: JWT + Refresh Tokens + 2FA (TOTP, SMS)
-- 🛡️ **Autorización**: RBAC con 11 niveles jerárquicos + ABAC
-- 🔐 **Encriptación**: AES-256-GCM para datos sensibles
-- 🚫 **Rate Limiting**: Protección contra ataques de fuerza bruta
-- 📝 **Auditoría**: Log completo de todas las acciones
-- 🌐 **Network Security**: Policies, firewalls, VPC isolation
-- 📋 **Compliance**: GDPR ready, OWASP Top 10 protected
-
-### **Variables de Entorno Críticas**
-
-```bash
-# Cambiar en producción
-JWT_SECRET=your-super-secret-jwt-key
-POSTGRES_PASSWORD=secure-db-password
-REDIS_PASSWORD=secure-redis-password
-ENCRYPTION_KEY=your-32-character-encryption-key
-
-# APIs externas
-BANCO_ESTADO_API_KEY=your-banco-estado-key
-TWILIO_AUTH_TOKEN=your-twilio-token
-SMTP_PASS=your-email-password
+socket.on('permission.updated', (data) => {
+  console.log('Permisos actualizados:', data);
+});
 ```
 
----
+### Integraciones Bancarias (Chile)
 
-## 🌐 **API Documentation**
+```typescript
+Bancos Soportados:
+├── Banco Estado        # API nativa + Open Banking
+├── Santander Chile     # Open Banking API
+├── Banco de Chile      # API corporativa
+├── BCI                 # Transbank integration
+└── Scotiabank         # API comercial
 
-### **Endpoints Principales**
-
-| Método | Endpoint | Descripción | Auth |
-|--------|----------|-------------|------|
-| `POST` | `/api/v1/auth/login` | Autenticación de usuario | ❌ |
-| `GET` | `/api/v1/users` | Listar usuarios | ✅ |
-| `POST` | `/api/v1/users` | Crear usuario | ✅ |
-| `GET` | `/api/v1/permissions` | Listar permisos | ✅ |
-| `POST` | `/api/v1/devices/{id}/command` | Controlar dispositivo | ✅ |
-| `GET` | `/api/v1/access/logs` | Logs de acceso | ✅ |
-| `POST` | `/api/v1/payments` | Procesar pago | ✅ |
-
-### **Documentación Completa**
-
-- 📖 **[API Reference](docs/API.md)** - Endpoints, schemas, ejemplos
-- 🏗️ **[Architecture Guide](docs/ARCHITECTURE.md)** - Diseño del sistema
-- 🚀 **[Deployment Guide](docs/DEPLOYMENT.md)** - Instalación y despliegue
-
-### **Swagger UI**
-
-```bash
-# Desarrollo
-http://localhost:8000/api/v1/docs
-
-# Generar OpenAPI spec
-make generate-docs
+Pasarelas Internacionales:
+├── PayPal             # Global payments
+├── MercadoPago        # LATAM payments  
+└── Stripe             # Tarjetas de crédito
 ```
 
----
+## 📊 Monitoreo y Analytics
 
-## 🔌 **Integraciones**
+### Dashboards Disponibles
 
-### **🏦 Bancos Chilenos**
+#### Dashboard del Sistema
+- CPU, memoria, disco, red por servicio
+- Performance de base de datos
+- Métricas de cache y cola de mensajes
+- Health checks automatizados
 
-| Banco | API | Estado | Documentación |
-|-------|-----|--------|---------------|
-| **Banco Estado** | REST API | ✅ Integrado | [Docs](src/services/banks/bancoEstado.ts) |
-| **Santander** | Open Banking | 🚧 En desarrollo | [Docs](src/services/banks/santander.ts) |
-| **BCI** | Transbank | 🚧 En desarrollo | [Docs](src/services/banks/bci.ts) |
-| **Banco de Chile** | API Edwards | 🚧 En desarrollo | [Docs](src/services/banks/bancoChile.ts) |
+#### Dashboard de Accesos
+- Accesos en tiempo real por comunidad
+- Estadísticas de métodos de acceso
+- Detección de anomalías
+- Reportes de seguridad
 
-### **💳 Pasarelas de Pago**
+#### Dashboard Financiero  
+- Transacciones por comunidad
+- Estado de pagos y cobranzas
+- Análisis de morosidad
+- Integración bancaria en tiempo real
 
-- ✅ **PayPal** - Pagos internacionales
-- ✅ **MercadoPago** - Mercado LATAM
-- 🚧 **Stripe** - En desarrollo
-- 🚧 **Culqi** - Perú (futuro)
-
-### **📱 Comunicaciones**
-
-- ✅ **Email** - SMTP configurado
-- 🚧 **SMS** - Twilio integration
-- 🚧 **WhatsApp** - Business API
-- 🚧 **Push** - Firebase + APNs
-
-### **🔌 IoT Devices**
-
-| Tipo | Protocolo | Estado | Ejemplo |
-|------|-----------|--------|---------|
-| **Lectores RFID** | MQTT/HTTP | ✅ | HID, Suprema |
-| **Cámaras IP** | ONVIF/RTSP | 🚧 | Hikvision, Dahua |
-| **Barreras** | Modbus/TCP | 🚧 | CAME, FAAC |
-| **Biométricos** | SDK/HTTP | 🚧 | ZKTeco, Suprema |
-
----
-
-## 📊 **Monitoreo y Observabilidad**
-
-### **Métricas Clave (SLOs)**
+### Métricas Clave (SLOs)
 
 ```yaml
 Availability: 99.9% uptime
-Performance: 
-  - API p95 < 500ms
-  - API p99 < 1s
-Error Rate: < 0.1% críticos, < 1% generales
-Capacity: 10K usuarios concurrentes
+Performance:
+  - API response time: <200ms (p95)
+  - Real-time updates: <100ms
+  - Database queries: <50ms (p90)
+
+Error Rates:
+  - Critical endpoints: <0.1%
+  - Non-critical: <1%
+
+Capacity:
+  - 10,000 concurrent users
+  - 1M API requests/hour
+  - 100GB data per community
 ```
 
-### **Dashboards Disponibles**
+## 🧪 Testing y Calidad
 
-- 🖥️ **System Dashboard** - CPU, memoria, red, disco
-- 🔐 **Access Dashboard** - Logs de acceso, dispositivos
-- 💰 **Financial Dashboard** - Transacciones, pagos
-- 📊 **Business Dashboard** - KPIs, métricas de negocio
-
-### **Alertas Configuradas**
-
-- 🚨 **High Error Rate** (>5%)
-- ⚡ **High Response Time** (>1s)
-- 💾 **Database Issues** (connections, replication)
-- 🔴 **Pod Crash Looping**
-- 📈 **High Resource Usage** (>80%)
-
----
-
-## 🧪 **Testing**
-
-### **Estrategia de Testing**
-
+### Estrategia de Testing
 ```bash
-# Tests unitarios (>80% coverage)
-npm run test
+# Backend tests
+cd backend && npm test              # Unit tests (>80% coverage)
+cd permission-service && npm test  # Permission service tests
 
-# Tests de integración
-npm run test:integration
+# Integration tests
+make test-integration              # API integration tests
 
-# Tests end-to-end
-npm run test:e2e
-
-# Load testing
-npm run test:load
-
-# Security testing
-npm run test:security
+# E2E tests (cuando frontend esté listo)
+make test-e2e                     # End-to-end tests
 ```
 
-### **Coverage Objetivos**
+### Métricas de Calidad
+- **Code Coverage**: >80% para servicios críticos
+- **TypeScript**: Strict mode habilitado
+- **ESLint**: Configuración estricta
+- **Security**: Dependencias auditadas semanalmente
 
-| Componente | Coverage | Estado |
-|------------|----------|--------|
-| **Controllers** | >90% | 🚧 |
-| **Services** | >85% | 🚧 |
-| **Models** | >80% | ✅ |
-| **Utils** | >95% | ✅ |
+## 🔧 Comandos de Desarrollo
 
----
+### Gestión de Servicios
+```bash
+# Desarrollo
+make dev                    # Modo desarrollo con hot reload
+make logs                   # Ver logs de todos los servicios
+make logs-service SERVICE=auth-service  # Logs específicos
 
-## 🚀 **Deployment**
+# Base de datos
+make db-migrate            # Ejecutar migraciones
+make db-seed              # Cargar datos de prueba
+make db-backup            # Backup de base de datos
+make db-shell             # Acceso a PostgreSQL
 
-### **Entornos**
+# Cache y cola
+make redis-cli            # Acceso a Redis
+make cache-clear          # Limpiar cache
+make rabbitmq-shell       # Acceso a RabbitMQ
 
-| Entorno | URL | Descripción |
-|---------|-----|-------------|
-| **Development** | http://localhost:3000 | Docker Compose local |
-| **Staging** | https://staging.skyn3t.com | Kubernetes (EKS) |
-| **Production** | https://app.skyn3t.com | Kubernetes HA + Istio |
+# Monitoreo
+make status               # Estado de todos los servicios
+make health-check         # Health check completo
+make metrics              # Métricas del sistema
+```
 
-### **Infraestructura**
+### Gestión de Permisos
+```bash
+# Permission service específicos
+make permissions-sync     # Sincronizar permisos
+make permissions-cache-clear  # Limpiar cache de permisos
+make permissions-audit    # Auditoría de permisos
+```
 
+## 🌍 Soporte Multi-región
+
+### Regiones Implementadas
+
+#### 🇨🇱 Chile (Completo)
 ```yaml
-# Kubernetes (Production)
-Nodes: 6+ (3 master, 3+ worker)
-CPU: 16+ cores per worker
-Memory: 32+ GB per worker
-Storage: 500+ GB SSD per node
-
-# Database
-PostgreSQL 15 Multi-AZ
-Instance: db.r5.xlarge
-Storage: 500GB - 2TB GP3
-IOPS: 12,000+
-Backup: 30 días retention
+Banks: Banco Estado, Santander, BCI, Banco de Chile
+Currency: CLP
+Timezone: America/Santiago
+Language: Spanish (es_CL)
+Regulations: SII integration, local banking APIs
 ```
 
-### **CI/CD Pipeline**
+### Regiones Planificadas
+- **🇲🇽 México**: Q2 2024 (BBVA, Santander México)
+- **🇦🇷 Argentina**: Q3 2024 (Banco Nación, Galicia)
+- **🇨🇴 Colombia**: Q4 2024 (Bancolombia, Davivienda)
+- **🇺🇸 Estados Unidos**: 2025 (Chase, Bank of America)
 
-```mermaid
-graph LR
-    A[Git Push] --> B[GitHub Actions]
-    B --> C[Build & Test]
-    C --> D[Security Scan]
-    D --> E[Docker Build]
-    E --> F[Deploy Staging]
-    F --> G[E2E Tests]
-    G --> H[Deploy Production]
-```
+## 🔮 Roadmap 2024
 
----
+### Q1 2024 - Core Platform ✅
+- [x] Arquitectura de microservicios
+- [x] Sistema de permisos avanzado
+- [x] Base de datos completa
+- [x] Infraestructura Docker
 
-## 🤝 **Contribución**
+### Q2 2024 - User Interface 🚧
+- [ ] Frontend React completo (Etapa 4)
+- [ ] Sistema de gestión visual
+- [ ] Dashboard de comunidades
+- [ ] Módulo de dispositivos IoT
 
-### **Cómo Contribuir**
+### Q3 2024 - Advanced Features
+- [ ] Apps móviles (iOS/Android)
+- [ ] Machine Learning predictivo
+- [ ] OCR avanzado para placas
+- [ ] Integraciones bancarias completas
 
-1. **Fork** el repositorio
-2. **Crear** una rama feature (`git checkout -b feature/amazing-feature`)
-3. **Commit** los cambios (`git commit -m 'Add amazing feature'`)
-4. **Push** a la rama (`git push origin feature/amazing-feature`)
-5. **Abrir** un Pull Request
+### Q4 2024 - Scale & Expansion
+- [ ] Multi-región LATAM
+- [ ] Enterprise features
+- [ ] Marketplace de integraciones
+- [ ] Certificaciones de seguridad
 
-### **Coding Standards**
+## 🚨 Issues Conocidos y Limitaciones
 
+### En Desarrollo
+- **Frontend**: 0% implementado (Etapa 4)
+- **Controladores CRUD**: 40% restante por completar
+- **Apps Móviles**: No iniciadas
+- **OCR Service**: En desarrollo (Python)
+- **ML Service**: Algoritmos básicos pendientes
+
+### Bugs Conocidos
+- WebSocket reconnection en alta carga
+- Cache invalidation en cluster Redis
+- Rate limiting por IP en balanceador
+
+Ver [Issues Completos](https://github.com/PeterH4ck/SKYN3T-Control_/issues) para detalles.
+
+## 🤝 Contribución
+
+### Configuración de Desarrollo
 ```bash
-# Linting
-npm run lint              # ESLint + Prettier
-npm run lint:fix          # Auto-fix issues
+# Setup completo
+git clone https://github.com/PeterH4ck/SKYN3T-Control_.git
+cd SKYN3T-Control_
+cp .env.example .env
+make dev-setup
 
-# Type checking
-npm run type-check        # TypeScript validation
-
-# Pre-commit hooks
-npm run prepare           # Setup Husky hooks
+# Instalar pre-commit hooks
+npm run prepare
 ```
 
-### **Commit Convention**
+### Estándares de Código
+- **TypeScript**: Strict mode + ESLint
+- **Commits**: Conventional commits
+- **Tests**: Mínimo 80% coverage
+- **Documentation**: JSDoc para APIs
 
-```bash
-# Tipos de commit
-feat: nueva funcionalidad
-fix: corrección de bug
-docs: documentación
-style: formato de código
-refactor: refactoring
-test: tests
-chore: tareas de mantenimiento
+## 🎯 Casos de Uso Principales
 
-# Ejemplos
-feat(auth): add 2FA support
-fix(payment): resolve bank API timeout
-docs(api): update endpoint documentation
-```
+### Comunidades Residenciales
+- Control de acceso de residentes y visitas
+- Gestión de gastos comunes
+- Comunicación con vecinos
+- Reserva de espacios comunes
 
----
+### Edificios Comerciales
+- Control de empleados y visitantes
+- Gestión de proveedores
+- Facturación de servicios
+- Seguridad y monitoreo
 
-## 📄 **Licencia**
+### Condominios Mixtos
+- Múltiples tipos de usuarios
+- Zonificación de accesos
+- Facturación diferenciada
+- Reportes por administración
 
-Este proyecto está licenciado bajo la **MIT License** - ver el archivo [LICENSE](LICENSE) para detalles.
+## 📄 Licencia y Soporte
 
----
+**Licencia**: MIT License  
+**Desarrollador**: PETERH4CK  
+**Soporte**: GitHub Issues y Discussions  
+**Documentación**: [Docs completos](./docs/)
 
-## 👥 **Equipo**
+## 🙏 Agradecimientos
 
-### **Core Team**
-
-- **PeterH4ck** - *Lead Developer & Architect* - [@PeterH4ck](https://github.com/PeterH4ck)
-
-### **Contributors**
-
-Ver la lista completa de [contributors](https://github.com/PeterH4ck/SKYN3T-Control_/contributors) que han participado en este proyecto.
-
----
-
-## 📞 **Soporte**
-
-### **Canales de Soporte**
-
-- 🐛 **Bug Reports**: [GitHub Issues](https://github.com/PeterH4ck/SKYN3T-Control_/issues)
-- 💡 **Feature Requests**: [GitHub Discussions](https://github.com/PeterH4ck/SKYN3T-Control_/discussions)
-- 📧 **Email**: support@skyn3t.com
-- 💬 **Discord**: [SKYN3T Community](https://discord.gg/skyn3t)
-
-### **Enterprise Support**
-
-Para soporte enterprise, consultoría o licencias comerciales:
-- 📧 **Enterprise**: enterprise@skyn3t.com
-- 🏢 **Sales**: sales@skyn3t.com
-
----
-
-## 🎯 **Roadmap & Vision**
-
-### **Visión 2025**
-
-Convertir a **SKYN3T** en la **plataforma líder de control de acceso** en Latinoamérica, combinando:
-
-- 🤖 **Inteligencia Artificial** avanzada
-- 🌐 **Ecosistema IoT** completo  
-- 💰 **Fintech** integrado
-- 📱 **Experiencia mobile-first**
-- 🌍 **Expansión internacional**
-
-### **Mercado Objetivo**
-
-- 🏢 **Edificios Corporativos** (500+ empleados)
-- 🏠 **Condominios Residenciales** (100+ unidades)
-- 🏭 **Complejos Industriales** 
-- 🏫 **Instituciones Educativas**
-- 🏥 **Centros de Salud**
-
----
-
-## 📈 **Métricas del Proyecto**
-
-![GitHub repo size](https://img.shields.io/github/repo-size/PeterH4ck/SKYN3T-Control_)
-![GitHub code size](https://img.shields.io/github/languages/code-size/PeterH4ck/SKYN3T-Control_)
-![GitHub commit activity](https://img.shields.io/github/commit-activity/m/PeterH4ck/SKYN3T-Control_)
-![GitHub last commit](https://img.shields.io/github/last-commit/PeterH4ck/SKYN3T-Control_)
-
-### **Statistics**
-
-- 📁 **7 Microservices** implementados
-- 💾 **100+ Database Tables** diseñadas
-- 🔌 **27 Docker Services** orquestados
-- 📚 **50+ API Endpoints** documentados
-- 🧪 **11 Testing Levels** configurados
-- 🌍 **4 Deployment Environments** soportados
+- **Claude AI** por asistencia en desarrollo
+- **Docker Community** por containerización
+- **PostgreSQL Team** por la robustez de datos
+- **Material-UI** por componentes de interfaz
+- **Sequelize Team** por el excelente ORM
 
 ---
 
 <div align="center">
 
-### **⭐ Si este proyecto te resulta útil, considera darle una estrella ⭐**
+**[🏠 Proyecto](https://github.com/PeterH4ck/SKYN3T-Control_) • [📚 Documentación](./docs/) • [🐛 Issues](https://github.com/PeterH4ck/SKYN3T-Control_/issues) • [💬 Discussions](https://github.com/PeterH4ck/SKYN3T-Control_/discussions)**
 
-**Hecho con ❤️ para la comunidad de desarrolladores LATAM**
+**Construido con ❤️ para el futuro del control de acceso**
 
----
-
-**© 2024 SKYN3T Access Control. Todos los derechos reservados.**
+![Footer](https://via.placeholder.com/1200x100/1a1a2e/ffffff?text=SKYN3T+Access+Control+System+-+The+Future+of+Community+Management)
 
 </div>

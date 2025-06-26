@@ -1,89 +1,330 @@
+Etapas:						✅ CREADO	<----	https://raw.githubusercontent.com/PeterH4ck/SKYN3T-Control_/refs/heads/main/ETAPAS.md
+
+
 
 skyn3t-access-control/
-├── docker-compose.yml
-├── .env.example
-├── .gitignore
-├── README.md
-├── backend/
-│   ├── package.json
-│   ├── tsconfig.json
-│   ├── .env
-│   ├── src/
-│   │   ├── server.ts
-│   │   ├── app.ts
-│   │   ├── config/
-│   │   │   ├── database.ts
-│   │   │   ├── redis.ts
-│   │   │   └── constants.ts
-│   │   ├── models/
-│   │   │   ├── index.ts
-│   │   │   ├── User.ts
-│   │   │   ├── Role.ts
-│   │   │   ├── Permission.ts
-│   │   │   ├── Community.ts
-│   │   │   └── Device.ts
-│   │   ├── controllers/
-│   │   │   ├── authController.ts
-│   │   │   ├── userController.ts
-│   │   │   ├── permissionController.ts
-│   │   │   └── communityController.ts
-│   │   ├── middleware/
-│   │   │   ├── auth.ts
-│   │   │   ├── permissions.ts
-│   │   │   └── errorHandler.ts
-│   │   ├── routes/
-│   │   │   ├── index.ts
-│   │   │   ├── auth.ts
-│   │   │   ├── users.ts
-│   │   │   ├── permissions.ts
-│   │   │   └── communities.ts
-│   │   ├── services/
-│   │   │   ├── authService.ts
-│   │   │   ├── permissionService.ts
-│   │   │   └── websocketService.ts
-│   │   ├── utils/
-│   │   │   ├── logger.ts
-│   │   │   └── validators.ts
-│   │   └── database/
-│   │       ├── migrations/
-│   │       ├── seeds/
-│   │       └── schema.sql
-├── frontend/
-│   ├── package.json
-│   ├── tsconfig.json
-│   ├── public/
-│   │   ├── index.html
-│   │   └── images/
-│   │       ├── logo.png
-│   │       └── login-background.jpeg
-│   ├── src/
-│   │   ├── index.tsx
-│   │   ├── App.tsx
-│   │   ├── components/
-│   │   │   ├── Layout/
-│   │   │   ├── Auth/
-│   │   │   ├── Dashboard/
-│   │   │   ├── Permissions/
-│   │   │   └── Common/
-│   │   ├── pages/
-│   │   │   ├── Login.tsx
-│   │   │   ├── Dashboard.tsx
-│   │   │   ├── Users.tsx
-│   │   │   ├── Permissions.tsx
-│   │   │   └── Communities.tsx
-│   │   ├── services/
-│   │   │   ├── api.ts
-│   │   │   ├── auth.ts
-│   │   │   └── websocket.ts
-│   │   ├── store/
-│   │   │   ├── index.ts
-│   │   │   └── slices/
-│   │   ├── hooks/
-│   │   ├── utils/
-│   │   └── styles/
-│   │       └── globals.css
-├── nginx/
-│   └── nginx.conf
-└── scripts/
-    ├── init-db.sh
-    └── backup.sh
+│
+├── 📄 Makefile                                    ✅ CREADO	---->	https://github.com/PeterH4ck/SKYN3T-Control_/tree/main
+├── 📄 docker-compose.yml                          ✅ CREADO	---->	https://raw.githubusercontent.com/PeterH4ck/SKYN3T-Control_/refs/heads/main/docker-compose.yml
+├── 📄 .env.example                                ✅ CREADO	---->	https://raw.githubusercontent.com/PeterH4ck/SKYN3T-Control_/refs/heads/main/.env.example
+├── 📄 .env                                        ✅ CREADO	---->	https://raw.githubusercontent.com/PeterH4ck/SKYN3T-Control_/refs/heads/main/.env
+├── 📄 INSTALLATION.md                             ✅ CREADO	---->	https://raw.githubusercontent.com/PeterH4ck/SKYN3T-Control_/refs/heads/main/INSTALLATION.md
+├── 📄 README.md                                   ✅ CREADO	---->	https://raw.githubusercontent.com/PeterH4ck/SKYN3T-Control_/refs/heads/main/README.md
+├── 📄 .gitignore                                  ✅ CREADO	---->	https://raw.githubusercontent.com/PeterH4ck/SKYN3T-Control_/refs/heads/main/.gitignore
+├── 📄 .dockerignore                               ✅ CREADO	---->	https://raw.githubusercontent.com/PeterH4ck/SKYN3T-Control_/refs/heads/main/.dockerignore
+│
+├── 📁 backend/
+│   ├── 📄 package.json                            ✅ CREADO	---->	https://raw.githubusercontent.com/PeterH4ck/SKYN3T-Control_/refs/heads/main/backend/package.json
+│   ├── 📄 package-lock.json                       ❌ FALTA
+│   ├── 📄 tsconfig.json                           ✅ CREADO	---->	https://raw.githubusercontent.com/PeterH4ck/SKYN3T-Control_/refs/heads/main/backend/tsconfig.ts
+│   ├── 📄 .env.example                            ❌ FALTA
+│   ├── 📄 Dockerfile                              ✅ CREADO	---->	https://raw.githubusercontent.com/PeterH4ck/SKYN3T-Control_/refs/heads/main/backend/Dockerfile
+│   ├── 📄 Dockerfile.auth                         ✅ CREADO	---->	https://raw.githubusercontent.com/PeterH4ck/SKYN3T-Control_/refs/heads/main/backend/Dockerfile.auth
+│   ├── 📄 Dockerfile.users                        ✅ CREADO	---->	https://raw.githubusercontent.com/PeterH4ck/SKYN3T-Control_/refs/heads/main/backend/Dockerfile.users
+│   ├── 📄 Dockerfile.devices                      ✅ CREADO	---->	https://raw.githubusercontent.com/PeterH4ck/SKYN3T-Control_/refs/heads/main/backend/Dockerfile.devices
+│   │
+│   └── 📁 src/
+│       ├── 📄 server.ts                           ✅ EXISTE	---->	https://raw.githubusercontent.com/PeterH4ck/SKYN3T-Control_/refs/heads/main/backend/src/server.ts
+│       ├── 📄 app.ts                              ✅ EXISTE	---->	https://raw.githubusercontent.com/PeterH4ck/SKYN3T-Control_/refs/heads/main/backend/src/app.ts
+│       │
+│       ├── 📁 config/
+│       │   ├── 📄 database.ts                     ✅ EXISTE	---->	https://raw.githubusercontent.com/PeterH4ck/SKYN3T-Control_/refs/heads/main/backend/src/config/database.ts
+│       │   ├── 📄 redis.ts                        ✅ EXISTE	---->	https://raw.githubusercontent.com/PeterH4ck/SKYN3T-Control_/refs/heads/main/backend/src/config/redis.ts
+│       │   └── 📄 constants.ts                    ✅ EXISTE	---->	https://raw.githubusercontent.com/PeterH4ck/SKYN3T-Control_/refs/heads/main/backend/src/config/constants.ts
+│       │
+│       ├── 📁 models/
+│       │   ├── 📄 AccessLog.ts                    ✅ EXISTE	---->	https://raw.githubusercontent.com/PeterH4ck/SKYN3T-Control_/refs/heads/main/backend/src/models/AccessLog.ts
+│       │   ├── 📄 AccessPoint.ts                  ✅ EXISTE	---->	https://raw.githubusercontent.com/PeterH4ck/SKYN3T-Control_/refs/heads/main/backend/src/models/AccessPoint.ts
+│       │   ├── 📄 Building.ts                     ✅ EXISTE	---->	https://raw.githubusercontent.com/PeterH4ck/SKYN3T-Control_/refs/heads/main/backend/src/models/User.ts
+│       │   ├── 📄 Community.ts                    ✅ EXISTE	---->	https://raw.githubusercontent.com/PeterH4ck/SKYN3T-Control_/refs/heads/main/backend/src/models/Community.ts
+│       │   ├── 📄 CommunityMember.ts              ✅ EXISTE	---->	https://raw.githubusercontent.com/PeterH4ck/SKYN3T-Control_/refs/heads/main/backend/src/models/CommunityMember.ts
+│       │   ├── 📄 Device.ts                       ✅ EXISTE	---->	https://raw.githubusercontent.com/PeterH4ck/SKYN3T-Control_/refs/heads/main/backend/src/models/Device.ts
+│       │   ├── 📄 DeviceCommand.ts                ✅ EXISTE	---->	https://raw.githubusercontent.com/PeterH4ck/SKYN3T-Control_/refs/heads/main/backend/src/models/DeviceCommand.ts
+│       │   ├── 📄 DeviceStatus.ts                 ✅ EXISTE	---->	https://raw.githubusercontent.com/PeterH4ck/SKYN3T-Control_/refs/heads/main/backend/src/models/DeviceStatus.ts
+│       │   ├── 📄 EmergencyContact.ts             ✅ EXISTE	---->	https://raw.githubusercontent.com/PeterH4ck/SKYN3T-Control_/refs/heads/main/backend/src/models/EmergencyContact.ts
+│       │   ├── 📄 FamilyMember.ts                 ✅ EXISTE	---->	https://raw.githubusercontent.com/PeterH4ck/SKYN3T-Control_/refs/heads/main/backend/src/models/FamilyMember.ts
+│       │   ├── 📄 Feature.ts                      ✅ EXISTE	---->	https://raw.githubusercontent.com/PeterH4ck/SKYN3T-Control_/refs/heads/main/backend/src/models/Feature.ts
+│       │   ├── 📄 Floor.ts                        ✅ EXISTE	---->	https://raw.githubusercontent.com/PeterH4ck/SKYN3T-Control_/refs/heads/main/backend/src/models/Floor.ts
+│       │   ├── 📄 index.ts                        ✅ EXISTE	---->	https://raw.githubusercontent.com/PeterH4ck/SKYN3T-Control_/refs/heads/main/backend/src/models/index.ts
+│       │   ├── 📄 Invitation.ts                   ✅ EXISTE	---->	https://raw.githubusercontent.com/PeterH4ck/SKYN3T-Control_/refs/heads/main/backend/src/models/Invitation.ts
+│       │   ├── 📄 MaintenanceRequest.ts           ✅ EXISTE	---->	https://raw.githubusercontent.com/PeterH4ck/SKYN3T-Control_/refs/heads/main/backend/src/models/MaintenanceRequest.ts
+│       │   ├── 📄 Permission.ts                   ✅ EXISTE	---->	https://raw.githubusercontent.com/PeterH4ck/SKYN3T-Control_/refs/heads/main/backend/src/models/Permission.ts
+│       │   ├── 📄 Role.ts                         ✅ EXISTE	---->	https://raw.githubusercontent.com/PeterH4ck/SKYN3T-Control_/refs/heads/main/backend/src/models/Role.ts
+│       │   ├── 📄 ServiceProvider.ts              ✅ EXISTE	---->	https://raw.githubusercontent.com/PeterH4ck/SKYN3T-Control_/refs/heads/main/backend/src/models/ServiceProvider.ts
+│       │   ├── 📄 Unit.ts                         ✅ EXISTE	---->	https://raw.githubusercontent.com/PeterH4ck/SKYN3T-Control_/refs/heads/main/backend/src/models/Unit.ts
+│       │   ├── 📄 User.ts                         ✅ EXISTE	---->	https://raw.githubusercontent.com/PeterH4ck/SKYN3T-Control_/refs/heads/main/backend/src/models/User.ts
+│       │   ├── 📄 UserRole.ts                     ✅ EXISTE	---->	https://raw.githubusercontent.com/PeterH4ck/SKYN3T-Control_/refs/heads/main/backend/src/models/UserRole.ts
+│       │   ├── 📄 Vehicle.ts                      ✅ EXISTE	---->	https://raw.githubusercontent.com/PeterH4ck/SKYN3T-Control_/refs/heads/main/backend/src/models/Vehicle.ts
+│       │   └── 📁 relations/
+│       │       └── 📄 index.ts                    ✅ EXISTE	---->	https://raw.githubusercontent.com/PeterH4ck/SKYN3T-Control_/refs/heads/main/backend/src/models/relations/index.ts
+│       │
+│       ├── 📁 controllers/
+│       │   ├── 📄 authController.ts               ✅ EXISTE	---->	https://raw.githubusercontent.com/PeterH4ck/SKYN3T-Control_/refs/heads/main/backend/src/controllers/authController.ts
+│       │   ├── 📄 userController.ts               ✅ EXISTE	---->	https://raw.githubusercontent.com/PeterH4ck/SKYN3T-Control_/refs/heads/main/backend/src/controllers/userController.ts
+│       │   ├── 📄 permissionController.ts         ✅ EXISTE	---->	https://raw.githubusercontent.com/PeterH4ck/SKYN3T-Control_/refs/heads/main/backend/src/controllers/permissionController.ts
+│       │   ├── 📄 communityController.ts          ✅ EXISTE	---->	https://raw.githubusercontent.com/PeterH4ck/SKYN3T-Control_/refs/heads/main/backend/src/controllers/communityController.ts
+│       │   ├── 📄 deviceController.ts             ✅ EXISTE	---->	https://raw.githubusercontent.com/PeterH4ck/SKYN3T-Control_/refs/heads/main/backend/src/controllers/deviceController.ts
+│       │   ├── 📄 accessController.ts             ✅ EXISTE	---->	https://raw.githubusercontent.com/PeterH4ck/SKYN3T-Control_/refs/heads/main/backend/src/controllers/accessController.ts
+│       │   ├── 📄 financialController.ts          ✅ EXISTE	---->	https://raw.githubusercontent.com/PeterH4ck/SKYN3T-Control_/refs/heads/main/backend/src/controllers/financialController.ts
+│       │   ├── 📄 paymentController.ts            ✅ EXISTE	---->	https://raw.githubusercontent.com/PeterH4ck/SKYN3T-Control_/refs/heads/main/backend/src/controllers/paymentController.ts
+│       │   └── 📄 notificationController.ts       ✅ EXISTE	---->	https://raw.githubusercontent.com/PeterH4ck/SKYN3T-Control_/refs/heads/main/backend/src/controllers/notificationController.ts
+│       │
+│       ├── 📁 middleware/
+│       │   ├── 📄 auth.ts                         ✅ EXISTE	---->	https://raw.githubusercontent.com/PeterH4ck/SKYN3T-Control_/refs/heads/main/backend/src/middleware/auth.ts
+│       │   ├── 📄 permissions.ts                  ✅ EXISTE	---->	https://raw.githubusercontent.com/PeterH4ck/SKYN3T-Control_/refs/heads/main/backend/src/middleware/permissions.ts
+│       │   ├── 📄 validate.ts                     ✅ EXISTE	---->	https://raw.githubusercontent.com/PeterH4ck/SKYN3T-Control_/refs/heads/main/backend/src/middleware/validate.ts
+│       │   ├── 📄 errorHandler.ts                 ✅ EXISTE	---->	https://raw.githubusercontent.com/PeterH4ck/SKYN3T-Control_/refs/heads/main/backend/src/middleware/errorHandler.ts
+│       │   └── 📄 rateLimiter.ts                  ✅ EXISTE	---->	https://raw.githubusercontent.com/PeterH4ck/SKYN3T-Control_/refs/heads/main/backend/src/middleware/rateLimiter.ts
+│       │
+│       ├── 📁 routes/
+│       │   ├── 📄 index.ts                        ✅ EXISTE	---->	https://raw.githubusercontent.com/PeterH4ck/SKYN3T-Control_/refs/heads/main/backend/src/routes/index.ts
+│       │   ├── 📄 auth.ts                         ✅ EXISTE	---->	https://raw.githubusercontent.com/PeterH4ck/SKYN3T-Control_/refs/heads/main/backend/src/routes/auth.ts
+│       │   ├── 📄 users.ts                        ✅ EXISTE	---->	https://raw.githubusercontent.com/PeterH4ck/SKYN3T-Control_/refs/heads/main/backend/src/routes/users.ts
+│       │   ├── 📄 permissions.ts                  ✅ EXISTE	---->	https://raw.githubusercontent.com/PeterH4ck/SKYN3T-Control_/refs/heads/main/backend/src/routes/permissions.ts
+│       │   ├── 📄 communities.ts                  ✅ EXISTE	---->	https://raw.githubusercontent.com/PeterH4ck/SKYN3T-Control_/refs/heads/main/backend/src/routes/communities.ts
+│       │   ├── 📄 devices.ts                      ✅ EXISTE	---->	https://raw.githubusercontent.com/PeterH4ck/SKYN3T-Control_/refs/heads/main/backend/src/routes/devices.ts
+│       │   ├── 📄 payments.ts                     ✅ CREADO	---->	https://raw.githubusercontent.com/PeterH4ck/SKYN3T-Control_/refs/heads/main/backend/src/routes/payments.ts
+│       │   └── 📄 notifications.ts                ✅ EXISTE	---->	https://raw.githubusercontent.com/PeterH4ck/SKYN3T-Control_/refs/heads/main/backend/src/routes/notifications.ts
+│       │
+│       ├── 📁 services/
+│       │   ├── 📄 auditService.ts                 ✅ EXISTE	---->	https://raw.githubusercontent.com/PeterH4ck/SKYN3T-Control_/refs/heads/main/backend/src/services/auditService.ts
+│       │   ├── 📄 authService.ts                  ✅ EXISTE	---->	https://raw.githubusercontent.com/PeterH4ck/SKYN3T-Control_/refs/heads/main/backend/src/services/authService.ts
+│       │   ├── 📄 cachService.ts                  ✅ EXISTE	---->	https://raw.githubusercontent.com/PeterH4ck/SKYN3T-Control_/refs/heads/main/backend/src/services/cacheService.ts
+│       │   ├── 📄 deviceService.ts                ✅ EXISTE	---->	https://raw.githubusercontent.com/PeterH4ck/SKYN3T-Control_/refs/heads/main/backend/src/services/deviceService.ts
+│       │   ├── 📄 emailService.ts                 ✅ EXISTE	---->	https://raw.githubusercontent.com/PeterH4ck/SKYN3T-Control_/refs/heads/main/backend/src/services/emailService.ts
+│       │   ├── 📄 notificationService.ts          ✅ EXISTE	---->	https://raw.githubusercontent.com/PeterH4ck/SKYN3T-Control_/refs/heads/main/backend/src/services/notificationService.ts
+│       │   ├── 📄 paymentService.ts               ✅ EXISTE	---->	https://raw.githubusercontent.com/PeterH4ck/SKYN3T-Control_/refs/heads/main/backend/src/services/paymentService.ts
+│       │   ├── 📄 permissionService.ts            ✅ EXISTE	---->	https://raw.githubusercontent.com/PeterH4ck/SKYN3T-Control_/refs/heads/main/backend/src/services/permissionService.ts
+│       │   ├── 📄 uploadService.ts                ✅ EXISTE	---->	https://raw.githubusercontent.com/PeterH4ck/SKYN3T-Control_/refs/heads/main/backend/src/services/uploadService.ts
+│       │   ├── 📄 validationService.ts            ✅ EXISTE	---->	https://raw.githubusercontent.com/PeterH4ck/SKYN3T-Control_/refs/heads/main/backend/src/services/validationService.ts
+│       │   └── 📄 websocketService.ts             ✅ EXISTE	---->	https://raw.githubusercontent.com/PeterH4ck/SKYN3T-Control_/refs/heads/main/backend/src/services/websocketService.ts
+│       │
+│       ├── 📁 utils/
+│       │   ├── 📄 logger.ts                       ✅ EXISTE	---->	https://raw.githubusercontent.com/PeterH4ck/SKYN3T-Control_/refs/heads/main/backend/src/utils/logger.ts
+│       │   ├── 📄 index.ts                        ✅ EXISTE	---->	https://raw.githubusercontent.com/PeterH4ck/SKYN3T-Control_/refs/heads/main/backend/src/utils/index.ts
+│       │   ├── 📄 validators.ts                   ✅ EXISTE	---->	https://raw.githubusercontent.com/PeterH4ck/SKYN3T-Control_/refs/heads/main/backend/src/utils/validators.ts
+│       │   ├── 📄 AppError.ts				    	  ✅ EXISTE	---->	https://raw.githubusercontent.com/PeterH4ck/SKYN3T-Control_/refs/heads/main/backend/src/utils/AppError.ts
+│       │   ├── 📄 cronjobs.js                     ✅ EXISTE	---->	https://raw.githubusercontent.com/PeterH4ck/SKYN3T-Control_/refs/heads/main/backend/src/utils/cronJobs.js
+│       │   └── 📄 crypto.ts                       ✅ EXISTE	---->	https://raw.githubusercontent.com/PeterH4ck/SKYN3T-Control_/refs/heads/main/backend/src/utils/crypto.ts
+│       │
+│       └── 📁 database/
+│           ├── 📄 schema.sql                      ✅ CREADO	---->	https://raw.githubusercontent.com/PeterH4ck/SKYN3T-Control_/refs/heads/main/backend/src/database/schema.sql
+│           ├── 📁 migrations/
+│           │   └── 📄 001_initial_schema.sql      ✅ CREADO	---->	https://raw.githubusercontent.com/PeterH4ck/SKYN3T-Control_/refs/heads/main/backend/src/database/migrations/001_initial_schema.sql
+│           └── 📁 seeds/
+│               ├── 📄 01_countries.sql            ✅ CREADO	---->	https://raw.githubusercontent.com/PeterH4ck/SKYN3T-Control_/refs/heads/main/backend/src/database/seeds/01_countries.sql
+│               ├── 📄 02_roles.sql                ✅ CREADO	---->	https://raw.githubusercontent.com/PeterH4ck/SKYN3T-Control_/refs/heads/main/backend/src/database/seeds/02_roles.sql
+│               ├── 📄 03_permissions.sql          ✅ CREADO	---->	https://github.com/PeterH4ck/SKYN3T-Control_/blob/main/backend/src/database/seeds/03_permissions.sql
+│               └── 📄 04_demo_data.sql            ✅ CREADO	---->	https://raw.githubusercontent.com/PeterH4ck/SKYN3T-Control_/refs/heads/main/backend/src/database/seeds/04_demo_data.sql
+│
+├── 📁 permission-service/
+│   ├── 📄 package.json                            ✅ CREADO	---->	https://raw.githubusercontent.com/PeterH4ck/SKYN3T-Control_/refs/heads/main/permission-service/package.json
+│   ├── 📄 package-lock.json                       ❌ FALTA
+│   ├── 📄 Dockerfile                              ✅ CREADO	---->	https://raw.githubusercontent.com/PeterH4ck/SKYN3T-Control_/refs/heads/main/permission-service/Dockerfile
+│   ├── 📄 .env.example                            ✅ CREADO	---->	https://raw.githubusercontent.com/PeterH4ck/SKYN3T-Control_/refs/heads/main/permission-service/.env.example
+│   ├── 📄 .eslintrc.json                          ✅ CREADO	---->	https://raw.githubusercontent.com/PeterH4ck/SKYN3T-Control_/refs/heads/main/permission-service/.eslintrc.json
+│   ├── 📄 .gutignore		                         ✅ CREADO	---->	https://raw.githubusercontent.com/PeterH4ck/SKYN3T-Control_/refs/heads/main/permission-service/.gitignore
+│   ├── 📄 README.md                               ✅ CREADO	---->	https://raw.githubusercontent.com/PeterH4ck/SKYN3T-Control_/refs/heads/main/permission-service/README.md
+│   ├── 📄 tsconfig.json                           ✅ CREADO	---->	https://raw.githubusercontent.com/PeterH4ck/SKYN3T-Control_/refs/heads/main/permission-service/tsconfig.json
+│   │
+│   └── 📁 src/
+│       ├── 📄 index.js                            ✅ CREADO	---->	https://raw.githubusercontent.com/PeterH4ck/SKYN3T-Control_/refs/heads/main/permission-service/src/index.ts
+│       │
+│       ├── 📁 config/
+│       │       ├── 📄 config.ts		               ✅ CREADO	---->	https://raw.githubusercontent.com/PeterH4ck/SKYN3T-Control_/refs/heads/main/permission-service/src/config/config.ts
+│       │       ├── 📄 database.ts                 ✅ CREADO	---->	https://raw.githubusercontent.com/PeterH4ck/SKYN3T-Control_/refs/heads/main/permission-service/src/config/database.ts
+│       │       ├── 📄 rabbitmq.ts                 ✅ CREADO	---->	https://raw.githubusercontent.com/PeterH4ck/SKYN3T-Control_/refs/heads/main/permission-service/src/config/rabbitmq.ts
+│       │       └── 📄 redis.ts                    ✅ CREADO	---->	https://raw.githubusercontent.com/PeterH4ck/SKYN3T-Control_/refs/heads/main/permission-service/src/config/redis.ts
+│       │
+│       ├── 📁 controllers/
+│       │       └── 📄 permissionController.ts	 ✅ CREADO	---->	https://raw.githubusercontent.com/PeterH4ck/SKYN3T-Control_/refs/heads/main/permission-service/src/controllers/permissionController.ts
+│       │
+│       ├── 📁 core/
+│       │       ├── 📄 permissionEngine.ts			 ✅ CREADO	---->	https://raw.githubusercontent.com/PeterH4ck/SKYN3T-Control_/refs/heads/main/permission-service/src/core/permissionEngine.ts
+│       │       └── 📄 permissionPropagator.ts	 ✅ CREADO	---->	https://raw.githubusercontent.com/PeterH4ck/SKYN3T-Control_/refs/heads/main/permission-service/src/core/permissionPropagator.ts
+│       │
+│       ├── 📁 middleware/
+│       │       ├── 📄 auth.ts	 					 ✅ CREADO	---->	https://raw.githubusercontent.com/PeterH4ck/SKYN3T-Control_/refs/heads/main/permission-service/src/middleware/auth.ts
+│       │       ├── 📄 notFoundHandler.ts			 ✅ CREADO	---->	https://raw.githubusercontent.com/PeterH4ck/SKYN3T-Control_/refs/heads/main/permission-service/src/middleware/notFoundHandler.ts
+│       │       ├── 📄 errorHandler.ts				 ✅ CREADO	---->	https://raw.githubusercontent.com/PeterH4ck/SKYN3T-Control_/refs/heads/main/permission-service/src/middleware/errorHandler.ts
+│       │       ├── 📄 rateLimiter.ts				 ✅ CREADO	---->	https://raw.githubusercontent.com/PeterH4ck/SKYN3T-Control_/refs/heads/main/permission-service/src/middleware/rateLimiter.ts
+│       │       └── 📄 validation.ts				 ✅ CREADO	---->	https://raw.githubusercontent.com/PeterH4ck/SKYN3T-Control_/refs/heads/main/permission-service/src/middleware/validation.ts
+│       │
+│       ├── 📁 routes/
+│       │       └── 📄 index.ts						 ✅ CREADO	---->	https://raw.githubusercontent.com/PeterH4ck/SKYN3T-Control_/refs/heads/main/permission-service/src/routes/index.ts
+│       │
+│       ├── 📁 services/
+│       │       ├── 📄 cacheService.ts				 ✅ CREADO	---->	https://raw.githubusercontent.com/PeterH4ck/SKYN3T-Control_/refs/heads/main/permission-service/src/services/cacheService.ts
+│       │       ├── 📄 metricsService.ts			 ✅ CREADO	---->	https://raw.githubusercontent.com/PeterH4ck/SKYN3T-Control_/refs/heads/main/permission-service/src/services/metricsService.ts
+│       │       └── 📄 rabbitmqService.ts			 ✅ CREADO	---->	https://raw.githubusercontent.com/PeterH4ck/SKYN3T-Control_/refs/heads/main/permission-service/src/services/rabbitmqService.ts
+│       │
+│       └── 📁 tests/
+│       │   └── 📄 permissions.test.js             ✅ CREADO	---->	
+│       │
+│       └── 📁 utils/
+│       │   ├── 📄 AppError.ts		               ✅ CREADO	---->	https://raw.githubusercontent.com/PeterH4ck/SKYN3T-Control_/refs/heads/main/permission-service/src/utils/AppError.ts
+│       │   └── 📄 logger.ts			               ✅ CREADO	---->	https://raw.githubusercontent.com/PeterH4ck/SKYN3T-Control_/refs/heads/main/permission-service/src/utils/logger.ts
+│       │
+│       └── 📁 validators/
+│       │   └── 📄 permissionValidators.ts		     ✅ CREADO	---->	https://raw.githubusercontent.com/PeterH4ck/SKYN3T-Control_/refs/heads/main/permission-service/src/validators/permissionValidators.ts
+│       
+├── 📁 payment-service/
+│   ├── 📄 package.json                            ❌ FALTA
+│   ├── 📄 Dockerfile                              ❌ FALTA
+│   │
+│   └── 📁 src/
+│       ├── 📄 index.js                            ❌ FALTA
+│       ├── 📁 banks/
+│       │   ├── 📄 bancoEstado.adapter.js          ❌ FALTA
+│       │   ├── 📄 santander.adapter.js            ❌ FALTA
+│       │   ├── 📄 bci.adapter.js                  ❌ FALTA
+│       │   └── 📄 bancoChile.adapter.js           ❌ FALTA
+│       └── 📁 gateways/
+│           ├── 📄 paypal.gateway.js               ❌ FALTA
+│           └── 📄 mercadopago.gateway.js          ❌ FALTA
+│
+├── 📁 notification-service/
+│   ├── 📄 package.json                            ❌ FALTA
+│   ├── 📄 Dockerfile                              ❌ FALTA
+│   │
+│   └── 📁 src/
+│       ├── 📄 index.js                            ❌ FALTA
+│       ├── 📁 channels/
+│       │   ├── 📄 email.channel.js                ❌ FALTA
+│       │   ├── 📄 sms.channel.js                  ❌ FALTA
+│       │   ├── 📄 whatsapp.channel.js             ❌ FALTA
+│       │   └── 📄 push.channel.js                 ❌ FALTA
+│       └── 📁 templates/
+│           └── 📄 index.js                        ❌ FALTA
+│
+├── 📁 analytics-service/
+│   ├── 📄 package.json                            ❌ FALTA
+│   ├── 📄 Dockerfile                              ❌ FALTA
+│   │
+│   └── 📁 src/
+│       └── 📄 index.js                            ❌ FALTA
+│
+├── 📁 ocr-service/
+│   ├── 📄 requirements.txt                        ❌ FALTA
+│   ├── 📄 Dockerfile                              ❌ FALTA
+│   │
+│   ├── 📁 src/
+│   │   ├── 📄 main.py                             ❌ FALTA
+│   │   ├── 📄 receipt_ocr.py                      ❌ FALTA
+│   │   └── 📄 plate_ocr.py                        ❌ FALTA
+│   │
+│   └── 📁 models/
+│       └── 📄 chilean_plates.pkl                  ❌ FALTA
+│
+├── 📁 ml-service/
+│   ├── 📄 requirements.txt                        ❌ FALTA
+│   ├── 📄 Dockerfile                              ❌ FALTA
+│   │
+│   ├── 📁 src/
+│   │   ├── 📄 main.py                             ❌ FALTA
+│   │   ├── 📄 payment_predictor.py                ❌ FALTA
+│   │   └── 📄 anomaly_detector.py                 ❌ FALTA
+│   │
+│   └── 📁 models/
+│       └── 📄 payment_model.pkl                   ❌ FALTA
+│
+├── 📁 scheduler/
+│   ├── 📄 package.json                            ❌ FALTA
+│   ├── 📄 Dockerfile                              ❌ FALTA
+│   │
+│   └── 📁 src/
+│       └── 📄 index.js                            ❌ FALTA
+│
+├── 📁 backup/
+│   ├── 📄 Dockerfile                              ❌ FALTA
+│   │
+│   └── 📁 scripts/
+│       └── 📄 backup.sh                           ❌ FALTA
+│
+├── 📁 nginx/
+│   ├── 📄 nginx.conf                              ✅ CREADO	---->	https://raw.githubusercontent.com/PeterH4ck/SKYN3T-Control_/refs/heads/main/nginx/nginx.conf
+│   ├── 📄 frontend.conf                           ❌ FALTA
+│   │
+│   ├── 📁 conf.d/
+│   │   ├── 📄 api.conf                            ❌ FALTA
+│   │   ├── 📄 monitoring.conf                     ❌ FALTA
+│   │   └── 📄 security.conf                       ❌ FALTA
+│   │
+│   └── 📁 ssl/
+│       ├── 📄 cert.pem                            ❌ FALTA (generar)
+│       └── 📄 key.pem                             ❌ FALTA (generar)
+│
+├── 📁 config/
+│   ├── 📄 prometheus.yml                          ❌ FALTA
+│   ├── 📄 kong.yml                                ❌ FALTA
+│   ├── 📄 mosquitto.conf                          ❌ FALTA
+│   ├── 📄 redis-sentinel.conf                     ❌ FALTA
+│   │
+│   └── 📁 grafana/
+│       ├── 📁 dashboards/
+│       │   ├── 📄 system-dashboard.json           ❌ FALTA
+│       │   ├── 📄 access-dashboard.json           ❌ FALTA
+│       │   └── 📄 financial-dashboard.json        ❌ FALTA
+│       │
+│       └── 📁 datasources/
+│           └── 📄 datasources.yml                 ❌ FALTA
+│
+├── 📁 scripts/
+│   ├── 📄 init-db.sh                              ❌ FALTA
+│   ├── 📄 backup.sh                               ❌ FALTA
+│   ├── 📄 restore.sh                              ❌ FALTA
+│   ├── 📄 support-bundle.sh                       ❌ FALTA
+│   └── 📄 install.sh                              ❌ FALTA
+│
+├── 📁 frontend/                                   ❌ TODO FALTA (Fase 4)
+│   ├── 📄 package.json                            ❌ FALTA
+│   ├── 📄 tsconfig.json                           ✅ CREADO	---->	https://raw.githubusercontent.com/PeterH4ck/SKYN3T-Control_/refs/heads/main/frontend/tsconfig.json
+│   ├── 📄 .env.example                            ❌ FALTA
+│   │
+│   ├── 📁 public/
+│   │   ├── 📄 index.html                          ❌ FALTA
+│   │   └── 📁 images/
+│   │       ├── 📄 logo.png                        ❌ FALTA
+│   │       └── 📄 login-background.jpeg           ❌ FALTA
+│   │
+│   ├── 📁 src/
+│   │   ├── 📄 index.tsx                           ❌ FALTA
+│   │   ├── 📄 App.tsx                             ❌ FALTA
+│   │   │
+│   │   ├── 📁 components/
+│   │   │   ├── 📁 Layout/
+│   │   │   ├── 📁 Auth/
+│   │   │   ├── 📁 Dashboard/
+│   │   │   ├── 📁 Permissions/
+│   │   │   └── 📁 Common/
+│   │   │
+│   │   ├── 📁 pages/
+│   │   │   ├── 📄 Login.tsx                       ❌ FALTA
+│   │   │   ├── 📄 Dashboard.tsx                   ❌ FALTA
+│   │   │   ├── 📄 Users.tsx                       ❌ FALTA
+│   │   │   ├── 📄 Permissions.tsx                 ❌ FALTA
+│   │   │   └── 📄 Communities.tsx                 ❌ FALTA
+│   │   │
+│   │   ├── 📁 services/
+│   │   │   ├── 📄 api.ts                          ❌ FALTA
+│   │   │   ├── 📄 auth.ts                         ❌ FALTA
+│   │   │   └── 📄 websocket.ts                    ❌ FALTA
+│   │   │
+│   │   ├── 📁 store/
+│   │   │   └── 📄 index.ts                        ❌ FALTA
+│   │   │
+│   │   ├── 📁 hooks/
+│   │   │   └── 📄 useAuth.ts                      ❌ FALTA
+│   │   │
+│   │   ├── 📁 utils/
+│   │   │   └── 📄 index.ts                        ❌ FALTA
+│   │   │
+│   │   └── 📁 styles/
+│   │       └── 📄 globals.css                     ❌ FALTA
+│   │
+│   └── 📁 build/                                  ❌ (generado al compilar)
+│
+└── 📁 docs/
+    ├── 📄 API.md                                  ✅ CREADO   ---->		https://raw.githubusercontent.com/PeterH4ck/SKYN3T-Control_/refs/heads/main/docs/API.md
+    ├── 📄 ARCHITECTURE.md                         ✅ CREADO   ---->		https://raw.githubusercontent.com/PeterH4ck/SKYN3T-Control_/refs/heads/main/docs/ARCHITECTURE.md
+    └── 📄 DEPLOYMENT.md                           ✅ CREADO	---->		https://raw.githubusercontent.com/PeterH4ck/SKYN3T-Control_/refs/heads/main/docs/DEPLOYMENT.md

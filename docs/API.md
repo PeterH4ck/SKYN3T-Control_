@@ -1829,6 +1829,6 @@ GET /metrics
 ---
 
 **API Version**: 2.8.0  
-**Última Actualización**: 2024-06-24  
-**Próxima Revisión**: 2024-09-24  
+**Última Actualización**: 2025-06-26  
+**Próxima Revisión**: 2025-09-24  
 **Soporte Técnico**: api-support@skyn3t.com

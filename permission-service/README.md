@@ -12,7 +12,7 @@ Motor de permisos granulares independiente para el sistema SKYN3T Access Control
 ### 🚀 Performance
 - **Cache distribuido** con Redis para respuestas sub-milisegundo
 - **Operaciones masivas** con procesamiento en lotes optimizado
-- **Conexión pool** a base de datos con balanceeo de carga
+- **Conexión pool** a base de datos con balanceo de carga
 - **Rate limiting** inteligente por usuario y operación
 
 ### 🔧 Funcionalidades Core
@@ -63,7 +63,7 @@ Motor de permisos granulares independiente para el sistema SKYN3T Access Control
 
 ```bash
 # Clonar el repositorio
-git clone https://github.com/your-org/skyn3t-access-control.git
+git clone https://github.com/PeterH4ck/SKYN3T-Control_.git
 cd skyn3t-access-control/permission-service
 
 # Instalar dependencias

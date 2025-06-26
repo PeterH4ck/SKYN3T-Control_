@@ -17,10 +17,10 @@
 
 | Trimestre | Objetivo Principal | Etapas | % Progreso |
 |-----------|-------------------|---------|------------|
-| **Q1 2024** | Fundación Técnica | 1-3 | ✅ 25% |
-| **Q2 2024** | MVP Funcional | 4-7 | 🎯 Target |
-| **Q3 2024** | Features Avanzadas | 8-10 | 📋 Planned |
-| **Q4 2024** | Escalabilidad | 11-14 | 🔮 Future |
+| **Q1 2025** | Fundación Técnica | 1-3 | ✅ 25% |
+| **Q2 2025** | MVP Funcional | 4-7 | 🎯 Target |
+| **Q3 2025** | Features Avanzadas | 8-10 | 📋 Planned |
+| **Q4 2025** | Escalabilidad | 11-14 | 🔮 Future |
 
 ---
 
@@ -599,7 +599,7 @@ pie title Distribución de Esfuerzo por Categoría
 
 ---
 
-**Última actualización**: 2024-01-01  
+**Última actualización**: 2025-06-26  
 **Próxima revisión**: Al completar Etapa 3  
 **Responsable**: PETERH4CK  
 **Estado documento**: ✅ Actualizado y sincronizado

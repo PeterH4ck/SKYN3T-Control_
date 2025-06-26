@@ -1929,6 +1929,6 @@ Protection Controls:
 ---
 
 **Architecture Version**: 2.8.0  
-**Last Updated**: 2024-06-24  
-**Next Review**: 2024-09-24  
+**Last Updated**: 2025-06-26  
+**Next Review**: 2025-09-24  
 **Architecture Owner**: engineering-team@skyn3t.com

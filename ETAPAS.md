@@ -11,7 +11,7 @@
 **Estado Actual**: Etapa 3 (25% completado)  
 **Tiempo Estimado Restante**: 12-16 semanas  
 **Equipo**: 1 desarrollador full-stack  
-**Prioridad**: MVP completo para Q2 2024
+**Prioridad**: MVP completo para Q2 2025
 
 ### 🎯 Objetivos por Trimestre
 

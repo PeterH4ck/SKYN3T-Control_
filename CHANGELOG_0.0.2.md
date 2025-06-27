@@ -5,89 +5,23 @@ Todos los cambios importantes de este proyecto serán documentados en este archi
 El formato está basado en [Keep a Changelog](https://keepachangelog.com/es-ES/1.0.0/),
 y este proyecto adhiere a [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [Unreleased] - Etapa 3 Finalizando
+## [Unreleased] - Etapa 3 en Desarrollo
 
-### 🔄 En Progreso (90% completado)
-- Payment Service completamente funcional con integración bancaria Chile
-- Controladores CRUD finalizados (8/9 completados)
-- Servicios especializados en desarrollo final
-- Testing de integración para payment APIs
+### 🔄 En Progreso
+- Finalización de controladores CRUD restantes
+- Implementación de servicios especializados (payment, device, email, sms)
+- Integración completa con servicios externos
+- Testing de integración para APIs
 
-### 📋 Próxima Semana  
-- Finalizar reportController.ts (último controlador pendiente)
-- Completar deviceService.ts, emailService.ts, smsService.ts
-- Testing de integración completo para payment-service
-- Handoff a Etapa 4 (Frontend React)
-
-### ✨ Completado Recientemente
-- **Payment Service Microservicio**: 100% funcional con 4 bancos chilenos + PayPal/MercadoPago
-- **Controladores Principales**: accessController, financialController, paymentController, notificationController
-- **Integración Bancaria**: APIs completas para Banco Estado, Santander, BCI, Banco de Chile
-- **Arquitectura de Pagos**: Webhook handling, provider management, metrics integration
+### 📋 Planificado
+- Frontend React con Material-UI v5
+- Dashboard de gestión de comunidades
+- Sistema de control de dispositivos IoT
+- Integración bancaria para Chile
 
 ---
 
-## [0.3.1] - 2025-01-15 - PAYMENT SERVICE COMPLETO
-
-### ✨ Agregado
-- **Payment Service Microservicio Completo (puerto 3005)**
-  - 🏦 **Integración Bancaria Chile**: 4 bancos implementados
-    - Banco Estado: API nativa con webhooks
-    - Santander Chile: Open Banking + OAuth2
-    - BCI: Integración Transbank completa
-    - Banco de Chile: API corporativa funcional
-  
-  - 🌍 **Pasarelas Internacionales**
-    - PayPal Gateway: Pagos globales
-    - MercadoPago Gateway: Payments LATAM
-    - Stripe: Preparación para tarjetas (estructura)
-
-  - 🎛️ **Controladores Especializados**
-    - `paymentController.ts`: CRUD + processing completo
-    - `bankController.ts`: Gestión de cuentas bancarias
-    - `webhookController.ts`: Manejo eventos bancarios
-    - `providerController.ts`: Gestión de proveedores
-
-  - 🔧 **Servicios de Negocio**
-    - `paymentService.ts`: Lógica core de pagos
-    - `providerService.ts`: Gestión adaptadores bancarios
-    - `webhookService.ts`: Procesamiento de eventos
-    - `metricsService.ts`: Métricas Prometheus
-    - `cronService.ts`: Tareas programadas
-
-- **Controladores Backend Principales**
-  - `accessController.ts`: Control de accesos y logs
-  - `financialController.ts`: Gestión financiera básica
-  - `notificationController.ts`: Sistema de comunicaciones
-
-### 🚀 Mejorado
-- **Testing Coverage**: >80% en payment-service
-- **TypeScript**: Strict mode en todos los servicios
-- **Error Handling**: Manejo robusto de errores bancarios
-- **Logging**: Winston con structured logging
-- **Validation**: Joi schemas para todas las APIs
-
-### 🔧 Cambiado
-- Arquitectura de pagos separada en microservicio dedicado
-- Webhook processing con retry mechanism
-- Database transactions para operaciones financieras
-- Rate limiting específico para APIs bancarias
-
-### 🐛 Corregido
-- Webhook signature validation para bancos
-- Timeout handling en APIs bancarias lentas
-- Memory leaks en connection pooling
-- Race conditions en payment processing
-
-### 📚 Documentado
-- API documentation completa para payment-service
-- Guías de integración bancaria por banco
-- Webhook implementation guides
-- Testing strategies para payment flows
-
----
-
-## [0.3.0] - 2025-01-01 - ETAPA 3: MODELOS Y CONTROLADORES BASE
+## [0.3.0] - 2024-01-01 - ETAPA 3: MODELOS Y CONTROLADORES BASE
 
 ### ✨ Agregado
 - **Controladores CRUD Adicionales**
@@ -130,7 +64,7 @@ y este proyecto adhiere a [Semantic Versioning](https://semver.org/spec/v2.0.0.h
 
 ---
 
-## [0.2.0] - 2025-05-15 - ETAPA 2: PERMISOS Y SEGURIDAD
+## [0.2.0] - 2023-12-15 - ETAPA 2: PERMISOS Y SEGURIDAD
 
 ### ✨ Agregado
 - **Sistema de Permisos Jerárquico Completo**
@@ -177,7 +111,7 @@ y este proyecto adhiere a [Semantic Versioning](https://semver.org/spec/v2.0.0.h
 
 ---
 
-## [0.1.0] - 2025-04-30 - ETAPA 1: INFRAESTRUCTURA Y BASE
+## [0.1.0] - 2023-11-30 - ETAPA 1: INFRAESTRUCTURA Y BASE
 
 ### ✨ Agregado
 - **Infraestructura Docker Completa**
@@ -244,7 +178,7 @@ y este proyecto adhiere a [Semantic Versioning](https://semver.org/spec/v2.0.0.h
 
 ---
 
-## [0.0.1] - 2025-04-15 - PROYECTO INICIAL
+## [0.0.1] - 2023-11-15 - PROYECTO INICIAL
 
 ### ✨ Agregado
 - **Configuración Inicial del Proyecto**
@@ -256,7 +190,7 @@ y este proyecto adhiere a [Semantic Versioning](https://semver.org/spec/v2.0.0.h
 - **Documentación de Planificación**
   - Plan de 14 etapas de desarrollo
   - Arquitectura conceptual
-  - Roadmap 2025
+  - Roadmap 2024
   - Casos de uso principales
 
 - **Investigación y Análisis**
@@ -301,30 +235,29 @@ Ejemplos:
 
 ## 📋 Roadmap de Versiones
 
-### Versiones Planificadas 2025
+### Versiones Planificadas 2024
 
 | Versión | Etapa | Descripción | ETA |
 |---------|-------|-------------|-----|
-| **0.3.1** | 3+ | Payment Service Completo | ✅ Completado |
-| **0.3.2** | 3 | Modelos y Controladores Finales | 🔄 1 semana |
-| **0.4.0** | 4 | Frontend React Completo | Q1 2025 |
-| **0.5.0** | 5 | Gestión de Comunidades | Q1 2025 |
-| **0.6.0** | 6 | Sistema IoT y Dispositivos | Q2 2025 |
-| **0.7.0** | 7 | Sistema Financiero | Q2 2025 |
-| **1.0.0** | MVP | Primera versión estable | Q2 2025 |
-| **1.1.0** | 8 | Invitaciones y Accesos | Q3 2025 |
-| **1.2.0** | 9 | Comunicaciones | Q3 2025 |
-| **1.3.0** | 10 | Analytics y Reportes | Q3 2025 |
-| **2.0.0** | 11 | Configuración y Admin | Q4 2025 |
+| **0.3.0** | 3 | Modelos y Controladores Base | ✅ Actual |
+| **0.4.0** | 4 | Frontend React Completo | Q1 2024 |
+| **0.5.0** | 5 | Gestión de Comunidades | Q1 2024 |
+| **0.6.0** | 6 | Sistema IoT y Dispositivos | Q2 2024 |
+| **0.7.0** | 7 | Sistema Financiero | Q2 2024 |
+| **1.0.0** | MVP | Primera versión estable | Q2 2024 |
+| **1.1.0** | 8 | Invitaciones y Accesos | Q3 2024 |
+| **1.2.0** | 9 | Comunicaciones | Q3 2024 |
+| **1.3.0** | 10 | Analytics y Reportes | Q3 2024 |
+| **2.0.0** | 11 | Configuración y Admin | Q4 2024 |
 
-### Versiones Futuras 2026
+### Versiones Futuras 2025
 
 | Versión | Etapa | Descripción | ETA |
 |---------|-------|-------------|-----|
-| **2.1.0** | 12 | Optimización y Deploy | Q1 2026 |
-| **3.0.0** | 13 | Aplicaciones Móviles | Q2 2026 |
-| **3.1.0** | 14 | Internacionalización | Q3 2026 |
-| **4.0.0** | - | Expansión Multi-región | Q4 2026 |
+| **2.1.0** | 12 | Optimización y Deploy | Q1 2025 |
+| **3.0.0** | 13 | Aplicaciones Móviles | Q2 2025 |
+| **3.1.0** | 14 | Internacionalización | Q3 2025 |
+| **4.0.0** | - | Expansión Multi-región | Q4 2025 |
 
 ---
 
@@ -355,6 +288,6 @@ Ejemplos:
 ---
 
 **Mantenido por**: PETERH4CK  
-**Última actualización**: 2025-06-27  
+**Última actualización**: 2025-06-26  
 **Formato**: [Keep a Changelog](https://keepachangelog.com/)  
 **Versionado**: [Semantic Versioning](https://semver.org/)

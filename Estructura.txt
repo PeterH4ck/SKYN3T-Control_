@@ -159,29 +159,87 @@ skyn3t-access-control/
 │       │       └── 📄 rabbitmqService.ts			 ✅ CREADO	---->	https://raw.githubusercontent.com/PeterH4ck/SKYN3T-Control_/refs/heads/main/permission-service/src/services/rabbitmqService.ts
 │       │
 │       └── 📁 tests/
-│       │   └── 📄 permissions.test.js             ✅ CREADO	---->	
+│       │   └── 📄 permissions.test.js             ❌ FALTA
 │       │
 │       └── 📁 utils/
 │       │   ├── 📄 AppError.ts		               ✅ CREADO	---->	https://raw.githubusercontent.com/PeterH4ck/SKYN3T-Control_/refs/heads/main/permission-service/src/utils/AppError.ts
 │       │   └── 📄 logger.ts			               ✅ CREADO	---->	https://raw.githubusercontent.com/PeterH4ck/SKYN3T-Control_/refs/heads/main/permission-service/src/utils/logger.ts
 │       │
 │       └── 📁 validators/
-│       │   └── 📄 permissionValidators.ts		     ✅ CREADO	---->	https://raw.githubusercontent.com/PeterH4ck/SKYN3T-Control_/refs/heads/main/permission-service/src/validators/permissionValidators.ts
+│           └── 📄 permissionValidators.ts		     ✅ CREADO	---->	https://raw.githubusercontent.com/PeterH4ck/SKYN3T-Control_/refs/heads/main/permission-service/src/validators/permissionValidators.ts
 │       
 ├── 📁 payment-service/
-│   ├── 📄 package.json                            ❌ FALTA
-│   ├── 📄 Dockerfile                              ❌ FALTA
-│   │
-│   └── 📁 src/
-│       ├── 📄 index.js                            ❌ FALTA
-│       ├── 📁 banks/
-│       │   ├── 📄 bancoEstado.adapter.js          ❌ FALTA
-│       │   ├── 📄 santander.adapter.js            ❌ FALTA
-│       │   ├── 📄 bci.adapter.js                  ❌ FALTA
-│       │   └── 📄 bancoChile.adapter.js           ❌ FALTA
-│       └── 📁 gateways/
-│           ├── 📄 paypal.gateway.js               ❌ FALTA
-│           └── 📄 mercadopago.gateway.js          ❌ FALTA
+│    ├── 📄 package.json		     					 ✅ CREADO	---->	https://raw.githubusercontent.com/PeterH4ck/SKYN3T-Control_/refs/heads/main/payment-service/package.json                    ✅ Configuración y dependencias
+│    ├── 📄 Dockerfile			     					 ✅ CREADO	---->	https://raw.githubusercontent.com/PeterH4ck/SKYN3T-Control_/refs/heads/main/payment-service/Dockerfile                      ✅ Containerización
+│    ├── 📄 tsconfig.json		     					 ✅ CREADO	---->	https://raw.githubusercontent.com/PeterH4ck/SKYN3T-Control_/refs/heads/main/payment-service/tsconfig.json                   ✅ Configuración TypeScript
+│    ├── 📄 .env.example		     					 ✅ CREADO	---->	https://raw.githubusercontent.com/PeterH4ck/SKYN3T-Control_/refs/heads/main/payment-service/.env.example                    ✅ Variables de entorno
+│    ├── 📄 .gitignore	    	     					 ✅ CREADO	---->	https://raw.githubusercontent.com/PeterH4ck/SKYN3T-Control_/refs/heads/main/payment-service/.gitignore                      ✅ Archivos ignorados
+│    ├── 📄 .eslintrc.json		     				 ✅ CREADO	---->	https://raw.githubusercontent.com/PeterH4ck/SKYN3T-Control_/refs/heads/main/payment-service/.eslintrc.json                  ✅ Configuración ESLint
+│    ├── 📄 .prettierrc		     					 ✅ CREADO	---->	https://raw.githubusercontent.com/PeterH4ck/SKYN3T-Control_/refs/heads/main/payment-service/.prettierrc	                      ✅ Formato de código
+│    ├── 📄 jest.config.js	     					 ✅ CREADO	---->	https://raw.githubusercontent.com/PeterH4ck/SKYN3T-Control_/refs/heads/main/payment-service/jest.config.js	                   ✅ Configuración de tests
+│    ├── 📄 README.md			     					 ✅ CREADO	---->	https://raw.githubusercontent.com/PeterH4ck/SKYN3T-Control_/refs/heads/main/payment-service/README.md	                        ✅ Documentación completa
+│    │
+│    └── 📁 src/
+│       │   └── 📄 index.ts	     					 ✅ CREADO	---->	https://raw.githubusercontent.com/PeterH4ck/SKYN3T-Control_/refs/heads/main/payment-service/src/index.ts                    ✅ Punto de entrada
+│       │
+│       ├── 📁 config/
+│       │       ├── 📄 config.ts   					 ✅ CREADO	---->	https://raw.githubusercontent.com/PeterH4ck/SKYN3T-Control_/refs/heads/main/payment-service/src/config/config.ts            ✅ Configuración centralizada
+│       │       ├── 📄 database.ts 					 ✅ CREADO	---->	https://raw.githubusercontent.com/PeterH4ck/SKYN3T-Control_/refs/heads/main/payment-service/src/config/database.ts          ✅ Conexión PostgreSQL
+│       │       ├── 📄 redis.ts    					 ✅ CREADO	---->	https://raw.githubusercontent.com/PeterH4ck/SKYN3T-Control_/refs/heads/main/payment-service/src/config/redis.ts             ✅ Cache y sesiones
+│       │       └── 📄 rabbitmq.ts 					 ✅ CREADO	---->	https://raw.githubusercontent.com/PeterH4ck/SKYN3T-Control_/refs/heads/main/payment-service/src/config/redis.ts             ✅ Mensajería asíncrona
+│       │
+│       ├── 📁 banks/		✅ Adaptadores bancarios chilenos
+│       │       ├── 📄 bancoEstado.adapter.ts		 ✅ CREADO	---->	https://raw.githubusercontent.com/PeterH4ck/SKYN3T-Control_/refs/heads/main/payment-service/src/config/config.ts	
+│       │       ├── 📄 santander.adapter.ts		 ✅ CREADO	---->	https://raw.githubusercontent.com/PeterH4ck/SKYN3T-Control_/refs/heads/main/payment-service/src/banks/santander.adapter.ts
+│       │       ├── 📄 bci.adapter.ts				 ✅ CREADO	---->	https://raw.githubusercontent.com/PeterH4ck/SKYN3T-Control_/refs/heads/main/payment-service/src/banks/bci.adapter.ts	
+│       │       └── 📄 bancoChile.adapter.ts		 ✅ CREADO	---->	https://raw.githubusercontent.com/PeterH4ck/SKYN3T-Control_/refs/heads/main/payment-service/src/banks/bancoChile.adapter.ts
+│       │
+│       ├── 📁 gateways/	✅ Pasarelas internacionales
+│       │       ├── 📄 paypal.gateway.ts			 ✅ CREADO	---->	https://raw.githubusercontent.com/PeterH4ck/SKYN3T-Control_/refs/heads/main/payment-service/src/gateways/paypal.gateway.ts
+│       │       └── 📄 mercadopago.gateway.ts		 ✅ CREADO	---->	https://raw.githubusercontent.com/PeterH4ck/SKYN3T-Control_/refs/heads/main/payment-service/src/gateways/mercadopago.gateway.ts
+│       │
+│       ├── 📁 controllers/
+│       │       ├── 📄 paymentController.ts		 ✅ CREADO	---->	https://raw.githubusercontent.com/PeterH4ck/SKYN3T-Control_/refs/heads/main/payment-service/src/controllers/paymentController.ts	    ✅ Control de pagos
+│       │       ├── 📄 bankController.ts			 ✅ CREADO	---->	https://raw.githubusercontent.com/PeterH4ck/SKYN3T-Control_/refs/heads/main/payment-service/src/controllers/bankController.ts	       ✅ Operaciones bancarias
+│       │       ├── 📄 webhookController.ts		 ✅ CREADO	---->	https://raw.githubusercontent.com/PeterH4ck/SKYN3T-Control_/refs/heads/main/payment-service/src/controllers/webhookController.ts	    ✅ Manejo de webhooks
+│       │       └── 📄 providerController.ts		 ✅ CREADO	---->	https://raw.githubusercontent.com/PeterH4ck/SKYN3T-Control_/refs/heads/main/payment-service/src/controllers/providerController.ts	   ✅ Gestión de proveedores
+│       │
+│       ├── 📁 services/
+│       │       ├── 📄 paymentService.ts			 ✅ CREADO	---->	https://raw.githubusercontent.com/PeterH4ck/SKYN3T-Control_/refs/heads/main/payment-service/src/services/paymentService.ts	       ✅ Lógica de negocio principal
+│       │       ├── 📄 providerService.ts			 ✅ CREADO	---->	https://raw.githubusercontent.com/PeterH4ck/SKYN3T-Control_/refs/heads/main/payment-service/src/services/providerService.ts	      ✅ Gestión de proveedores
+│       │       ├── 📄 webhookService.ts			 ✅ CREADO	---->	https://raw.githubusercontent.com/PeterH4ck/SKYN3T-Control_/refs/heads/main/payment-service/src/services/webhookService.ts	       ✅ Procesamiento webhooks
+│       │       ├── 📄 metricsService.ts			 ✅ CREADO	---->	https://raw.githubusercontent.com/PeterH4ck/SKYN3T-Control_/refs/heads/main/payment-service/src/services/metricsService.ts	       ✅ Métricas Prometheus
+│       │       └── 📄 cronService.ts				 ✅ CREADO	---->	https://raw.githubusercontent.com/PeterH4ck/SKYN3T-Control_/refs/heads/main/payment-service/src/services/cronService.ts	          ✅ Tareas programadas
+│       │
+│       ├── 📁 routes/
+│       │       ├── 📄 index.ts    					 ✅ CREADO	---->	https://raw.githubusercontent.com/PeterH4ck/SKYN3T-Control_/refs/heads/main/payment-service/src/routes/index.ts	                ✅ Rutas principales
+│       │       ├── 📄 payment.routes.ts			 ✅ CREADO	---->	https://raw.githubusercontent.com/PeterH4ck/SKYN3T-Control_/refs/heads/main/payment-service/src/routes/payment.routes.ts	       ✅ Rutas de pagos
+│       │       ├── 📄 bank.routes.ts				 ✅ CREADO	---->	https://raw.githubusercontent.com/PeterH4ck/SKYN3T-Control_/refs/heads/main/payment-service/src/routes/bank.routes.ts	          ✅ Rutas bancarias
+│       │       ├── 📄 webhook.routes.ts			 ✅ CREADO	---->	https://raw.githubusercontent.com/PeterH4ck/SKYN3T-Control_/refs/heads/main/payment-service/src/routes/webhook.routes.ts	       ✅ Rutas de webhooks
+│       │       └── 📄 provider.routes.ts			 ✅ CREADO	---->	https://raw.githubusercontent.com/PeterH4ck/SKYN3T-Control_/refs/heads/main/payment-service/src/routes/provider.routes.ts	      ✅ Rutas de proveedores
+│       │
+│       ├── 📁 middleware/
+│       │       ├── 📄 auth.ts     					 ✅ CREADO	---->	https://raw.githubusercontent.com/PeterH4ck/SKYN3T-Control_/refs/heads/main/payment-service/src/middleware/auth.ts	                 ✅ Autenticación JWT
+│       │       ├── 📄 errorHandler.ts				 ✅ CREADO	---->	https://raw.githubusercontent.com/PeterH4ck/SKYN3T-Control_/refs/heads/main/payment-service/src/middleware/errorHandler.ts	         ✅ Manejo de errores
+│       │       ├── 📄 notFoundHandler.ts			 ✅ CREADO	---->	https://raw.githubusercontent.com/PeterH4ck/SKYN3T-Control_/refs/heads/main/payment-service/src/middleware/notFoundHandler.ts	      ✅ 404 handler
+│       │       ├── 📄 rateLimiter.ts				 ✅ CREADO	---->	https://raw.githubusercontent.com/PeterH4ck/SKYN3T-Control_/refs/heads/main/payment-service/src/middleware/rateLimiter.ts	          ✅ Rate limiting
+│       │       ├── 📄 requestLogger.ts				 ✅ CREADO	---->	https://raw.githubusercontent.com/PeterH4ck/SKYN3T-Control_/refs/heads/main/payment-service/src/middleware/requestLogger.ts	        ✅ Logging de requests
+│       │       └── 📄 validate.ts 					 ✅ CREADO	---->	https://raw.githubusercontent.com/PeterH4ck/SKYN3T-Control_/refs/heads/main/payment-service/src/middleware/validate.ts	             ✅ Validación
+│       │
+│       ├── 📁 models/
+│       │       └── 📄 Payment.ts  					 ✅ CREADO	---->	https://raw.githubusercontent.com/PeterH4ck/SKYN3T-Control_/refs/heads/main/payment-service/src/models/Payment.ts	              ✅ Modelos de datos
+│       │
+│       ├── 📁 types/
+│       │       └── 📄 bank.types.ts				 ✅ CREADO	---->	https://raw.githubusercontent.com/PeterH4ck/SKYN3T-Control_/refs/heads/main/payment-service/src/types/bank.types.ts	           ✅ Tipos e interfaces
+│       │
+│       ├── 📁 utils/
+│       │       ├── 📄 logger.ts   					 ✅ CREADO	---->	https://raw.githubusercontent.com/PeterH4ck/SKYN3T-Control_/refs/heads/main/payment-service/src/utils/logger.ts	               ✅ Sistema de logging
+│       │       └── 📄 AppError.ts 					 ✅ CREADO	---->	https://raw.githubusercontent.com/PeterH4ck/SKYN3T-Control_/refs/heads/main/payment-service/src/utils/AppError.ts	             ✅ Errores personalizados
+│       │
+│       └── 📁 __tests__/
+│               ├── 📄 setup.ts    					 ✅ CREADO	---->	https://raw.githubusercontent.com/PeterH4ck/SKYN3T-Control_/refs/heads/main/payment-service/src/__tests__/setup.ts	                ✅ Configuración de tests
+│               └── 📁 services/
+│		               └── 📄 paymentService.test.ts✅ CREADO	---->	https://raw.githubusercontent.com/PeterH4ck/SKYN3T-Control_/refs/heads/main/payment-service/src/__tests__/services/paymentService.test.ts	 ✅ Tests de ejemplo
 │
 ├── 📁 notification-service/
 │   ├── 📄 package.json                            ❌ FALTA

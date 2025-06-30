@@ -1,0 +1,973 @@
+openapi: 3.0.3
+info:
+  title: SKYN3T Payment Service API
+  description: |
+    Servicio completo de gestión de pagos para SKYN3T Access Control System.
+    
+    ## Características principales:
+    - 🏦 Integración con bancos chilenos (Banco Estado, Santander, BCI, Banco de Chile, Scotiabank)
+    - 🌍 Pasarelas internacionales (PayPal, MercadoPago, Stripe)
+    - 💳 Pagos recurrentes y suscripciones
+    - 📊 Split payments (división de pagos)
+    - 🧾 Facturación electrónica SII
+    - 🔄 Webhooks en tiempo real
+    
+    ## Autenticación:
+    Todas las peticiones requieren un token JWT en el header Authorization.
+  version: 1.0.0
+  contact:
+    name: SKYN3T Support
+    email: support@skyn3t.com
+  license:
+    name: MIT
+    url: https://opensource.org/licenses/MIT
+
+servers:
+  - url: http://localhost:3005/api/v1
+    description: Desarrollo local
+  - url: https://staging-api.skyn3t.com/payment-service/api/v1
+    description: Staging
+  - url: https://api.skyn3t.com/payment-service/api/v1
+    description: Producción
+
+security:
+  - BearerAuth: []
+
+tags:
+  - name: Payments
+    description: Operaciones de pago
+  - name: Subscriptions
+    description: Gestión de suscripciones
+  - name: Split Payments
+    description: Pagos divididos
+  - name: Invoices
+    description: Facturación electrónica
+  - name: Webhooks
+    description: Webhooks de proveedores
+  - name: Reports
+    description: Reportes y métricas
+
+paths:
+  /payments:
+    post:
+      tags: [Payments]
+      summary: Crear nuevo pago
+      description: Procesa un nuevo pago a través del proveedor especificado
+      operationId: createPayment
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PaymentRequest'
+            examples:
+              bankTransfer:
+                summary: Transferencia bancaria
+                value:
+                  amount: 50000
+                  currency: CLP
+                  description: "Gastos comunes enero 2024"
+                  gatewayProvider: banco_estado
+                  communityId: comm_123
+                  metadata:
+                    unitId: unit_456
+                    period: "2024-01"
+              creditCard:
+                summary: Pago con tarjeta
+                value:
+                  amount: 75000
+                  currency: CLP
+                  gatewayProvider: stripe
+                  paymentMethod: pm_1234567890
+                  communityId: comm_123
+      responses:
+        '201':
+          description: Pago creado exitosamente
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaymentResponse'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '402':
+          $ref: '#/components/responses/PaymentRequired'
+        '500':
+          $ref: '#/components/responses/InternalError'
+
+    get:
+      tags: [Payments]
+      summary: Listar pagos
+      description: Obtiene una lista paginada de pagos con filtros opcionales
+      operationId: listPayments
+      parameters:
+        - $ref: '#/components/parameters/PageParam'
+        - $ref: '#/components/parameters/LimitParam'
+        - name: status
+          in: query
+          schema:
+            type: string
+            enum: [pending, processing, completed, failed, refunded]
+        - name: communityId
+          in: query
+          schema:
+            type: string
+        - name: userId
+          in: query
+          schema:
+            type: string
+        - name: gatewayProvider
+          in: query
+          schema:
+            type: string
+        - name: from
+          in: query
+          schema:
+            type: string
+            format: date-time
+        - name: to
+          in: query
+          schema:
+            type: string
+            format: date-time
+      responses:
+        '200':
+          description: Lista de pagos
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaymentListResponse'
+
+  /payments/{id}:
+    get:
+      tags: [Payments]
+      summary: Obtener pago por ID
+      operationId: getPaymentById
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Detalles del pago
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Payment'
+        '404':
+          $ref: '#/components/responses/NotFound'
+
+  /payments/{id}/refund:
+    post:
+      tags: [Payments]
+      summary: Procesar reembolso
+      description: Procesa un reembolso total o parcial del pago
+      operationId: refundPayment
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RefundRequest'
+      responses:
+        '200':
+          description: Reembolso procesado
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RefundResponse'
+
+  /payments/{id}/invoice:
+    post:
+      tags: [Invoices]
+      summary: Generar factura electrónica
+      description: Genera factura electrónica (DTE) para el pago
+      operationId: generateInvoice
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/InvoiceRequest'
+      responses:
+        '201':
+          description: Factura generada
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InvoiceResponse'
+
+  /payments/subscriptions:
+    post:
+      tags: [Subscriptions]
+      summary: Crear suscripción
+      description: Crea una nueva suscripción de pago recurrente
+      operationId: createSubscription
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SubscriptionRequest'
+      responses:
+        '201':
+          description: Suscripción creada
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SubscriptionResponse'
+
+    get:
+      tags: [Subscriptions]
+      summary: Listar suscripciones
+      operationId: listSubscriptions
+      parameters:
+        - $ref: '#/components/parameters/PageParam'
+        - $ref: '#/components/parameters/LimitParam'
+        - name: status
+          in: query
+          schema:
+            type: string
+            enum: [active, paused, cancelled, past_due]
+        - name: communityId
+          in: query
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Lista de suscripciones
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SubscriptionListResponse'
+
+  /payments/subscriptions/{id}/pause:
+    put:
+      tags: [Subscriptions]
+      summary: Pausar suscripción
+      operationId: pauseSubscription
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                reason:
+                  type: string
+      responses:
+        '200':
+          description: Suscripción pausada
+
+  /payments/subscriptions/{id}/resume:
+    put:
+      tags: [Subscriptions]
+      summary: Reanudar suscripción
+      operationId: resumeSubscription
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Suscripción reanudada
+
+  /payments/subscriptions/{id}/cancel:
+    delete:
+      tags: [Subscriptions]
+      summary: Cancelar suscripción
+      operationId: cancelSubscription
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: immediate
+          in: query
+          schema:
+            type: boolean
+            default: false
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                reason:
+                  type: string
+      responses:
+        '200':
+          description: Suscripción cancelada
+
+  /payments/split:
+    post:
+      tags: [Split Payments]
+      summary: Crear pago dividido
+      description: Crea un pago que se divide automáticamente entre múltiples destinatarios
+      operationId: createSplitPayment
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SplitPaymentRequest'
+      responses:
+        '201':
+          description: Pago dividido creado
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SplitPaymentResponse'
+
+  /payments/split/{id}/status:
+    get:
+      tags: [Split Payments]
+      summary: Estado de pago dividido
+      operationId: getSplitPaymentStatus
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Estado del pago dividido
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SplitPaymentStatus'
+
+  /payments/metrics:
+    get:
+      tags: [Reports]
+      summary: Obtener métricas de pagos
+      operationId: getPaymentMetrics
+      parameters:
+        - name: communityId
+          in: query
+          schema:
+            type: string
+        - name: from
+          in: query
+          schema:
+            type: string
+            format: date
+        - name: to
+          in: query
+          schema:
+            type: string
+            format: date
+      responses:
+        '200':
+          description: Métricas de pagos
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaymentMetrics'
+
+  /webhooks/stripe:
+    post:
+      tags: [Webhooks]
+      summary: Webhook de Stripe
+      description: Endpoint para recibir eventos de Stripe
+      operationId: stripeWebhook
+      security: []
+      parameters:
+        - name: stripe-signature
+          in: header
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+      responses:
+        '200':
+          description: Webhook procesado
+
+  /webhooks/bank/{bankCode}:
+    post:
+      tags: [Webhooks]
+      summary: Webhook bancario
+      description: Endpoint para recibir eventos de bancos
+      operationId: bankWebhook
+      security: []
+      parameters:
+        - name: bankCode
+          in: path
+          required: true
+          schema:
+            type: string
+            enum: [banco_estado, santander, bci, banco_chile, scotiabank]
+        - name: x-bank-signature
+          in: header
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+      responses:
+        '200':
+          description: Webhook procesado
+
+  /health:
+    get:
+      tags: [System]
+      summary: Health check
+      description: Verifica el estado del servicio
+      operationId: healthCheck
+      security: []
+      responses:
+        '200':
+          description: Servicio saludable
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HealthStatus'
+
+components:
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+
+  parameters:
+    PageParam:
+      name: page
+      in: query
+      schema:
+        type: integer
+        minimum: 1
+        default: 1
+    
+    LimitParam:
+      name: limit
+      in: query
+      schema:
+        type: integer
+        minimum: 1
+        maximum: 100
+        default: 20
+
+  schemas:
+    PaymentRequest:
+      type: object
+      required:
+        - amount
+        - gatewayProvider
+        - communityId
+      properties:
+        amount:
+          type: number
+          minimum: 0
+          example: 50000
+        currency:
+          type: string
+          default: CLP
+          enum: [CLP, USD, EUR]
+        description:
+          type: string
+          maxLength: 500
+        gatewayProvider:
+          type: string
+          enum: [stripe, paypal, mercadopago, banco_estado, santander, bci, banco_chile, scotiabank]
+        paymentMethod:
+          type: string
+          description: ID del método de pago (para tarjetas)
+        communityId:
+          type: string
+        idempotencyKey:
+          type: string
+          description: Clave para garantizar idempotencia
+        metadata:
+          type: object
+          additionalProperties: true
+
+    PaymentResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
+        data:
+          type: object
+          properties:
+            transactionId:
+              type: string
+            status:
+              type: string
+            amount:
+              type: number
+            currency:
+              type: string
+            processedAt:
+              type: string
+              format: date-time
+            fees:
+              type: number
+            paymentMethod:
+              type: object
+              properties:
+                type:
+                  type: string
+                last4:
+                  type: string
+
+    Payment:
+      type: object
+      properties:
+        id:
+          type: string
+        communityId:
+          type: string
+        userId:
+          type: string
+        amount:
+          type: number
+        currency:
+          type: string
+        status:
+          type: string
+          enum: [pending, processing, completed, failed, refunded, partially_refunded]
+        paymentType:
+          type: string
+          enum: [one_time, recurring, recurring_charge, split_distribution]
+        gatewayProvider:
+          type: string
+        gatewayTransactionId:
+          type: string
+        description:
+          type: string
+        metadata:
+          type: object
+        refundedAmount:
+          type: number
+        createdAt:
+          type: string
+          format: date-time
+        processedAt:
+          type: string
+          format: date-time
+
+    RefundRequest:
+      type: object
+      required:
+        - reason
+      properties:
+        amount:
+          type: number
+          description: Monto a reembolsar (opcional para reembolso total)
+        reason:
+          type: string
+        notifyCustomer:
+          type: boolean
+          default: true
+
+    RefundResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
+        data:
+          type: object
+          properties:
+            refundId:
+              type: string
+            originalTransactionId:
+              type: string
+            amount:
+              type: number
+            status:
+              type: string
+            processedAt:
+              type: string
+              format: date-time
+
+    SubscriptionRequest:
+      type: object
+      required:
+        - amount
+        - interval
+        - gatewayProvider
+        - communityId
+        - unitId
+      properties:
+        amount:
+          type: number
+        currency:
+          type: string
+          default: CLP
+        interval:
+          type: string
+          enum: [monthly, quarterly, yearly]
+        gatewayProvider:
+          type: string
+          enum: [stripe, paypal]
+        paymentMethod:
+          type: string
+        communityId:
+          type: string
+        unitId:
+          type: string
+        description:
+          type: string
+        startDate:
+          type: string
+          format: date
+        metadata:
+          type: object
+
+    SubscriptionResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
+        data:
+          type: object
+          properties:
+            subscriptionId:
+              type: string
+            amount:
+              type: number
+            currency:
+              type: string
+            interval:
+              type: string
+            status:
+              type: string
+            nextPaymentDate:
+              type: string
+              format: date
+            paymentMethod:
+              type: object
+
+    SplitPaymentRequest:
+      type: object
+      required:
+        - totalAmount
+        - gatewayProvider
+        - communityId
+        - splits
+      properties:
+        totalAmount:
+          type: number
+        currency:
+          type: string
+          default: CLP
+        gatewayProvider:
+          type: string
+        paymentMethod:
+          type: string
+        communityId:
+          type: string
+        description:
+          type: string
+        splits:
+          type: object
+          required:
+            - mainRecipient
+            - splits
+          properties:
+            mainRecipient:
+              type: object
+              properties:
+                id:
+                  type: string
+                percentage:
+                  type: number
+                  minimum: 0
+                  maximum: 100
+                amount:
+                  type: number
+            splits:
+              type: array
+              items:
+                type: object
+                properties:
+                  recipientId:
+                    type: string
+                  percentage:
+                    type: number
+                    minimum: 0
+                    maximum: 100
+                  amount:
+                    type: number
+                  description:
+                    type: string
+            calculateAutomatically:
+              type: boolean
+
+    SplitPaymentResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
+        data:
+          type: object
+          properties:
+            mainPayment:
+              $ref: '#/components/schemas/PaymentResponse'
+            splitPayments:
+              type: array
+              items:
+                $ref: '#/components/schemas/PaymentResponse'
+            summary:
+              type: object
+              properties:
+                totalAmount:
+                  type: number
+                totalDistributed:
+                  type: number
+                totalFees:
+                  type: number
+                recipients:
+                  type: integer
+
+    InvoiceRequest:
+      type: object
+      required:
+        - customerRut
+        - customerName
+        - customerAddress
+        - customerEmail
+      properties:
+        customerRut:
+          type: string
+          pattern: '^[0-9]{1,2}\.[0-9]{3}\.[0-9]{3}-[0-9kK]$'
+        customerName:
+          type: string
+        customerAddress:
+          type: string
+        customerEmail:
+          type: string
+          format: email
+        items:
+          type: array
+          items:
+            type: object
+            properties:
+              name:
+                type: string
+              description:
+                type: string
+              quantity:
+                type: number
+              unitPrice:
+                type: number
+
+    InvoiceResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
+        data:
+          type: object
+          properties:
+            invoiceId:
+              type: string
+            invoiceNumber:
+              type: integer
+            documentType:
+              type: integer
+            pdfUrl:
+              type: string
+            xmlUrl:
+              type: string
+            tedCode:
+              type: string
+            siiTrackId:
+              type: string
+
+    PaymentMetrics:
+      type: object
+      properties:
+        totalPayments:
+          type: integer
+        totalAmount:
+          type: number
+        successRate:
+          type: number
+        averageAmount:
+          type: number
+        paymentsByStatus:
+          type: object
+          additionalProperties:
+            type: integer
+        paymentsByType:
+          type: object
+          additionalProperties:
+            type: integer
+        paymentsByProvider:
+          type: object
+          additionalProperties:
+            type: integer
+        monthlyRecurringRevenue:
+          type: number
+        activeSubscriptions:
+          type: integer
+
+    PaymentListResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
+        data:
+          type: object
+          properties:
+            data:
+              type: array
+              items:
+                $ref: '#/components/schemas/Payment'
+            page:
+              type: integer
+            limit:
+              type: integer
+            total:
+              type: integer
+            totalPages:
+              type: integer
+
+    SubscriptionListResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
+        data:
+          type: object
+          properties:
+            data:
+              type: array
+              items:
+                type: object
+            page:
+              type: integer
+            limit:
+              type: integer
+            total:
+              type: integer
+
+    SplitPaymentStatus:
+      type: object
+      properties:
+        master:
+          type: object
+        distributions:
+          type: array
+          items:
+            $ref: '#/components/schemas/Payment'
+        summary:
+          type: object
+          properties:
+            total:
+              type: integer
+            distributed:
+              type: integer
+            pending:
+              type: integer
+            failed:
+              type: integer
+
+    HealthStatus:
+      type: object
+      properties:
+        status:
+          type: string
+          enum: [healthy, degraded, unhealthy]
+        uptime:
+          type: integer
+        services:
+          type: object
+          properties:
+            database:
+              type: string
+            redis:
+              type: string
+            rabbitmq:
+              type: string
+        providers:
+          type: object
+          additionalProperties:
+            type: string
+
+    ErrorResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
+          example: false
+        error:
+          type: string
+        message:
+          type: string
+        details:
+          type: object
+        timestamp:
+          type: string
+          format: date-time
+
+  responses:
+    BadRequest:
+      description: Solicitud inválida
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    
+    Unauthorized:
+      description: No autorizado
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    
+    PaymentRequired:
+      description: Pago requerido o fondos insuficientes
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    
+    NotFound:
+      description: Recurso no encontrado
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    
+    InternalError:
+      description: Error interno del servidor
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'

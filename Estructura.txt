@@ -340,10 +340,10 @@ skyn3t-access-control/
 │   ├── 📄 .env.example                            ❌ FALTA
 │   │
 │   ├── 📁 public/
-│   │   ├── 📄 index.html                          ❌ FALTA
+│   │   ├── 📄 index.html                          ✅ CREADO	---->   
 │   │   └── 📁 images/
-│   │       ├── 📄 logo.png                        ❌ FALTA
-│   │       └── 📄 login-background.jpeg           ❌ FALTA
+│   │       ├── 📄 logo.png                        ✅ CREADO	---->   
+│   │       └── 📄 login-background.jpeg           ✅ CREADO	---->   
 │   │
 │   ├── 📁 src/
 │   │   ├── 📄 index.tsx                           ❌ FALTA

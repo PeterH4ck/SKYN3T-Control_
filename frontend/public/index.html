@@ -493,46 +493,103 @@
         }
 
         .about-content {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 60px;
-            align-items: center;
+            max-width: 1000px;
+            margin: 0 auto;
+            text-align: center;
         }
 
         .about-text {
             color: rgba(255, 255, 255, 0.9);
             font-size: 18px;
             line-height: 1.8;
+            text-align: center;
+            margin-bottom: 50px;
         }
 
         .about-text h2 {
             color: #ffffff;
             font-size: 36px;
             font-weight: 700;
-            text-align: left;
-            margin-bottom: 30px;
+            text-align: center;
+            margin-bottom: 20px;
             text-shadow: 0 3px 15px rgba(0, 0, 0, 0.5);
         }
 
         .about-text h3 {
             color: #2199ea;
             font-size: 24px;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .about-text p {
+            max-width: 800px;
+            margin: 0 auto 25px;
+            text-align: center;
+        }
+
+        /* Tecnología Avanzada - Sección separada */
+        .technology-section {
+            background: linear-gradient(135deg, rgba(33, 153, 234, 0.15), rgba(19, 125, 197, 0.08));
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 2px solid rgba(33, 153, 234, 0.3);
+            border-radius: 25px;
+            padding: 50px 40px;
+            text-align: center;
+            margin: 50px auto;
+            max-width: 600px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+        }
+
+        .technology-section i {
+            font-size: 100px;
+            color: #2199ea;
+            margin-bottom: 25px;
+            display: block;
+            filter: drop-shadow(0 0 20px rgba(33, 153, 234, 0.5));
+        }
+
+        .technology-section h3 {
+            color: #ffffff;
+            font-size: 24px;
             margin-bottom: 20px;
+            font-weight: 600;
+        }
+
+        .technology-section p {
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 16px;
+            line-height: 1.6;
+            margin: 0 auto;
+            max-width: 400px;
         }
 
         .about-stats {
             display: grid;
-            grid-template-columns: repeat(2, 1fr);
+            grid-template-columns: repeat(4, 1fr);
             gap: 30px;
-            margin-top: 40px;
+            margin-top: 60px;
+            max-width: 1000px;
+            margin-left: auto;
+            margin-right: auto;
         }
 
         .stat-card {
             background: rgba(33, 153, 234, 0.1);
             border: 1px solid rgba(33, 153, 234, 0.3);
             border-radius: 15px;
-            padding: 20px;
+            padding: 25px 20px;
             text-align: center;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+        }
+
+        .stat-card:hover {
+            background: rgba(33, 153, 234, 0.2);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(33, 153, 234, 0.3);
         }
 
         .stat-number {
@@ -811,16 +868,42 @@
             }
 
             .about-text h2 {
-                text-align: center !important; /* Centrar título en móvil */
+                text-align: center !important;
                 font-size: 24px;
             }
 
             .about-text {
-                text-align: center; /* Centrar todo el contenido en móviles pequeños */
+                text-align: center;
             }
 
             .about-text h3 {
                 text-align: center;
+                font-size: 20px;
+            }
+
+            .about-stats {
+                grid-template-columns: 1fr;
+                gap: 15px;
+                margin-top: 30px;
+            }
+
+            .technology-section {
+                padding: 25px 20px;
+                margin: 25px auto;
+            }
+
+            .technology-section i {
+                font-size: 70px;
+                margin-bottom: 15px;
+            }
+
+            .technology-section h3 {
+                font-size: 20px;
+                margin-bottom: 15px;
+            }
+
+            .technology-section p {
+                font-size: 14px;
             }
 
             .about-stats {
@@ -1113,39 +1196,33 @@
                         soluciones personalizadas que se adaptan perfectamente a tus requerimientos 
                         específicos, asegurando la continuidad operacional y el crecimiento de tu negocio.
                     </p>
-                    
-                    <div class="about-stats">
-                        <div class="stat-card">
-                            <span class="stat-number">5+</span>
-                            <span class="stat-label">Años de Experiencia</span>
-                        </div>
-                        <div class="stat-card">
-                            <span class="stat-number">100+</span>
-                            <span class="stat-label">Proyectos Completados</span>
-                        </div>
-                        <div class="stat-card">
-                            <span class="stat-number">24/7</span>
-                            <span class="stat-label">Soporte Técnico</span>
-                        </div>
-                        <div class="stat-card">
-                            <span class="stat-number">99.9%</span>
-                            <span class="stat-label">Uptime Garantizado</span>
-                        </div>
-                    </div>
                 </div>
                 
-                <div class="about-image reveal">
-                    <div style="background: linear-gradient(135deg, rgba(33, 153, 234, 0.2), rgba(19, 125, 197, 0.1)); 
-                               border-radius: 20px; 
-                               padding: 40px; 
-                               text-align: center;
-                               border: 2px solid rgba(33, 153, 234, 0.3);">
-                        <i class="fas fa-laptop-code" style="font-size: 120px; color: #2199ea; margin-bottom: 20px;"></i>
-                        <h3 style="color: #ffffff; margin-bottom: 15px;">Tecnología Avanzada</h3>
-                        <p style="color: rgba(255, 255, 255, 0.8);">
-                            Utilizamos las últimas tecnologías y mejores prácticas del sector 
-                            para garantizar soluciones de vanguardia.
-                        </p>
+                <div class="technology-section reveal">
+                    <i class="fas fa-laptop-code"></i>
+                    <h3>Tecnología Avanzada</h3>
+                    <p>
+                        Utilizamos las últimas tecnologías y mejores prácticas del sector 
+                        para garantizar soluciones de vanguardia.
+                    </p>
+                </div>
+                
+                <div class="about-stats">
+                    <div class="stat-card reveal">
+                        <span class="stat-number">5+</span>
+                        <span class="stat-label">Años de Experiencia</span>
+                    </div>
+                    <div class="stat-card reveal">
+                        <span class="stat-number">100+</span>
+                        <span class="stat-label">Proyectos Completados</span>
+                    </div>
+                    <div class="stat-card reveal">
+                        <span class="stat-number">24/7</span>
+                        <span class="stat-label">Soporte Técnico</span>
+                    </div>
+                    <div class="stat-card reveal">
+                        <span class="stat-number">99.9%</span>
+                        <span class="stat-label">Uptime Garantizado</span>
                     </div>
                 </div>
             </div>

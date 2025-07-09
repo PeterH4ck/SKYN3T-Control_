@@ -1,0 +1,1526 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>SKYN3T - IT & Network Solutions</title>
+    <meta name="description" content="SKYN3T ofrece servicios informáticos innovadores y confiables. Soporte técnico personalizado y soluciones adaptadas a tus necesidades tecnológicas.">
+    <meta name="keywords" content="SKYN3T, IT, Network, Solutions, Soporte Técnico, Informática, Tecnología">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            overflow-x: hidden;
+            background-color: #1a1a2e;
+            scroll-behavior: smooth;
+        }
+
+        /* SIDEBAR STYLES - GLASSMORPHISM */
+        #sidebar {
+            position: fixed !important;
+            top: 0 !important;
+            left: 0 !important;
+            width: 280px !important;
+            height: 100vh !important;
+            background: rgba(55, 65, 79, 0.1) !important;
+            backdrop-filter: blur(25px) !important;
+            -webkit-backdrop-filter: blur(25px) !important;
+            border-right: 2px solid rgba(33, 153, 234, 0.3) !important;
+            box-shadow: 0 8px 32px rgba(13, 15, 19, 0.4) !important;
+            z-index: 9999 !important;
+            display: flex !important;
+            flex-direction: column !important;
+            transform: translateX(-100%) !important;
+            transition: all 0.3s ease !important;
+            border-radius: 0 20px 20px 0 !important;
+        }
+        
+        #sidebar.active {
+            transform: translateX(0) !important;
+        }
+        
+        .sidebar-overlay {
+            position: fixed !important;
+            top: 0 !important;
+            left: 0 !important;
+            width: 100% !important;
+            height: 100% !important;
+            background: rgba(0, 0, 0, 0.6) !important;
+            backdrop-filter: blur(5px) !important;
+            -webkit-backdrop-filter: blur(5px) !important;
+            z-index: 9998 !important;
+            opacity: 0 !important;
+            visibility: hidden !important;
+            transition: all 0.3s ease !important;
+        }
+        
+        .sidebar-overlay.active {
+            opacity: 1 !important;
+            visibility: visible !important;
+        }
+
+        .sidebar-header {
+            padding: 25px 20px 20px;
+            border-bottom: 1px solid rgba(33, 153, 234, 0.2);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: rgba(33, 153, 234, 0.05);
+            border-radius: 0 20px 0 0;
+        }
+
+        .sidebar-logo {
+            max-width: 120px;
+            height: auto;
+            filter: drop-shadow(0 0 10px rgba(19, 125, 197, 0.5));
+        }
+
+        .close-sidebar {
+            background: rgba(33, 153, 234, 0.2);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(33, 153, 234, 0.3);
+            color: #2199ea;
+            font-size: 18px;
+            cursor: pointer;
+            padding: 8px;
+            border-radius: 50%;
+            transition: all 0.3s ease;
+            width: 36px;
+            height: 36px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .close-sidebar:hover {
+            background: rgba(33, 153, 234, 0.3);
+            transform: scale(1.1);
+            box-shadow: 0 4px 15px rgba(33, 153, 234, 0.3);
+        }
+
+        .sidebar-menu {
+            flex: 1;
+            padding: 15px 0;
+            list-style: none;
+        }
+
+        .sidebar-menu li {
+            margin-bottom: 3px;
+        }
+
+        .sidebar-menu a {
+            display: flex;
+            align-items: center;
+            padding: 14px 20px;
+            color: rgba(255, 255, 255, 0.9);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            position: relative;
+            margin: 0 10px;
+            border-radius: 12px;
+            font-weight: 500;
+        }
+
+        .sidebar-menu a:hover {
+            color: #ffffff;
+            background: rgba(33, 153, 234, 0.15);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(33, 153, 234, 0.3);
+            transform: translateX(5px);
+            box-shadow: 0 4px 15px rgba(33, 153, 234, 0.2);
+        }
+
+        .sidebar-menu a.active {
+            color: #2199ea;
+            background: rgba(33, 153, 234, 0.2);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            border: 1px solid rgba(33, 153, 234, 0.4);
+            box-shadow: 0 6px 20px rgba(33, 153, 234, 0.3);
+        }
+
+        .sidebar-menu a i {
+            margin-right: 12px;
+            width: 20px;
+            text-align: center;
+            font-size: 16px;
+        }
+
+        .separator {
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(33, 153, 234, 0.3), transparent);
+            margin: 12px 20px;
+        }
+
+        /* Fondo con imagen y efecto parallax */
+        .background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 110%;
+            height: 110%;
+            background: url('./images/login-background.jpeg') center/cover no-repeat, 
+                        linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+            background-size: cover;
+            background-position: center;
+            z-index: -2;
+            animation: subtleMove 20s ease-in-out infinite;
+        }
+
+        @keyframes subtleMove {
+            0%, 100% { 
+                transform: scale(1.05) translate(0, 0); 
+            }
+            25% { 
+                transform: scale(1.08) translate(-1%, -0.5%); 
+            }
+            50% { 
+                transform: scale(1.06) translate(0.5%, -1%); 
+            }
+            75% { 
+                transform: scale(1.07) translate(-0.5%, 0.5%); 
+            }
+        }
+
+        /* Partículas flotantes con efecto mejorado */
+        .particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            overflow: hidden;
+            z-index: -1;
+            background: radial-gradient(circle at 20% 80%, rgba(33, 153, 234, 0.08) 0%, transparent 50%),
+                        radial-gradient(circle at 80% 20%, rgba(19, 125, 197, 0.08) 0%, transparent 50%),
+                        radial-gradient(circle at 40% 40%, rgba(33, 153, 234, 0.03) 0%, transparent 50%);
+        }
+
+        .particle {
+            position: absolute;
+            background: rgba(19, 125, 197, 0.4);
+            border-radius: 50%;
+            pointer-events: none;
+            animation: float 20s infinite linear;
+        }
+
+        @keyframes float {
+            from {
+                transform: translateY(100vh) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            to {
+                transform: translateY(-100vh) rotate(720deg);
+                opacity: 0;
+            }
+        }
+
+        /* Botón menú hamburguesa */
+        .floating-menu {
+            position: fixed !important;
+            top: 20px !important;
+            left: 20px !important;
+            z-index: 500 !important;
+            background: rgba(55, 65, 79, 0.8) !important;
+            backdrop-filter: blur(16px) !important;
+            -webkit-backdrop-filter: blur(16px) !important;
+            border: 2px solid rgba(33, 153, 234, 0.5) !important;
+            color: #2199ea !important;
+            width: 50px !important;
+            height: 50px !important;
+            border-radius: 50% !important;
+            cursor: pointer !important;
+            font-size: 1.3rem !important;
+            display: flex !important;
+            align-items: center !important;
+            justify-content: center !important;
+            transition: all 0.3s ease !important;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3) !important;
+        }
+        
+        .floating-menu:hover {
+            background: rgba(33, 153, 234, 0.4) !important;
+            transform: scale(1.1) !important;
+        }
+
+        /* Botón de acceso clientes flotante */
+        .floating-login {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1000;
+            background: linear-gradient(135deg, #137DC5, #2199ea);
+            border: none;
+            border-radius: 50px;
+            padding: 15px 30px;
+            color: white;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            box-shadow: 0 6px 25px rgba(19, 125, 197, 0.4);
+            font-size: 16px;
+        }
+
+        .floating-login:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 35px rgba(19, 125, 197, 0.6);
+            background: linear-gradient(135deg, #0f5f96, #137DC5);
+        }
+
+        /* Secciones principales */
+        .section {
+            min-height: 100vh;
+            padding: 40px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        .container {
+            max-width: 1200px;
+            width: 100%;
+            margin: 0 auto;
+        }
+
+        /* Hero Section */
+        .hero {
+            text-align: center;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 90px 20px 40px; /* Reducido padding superior en móviles */
+        }
+
+        .hero-logo {
+            max-width: 380px; /* Aumentado de 280px a 380px */
+            height: auto;
+            filter: drop-shadow(0 0 30px rgba(19, 125, 197, 0.8));
+            margin-bottom: 40px;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        .hero-description {
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 20px;
+            line-height: 1.8;
+            max-width: 700px;
+            margin: 0 auto 50px;
+            animation: fadeInUp 1s ease-out 0.4s both;
+            text-align: center;
+            font-weight: 300;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 25px;
+            justify-content: center;
+            flex-wrap: wrap;
+            animation: fadeInUp 1s ease-out 0.6s both;
+        }
+
+        .btn-primary, .btn-secondary {
+            padding: 18px 35px;
+            border: none;
+            border-radius: 50px;
+            font-size: 18px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            box-shadow: 0 6px 25px rgba(0, 0, 0, 0.2);
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #137DC5, #2199ea);
+            color: white;
+            box-shadow: 0 8px 25px rgba(19, 125, 197, 0.3);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 35px rgba(19, 125, 197, 0.5);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: #2199ea;
+            border: 2px solid #2199ea;
+        }
+
+        .btn-secondary:hover {
+            background: rgba(33, 153, 234, 0.1);
+            transform: translateY(-3px);
+        }
+
+        /* Scroll indicator mejorado */
+        .scroll-indicator {
+            position: absolute;
+            bottom: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: rgba(255, 255, 255, 0.7);
+            animation: bounce 2s infinite;
+            font-size: 24px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .scroll-indicator:hover {
+            color: #2199ea;
+            transform: translateX(-50%) scale(1.2);
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateX(-50%) translateY(0); }
+            40% { transform: translateX(-50%) translateY(-10px); }
+            60% { transform: translateX(-50%) translateY(-5px); }
+        }
+
+        /* Sección de servicios */
+        .services {
+            background: rgba(0, 0, 0, 0.2);
+        }
+
+        .section-title {
+            color: #ffffff;
+            font-size: 36px;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 20px;
+            text-shadow: 0 3px 15px rgba(0, 0, 0, 0.5);
+        }
+
+        .section-subtitle {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 18px;
+            text-align: center;
+            margin-bottom: 60px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .service-card {
+            background: rgba(55, 65, 79, 0.1);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 2px solid rgba(33, 153, 234, 0.2);
+            border-radius: 20px;
+            padding: 30px;
+            text-align: center;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(33, 153, 234, 0.05) 0%, rgba(19, 125, 197, 0.02) 100%);
+            z-index: -1;
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            border-color: rgba(33, 153, 234, 0.4);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.2);
+        }
+
+        .service-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, #137DC5, #2199ea);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            font-size: 32px;
+            color: white;
+            box-shadow: 0 10px 30px rgba(19, 125, 197, 0.3);
+        }
+
+        .service-title {
+            color: #ffffff;
+            font-size: 20px;
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+
+        .service-description {
+            color: rgba(255, 255, 255, 0.8);
+            line-height: 1.6;
+        }
+
+        /* Sección Acerca de */
+        .about {
+            background: rgba(0, 0, 0, 0.1);
+            padding: 80px 0;
+        }
+
+        .about-content {
+            max-width: 1000px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .about-text {
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 18px;
+            line-height: 1.8;
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .about-text h2 {
+            color: #ffffff;
+            font-size: 36px;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 20px;
+            text-shadow: 0 3px 15px rgba(0, 0, 0, 0.5);
+        }
+
+        .about-text h3 {
+            color: #2199ea;
+            font-size: 24px;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .about-text p {
+            max-width: 800px;
+            margin: 0 auto 25px;
+            text-align: center;
+        }
+
+        /* Tecnología Avanzada - Sección separada */
+        .technology-section {
+            background: linear-gradient(135deg, rgba(33, 153, 234, 0.15), rgba(19, 125, 197, 0.08));
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 2px solid rgba(33, 153, 234, 0.3);
+            border-radius: 25px;
+            padding: 50px 40px;
+            text-align: center;
+            margin: 50px auto;
+            max-width: 600px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .technology-section:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 60px rgba(33, 153, 234, 0.2);
+            border-color: rgba(33, 153, 234, 0.5);
+        }
+
+        .technology-section i {
+            font-size: 100px;
+            color: #2199ea;
+            margin-bottom: 25px;
+            display: block;
+            filter: drop-shadow(0 0 20px rgba(33, 153, 234, 0.5));
+        }
+
+        .technology-section h3 {
+            color: #ffffff;
+            font-size: 24px;
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+
+        .technology-section p {
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 16px;
+            line-height: 1.6;
+            margin: 0 auto;
+            max-width: 400px;
+        }
+
+        .about-stats {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 30px;
+            margin-top: 60px;
+            max-width: 1000px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .stat-card {
+            background: rgba(33, 153, 234, 0.1);
+            border: 1px solid rgba(33, 153, 234, 0.3);
+            border-radius: 15px;
+            padding: 25px 20px;
+            text-align: center;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+        }
+
+        .stat-card:hover {
+            background: rgba(33, 153, 234, 0.2);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(33, 153, 234, 0.3);
+        }
+
+        .stat-number {
+            color: #2199ea;
+            font-size: 32px;
+            font-weight: 700;
+            display: block;
+        }
+
+        .stat-label {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 500;
+        }
+
+        /* Sección de contacto */
+        .contact {
+            background: rgba(0, 0, 0, 0.2);
+        }
+
+        .contact-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+        }
+
+        .contact-info {
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 30px;
+            padding: 20px;
+            background: rgba(33, 153, 234, 0.1);
+            border-radius: 15px;
+            border: 1px solid rgba(33, 153, 234, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .contact-item:hover {
+            background: rgba(33, 153, 234, 0.15);
+            transform: translateX(10px);
+        }
+
+        /* Estilos específicos para botones de contacto */
+        .contact-button {
+            text-decoration: none;
+            color: inherit;
+            cursor: pointer;
+        }
+
+        .contact-button:hover {
+            background: rgba(33, 153, 234, 0.2);
+            transform: translateX(15px);
+            box-shadow: 0 8px 25px rgba(33, 153, 234, 0.3);
+        }
+
+        .contact-button:hover .contact-icon {
+            background: linear-gradient(135deg, #2199ea, #137DC5);
+            transform: scale(1.1);
+        }
+
+        .contact-button:hover .contact-details h4 {
+            color: #ffffff;
+        }
+
+        .contact-button:active {
+            transform: translateX(12px) scale(0.98);
+        }
+
+        .contact-icon {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, #137DC5, #2199ea);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 20px;
+            color: white;
+            font-size: 18px;
+        }
+
+        .contact-details h4 {
+            color: #2199ea;
+            margin-bottom: 5px;
+            font-size: 16px;
+        }
+
+        .contact-details p {
+            color: rgba(255, 255, 255, 0.8);
+            margin: 0;
+        }
+
+        /* Formulario de contacto */
+        .contact-form {
+            background: rgba(55, 65, 79, 0.1);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 2px solid rgba(33, 153, 234, 0.2);
+            border-radius: 20px;
+            padding: 40px;
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        .form-group label {
+            color: #2199ea;
+            font-weight: 600;
+            margin-bottom: 8px;
+            display: block;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 15px 20px;
+            background: rgba(15, 95, 150, 0.1);
+            border: 2px solid rgba(33, 153, 234, 0.3);
+            border-radius: 10px;
+            color: #ffffff;
+            font-size: 16px;
+            outline: none;
+            transition: all 0.3s ease;
+            resize: vertical;
+        }
+
+        .form-group input::placeholder,
+        .form-group textarea::placeholder {
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            background: rgba(33, 153, 234, 0.15);
+            border-color: #137DC5;
+            box-shadow: 0 0 15px rgba(19, 125, 197, 0.3);
+        }
+
+        .form-group textarea {
+            min-height: 120px;
+        }
+
+        /* Footer */
+        .footer {
+            background: rgba(15, 23, 42, 0.1);
+            backdrop-filter: blur(25px);
+            -webkit-backdrop-filter: blur(25px);
+            border-top: 1px solid rgba(33, 153, 234, 0.3);
+            border-radius: 20px 20px 0 0;
+            padding: 40px 20px 20px;
+            text-align: center;
+            box-shadow: 0 -8px 32px rgba(13, 15, 19, 0.3);
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .footer-logo {
+            max-width: 150px;
+            margin-bottom: 20px;
+            filter: drop-shadow(0 0 15px rgba(19, 125, 197, 0.5));
+        }
+
+        .footer-text {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 14px;
+            margin-bottom: 20px;
+        }
+
+        .footer-social {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+
+        .social-link {
+            width: 45px;
+            height: 45px;
+            background: rgba(33, 153, 234, 0.2);
+            border: 1px solid rgba(33, 153, 234, 0.3);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #2199ea;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .social-link:hover {
+            background: rgba(33, 153, 234, 0.3);
+            transform: translateY(-3px);
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(33, 153, 234, 0.2);
+            padding-top: 20px;
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 12px;
+        }
+
+        /* Animaciones */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fade-in-up {
+            animation: fadeInUp 0.8s ease-out;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .floating-menu {
+                top: 10px !important;
+                left: 10px !important;
+            }
+
+            .floating-login {
+                top: 10px;
+                right: 10px;
+                padding: 12px 20px;
+                font-size: 14px;
+            }
+
+            .hero {
+                padding: 70px 15px 40px; /* Reducido espacio superior */
+            }
+
+            .hero-logo {
+                max-width: 280px; /* En móvil sigue siendo 280px */
+                margin-bottom: 30px; /* Reducido margen */
+            }
+
+            .hero-description {
+                font-size: 18px;
+                padding: 0 15px;
+                max-width: 90%;
+                margin-bottom: 35px; /* Reducido margen */
+            }
+
+            .hero-buttons {
+                flex-direction: column;
+                align-items: center;
+                gap: 15px;
+            }
+
+            .btn-primary, .btn-secondary {
+                width: 280px;
+                justify-content: center;
+            }
+
+            .about-content,
+            .contact-content {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            .about-text h2 {
+                text-align: center !important;
+                font-size: 24px;
+            }
+
+            .about-text {
+                text-align: center;
+            }
+
+            .about-text h3 {
+                text-align: center;
+                font-size: 20px;
+            }
+
+            .about-stats {
+                grid-template-columns: 1fr;
+                gap: 15px;
+                margin-top: 30px;
+            }
+
+            .technology-section {
+                padding: 25px 20px;
+                margin: 25px auto;
+            }
+
+            .technology-section i {
+                font-size: 70px;
+                margin-bottom: 15px;
+            }
+
+            .technology-section h3 {
+                font-size: 20px;
+                margin-bottom: 15px;
+            }
+
+            .technology-section p {
+                font-size: 14px;
+            }
+
+            .about-stats {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .services-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .contact-form {
+                padding: 25px;
+            }
+
+            .section {
+                padding: 60px 15px 40px;
+            }
+
+            /* SIDEBAR EN MÓVILES - 50% DEL ANCHO */
+            #sidebar {
+                width: 50% !important;
+                border-radius: 0 15px 15px 0 !important;
+            }
+
+            .sidebar-header {
+                padding: 20px 15px 15px;
+            }
+
+            .sidebar-logo {
+                max-width: 100px;
+            }
+
+            .sidebar-menu a {
+                padding: 12px 15px;
+                margin: 0 8px;
+                font-size: 14px;
+            }
+
+            .sidebar-menu a i {
+                margin-right: 10px;
+                width: 18px;
+                font-size: 14px;
+            }
+
+            .close-sidebar {
+                width: 32px;
+                height: 32px;
+                font-size: 16px;
+            }
+        }
+        }
+
+        @media (max-width: 480px) {
+            .hero {
+                padding: 60px 10px 30px; /* Aún más reducido en móviles pequeños */
+            }
+
+            .hero-logo {
+                max-width: 220px;
+                margin-bottom: 25px; /* Menos margen */
+            }
+
+            .hero-description {
+                font-size: 16px;
+                margin-bottom: 30px; /* Menos margen */
+            }
+
+            .service-card {
+                padding: 20px;
+            }
+
+            .section {
+                padding: 40px 10px 30px;
+            }
+
+            /* SIDEBAR MÁS PEQUEÑO EN MÓVILES */
+            #sidebar {
+                width: 55% !important; /* Ligeramente más ancho para móviles pequeños */
+            }
+
+            .sidebar-header {
+                padding: 15px 12px 12px;
+            }
+
+            .sidebar-logo {
+                max-width: 90px;
+            }
+
+            .sidebar-menu a {
+                padding: 10px 12px;
+                margin: 0 6px;
+                font-size: 13px;
+            }
+
+            .sidebar-menu a i {
+                margin-right: 8px;
+                width: 16px;
+                font-size: 13px;
+            }
+        }
+
+        /* Efectos de scroll */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease;
+        }
+
+        .reveal.revealed {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+    <!-- Fondo con imagen -->
+    <div class="background" id="background"></div>
+    <div class="particles" id="particles"></div>
+    
+    <!-- Sidebar -->
+    <div id="sidebar">
+        <div class="sidebar-header">
+            <img src="./images/logo.png" alt="Logo SKYN3T" class="sidebar-logo">
+            <button class="close-sidebar" id="close-sidebar"><i class="fas fa-times"></i></button>
+        </div>
+        <ul class="sidebar-menu">
+            <li>
+                <a href="#inicio" class="active"><i class="fas fa-home"></i> Inicio</a>
+            </li>
+            <li>
+                <a href="#servicios"><i class="fas fa-cogs"></i> Servicios</a>
+            </li>
+            <li>
+                <a href="#nosotros"><i class="fas fa-info-circle"></i> Nosotros</a>
+            </li>
+            <li>
+                <a href="#contacto"><i class="fas fa-envelope"></i> Contacto</a>
+            </li>
+            <li class="separator"></li>
+            <li>
+                <a href="/public/login/index_login.html"><i class="fas fa-sign-in-alt"></i> Acceso Clientes</a>
+            </li>
+            <li>
+                <a href="/rele/dashboard.html"><i class="fas fa-tachometer-alt"></i> Dashboard</a>
+            </li>
+            <li class="separator"></li>
+            <li>
+                <a href="mailto:contacto@skyn3t.cl"><i class="fas fa-envelope"></i> Email</a>
+            </li>
+            <li>
+                <a href="tel:+56229145248"><i class="fas fa-phone"></i> Teléfono</a>
+            </li>
+        </ul>
+    </div>
+    
+    <!-- Overlay para móviles -->
+    <div class="sidebar-overlay" id="sidebar-overlay"></div>
+    
+    <!-- Botón menú hamburguesa -->
+    <button class="floating-menu" id="menu-toggle">
+        <i class="fas fa-bars"></i>
+    </button>
+    
+    <!-- Botón de acceso clientes flotante -->
+    <a href="/public/login/index_login.html" class="floating-login">
+        <i class="fas fa-sign-in-alt"></i>
+        Acceso Clientes
+    </a>
+
+    <!-- Hero Section -->
+    <section id="inicio" class="section hero">
+        <div class="container">
+            <img src="./images/logo.png" alt="SKYN3T Logo" class="hero-logo">
+            <p class="hero-description">
+                Transformamos la seguridad de tu empresa con sistemas de control de acceso de última generación. 
+                Soluciones personalizadas, instalación profesional y soporte técnico continuo. 
+                Tu tranquilidad es nuestra prioridad.
+            </p>
+            <div class="hero-buttons">
+                <a href="#servicios" class="btn-primary">
+                    <i class="fas fa-rocket"></i>
+                    Nuestros Servicios
+                </a>
+                <a href="#contacto" class="btn-secondary">
+                    <i class="fas fa-phone"></i>
+                    Contáctanos
+                </a>
+            </div>
+        </div>
+        <div class="scroll-indicator" title="Ver servicios">
+            <i class="fas fa-chevron-down"></i>
+        </div>
+    </section>
+
+    <!-- Servicios Section -->
+    <section id="servicios" class="section services">
+        <div class="container">
+            <h2 class="section-title reveal">Nuestros Servicios</h2>
+            <p class="section-subtitle reveal">
+                Con años de experiencia y un equipo apasionado, SKYN3T es tu aliado en tecnología
+            </p>
+            
+            <div class="services-grid">
+                <div class="service-card reveal">
+                    <div class="service-icon">
+                        <i class="fas fa-server"></i>
+                    </div>
+                    <h3 class="service-title">Infraestructura IT</h3>
+                    <p class="service-description">
+                        Diseño, implementación y gestión de infraestructuras tecnológicas 
+                        robustas y escalables para tu empresa.
+                    </p>
+                </div>
+
+                <div class="service-card reveal">
+                    <div class="service-icon">
+                        <i class="fas fa-network-wired"></i>
+                    </div>
+                    <h3 class="service-title">Redes y Conectividad</h3>
+                    <p class="service-description">
+                        Soluciones de red avanzadas, configuración de equipos y 
+                        optimización de conectividad para máximo rendimiento.
+                    </p>
+                </div>
+
+                <div class="service-card reveal">
+                    <div class="service-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3 class="service-title">Seguridad Informática</h3>
+                    <p class="service-description">
+                        Protección integral de sistemas, análisis de vulnerabilidades 
+                        y implementación de medidas de seguridad avanzadas.
+                    </p>
+                </div>
+
+                <div class="service-card reveal">
+                    <div class="service-icon">
+                        <i class="fas fa-tools"></i>
+                    </div>
+                    <h3 class="service-title">Soporte Técnico</h3>
+                    <p class="service-description">
+                        Soporte técnico personalizado 24/7, mantenimiento preventivo 
+                        y resolución rápida de incidencias tecnológicas.
+                    </p>
+                </div>
+
+                <div class="service-card reveal">
+                    <div class="service-icon">
+                        <i class="fas fa-cloud"></i>
+                    </div>
+                    <h3 class="service-title">Cloud Solutions</h3>
+                    <p class="service-description">
+                        Migración a la nube, gestión de servicios cloud y 
+                        soluciones híbridas para modernizar tu infraestructura.
+                    </p>
+                </div>
+
+                <div class="service-card reveal">
+                    <div class="service-icon">
+                        <i class="fas fa-cogs"></i>
+                    </div>
+                    <h3 class="service-title">Automatización</h3>
+                    <p class="service-description">
+                        Automatización de procesos, IoT, control remoto de dispositivos 
+                        y soluciones inteligentes para tu negocio.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Nosotros Section -->
+    <section id="nosotros" class="section about">
+        <div class="container">
+            <div class="about-content">
+                <div class="about-text reveal">
+                    <h2 class="section-title">Acerca de SKYN3T</h2>
+                    <h3>Innovación y Confiabilidad</h3>
+                    <p>
+                        Con años de experiencia en el sector tecnológico, SKYN3T se ha consolidado 
+                        como un referente en soluciones informáticas innovadoras. Nuestro equipo 
+                        de profesionales apasionados trabaja día a día para garantizar que tu 
+                        infraestructura tecnológica opere al máximo rendimiento.
+                    </p>
+                    <p>
+                        Entendemos que cada empresa tiene necesidades únicas, por eso desarrollamos 
+                        soluciones personalizadas que se adaptan perfectamente a tus requerimientos 
+                        específicos, asegurando la continuidad operacional y el crecimiento de tu negocio.
+                    </p>
+                </div>
+                
+                <div class="technology-section reveal">
+                    <i class="fas fa-laptop-code"></i>
+                    <h3>Tecnología Avanzada</h3>
+                    <p>
+                        Utilizamos las últimas tecnologías y mejores prácticas del sector 
+                        para garantizar soluciones de vanguardia.
+                    </p>
+                </div>
+                
+                <div class="about-stats">
+                    <div class="stat-card reveal">
+                        <span class="stat-number">5+</span>
+                        <span class="stat-label">Años de Experiencia</span>
+                    </div>
+                    <div class="stat-card reveal">
+                        <span class="stat-number">100+</span>
+                        <span class="stat-label">Proyectos Completados</span>
+                    </div>
+                    <div class="stat-card reveal">
+                        <span class="stat-number">24/7</span>
+                        <span class="stat-label">Soporte Técnico</span>
+                    </div>
+                    <div class="stat-card reveal">
+                        <span class="stat-number">99.9%</span>
+                        <span class="stat-label">Uptime Garantizado</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contacto Section -->
+    <section id="contacto" class="section contact">
+        <div class="container">
+            <h2 class="section-title reveal">Contáctanos</h2>
+            <p class="section-subtitle reveal">
+                Estamos aquí para ayudarte con todas tus necesidades tecnológicas
+            </p>
+            
+            <div class="contact-content">
+                <div class="contact-info">
+                    <a href="mailto:contacto@skyn3t.cl" class="contact-item contact-button">
+                        <div class="contact-icon">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <div class="contact-details">
+                            <h4>Email</h4>
+                            <p>contacto@skyn3t.cl</p>
+                        </div>
+                    </a>
+                    
+                    <a href="tel:+56229145248" class="contact-item contact-button">
+                        <div class="contact-icon">
+                            <i class="fas fa-phone"></i>
+                        </div>
+                        <div class="contact-details">
+                            <h4>Teléfono</h4>
+                            <p>+562 29145248</p>
+                        </div>
+                    </a>
+                    
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
+                        <div class="contact-details">
+                            <h4>Ubicación</h4>
+                            <p>Santiago, Chile</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                        <div class="contact-details">
+                            <h4>Horario</h4>
+                            <p>Lunes - Viernes: 9:00 - 18:00<br>Soporte 24/7 disponible</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="contact-form reveal">
+                    <h3 style="color: #2199ea; margin-bottom: 25px; text-align: center;">Envíanos un Mensaje</h3>
+                    <form id="contactForm">
+                        <div class="form-group">
+                            <label for="name">Nombre Completo</label>
+                            <input type="text" id="name" name="name" placeholder="Tu nombre completo" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" id="email" name="email" placeholder="tu@email.com" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="phone">Teléfono</label>
+                            <input type="tel" id="phone" name="phone" placeholder="+569 12345678">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="subject">Asunto</label>
+                            <input type="text" id="subject" name="subject" placeholder="¿En qué podemos ayudarte?" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="message">Mensaje</label>
+                            <textarea id="message" name="message" placeholder="Cuéntanos más detalles sobre tu proyecto o consulta..." required></textarea>
+                        </div>
+                        
+                        <button type="submit" class="btn-primary" style="width: 100%;">
+                            <i class="fas fa-paper-plane"></i>
+                            Enviar Mensaje
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <img src="./images/logo.png" alt="SKYN3T Logo" class="footer-logo">
+            <p class="footer-text">
+                SKYN3T - IT & Network Solutions<br>
+                Tu aliado en tecnología para el futuro digital
+            </p>
+            
+            <div class="footer-social">
+                <a href="#" class="social-link"><i class="fab fa-linkedin"></i></a>
+                <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                <a href="#" class="social-link"><i class="fab fa-facebook"></i></a>
+                <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; | 2024 SKYN3T.cl | Todos los derechos reservados. |</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // SCRIPT CRÍTICO PARA FUNCIONAMIENTO DEL SIDEBAR
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('🚀 Inicializando página SKYN3T...');
+            
+            const menuBtn = document.getElementById('menu-toggle');
+            const sidebar = document.getElementById('sidebar');
+            const closeBtn = document.getElementById('close-sidebar');
+            const overlay = document.getElementById('sidebar-overlay');
+            
+            if (!menuBtn || !sidebar) {
+                console.error('❌ Elementos críticos del menú no encontrados');
+                return;
+            }
+            
+            function showSidebar() {
+                sidebar.classList.add('active');
+                if (overlay) overlay.classList.add('active');
+            }
+            
+            function hideSidebar() {
+                sidebar.classList.remove('active');
+                if (overlay) overlay.classList.remove('active');
+            }
+            
+            // Eventos del sidebar
+            menuBtn.addEventListener('click', function(e) {
+                e.preventDefault();
+                if (sidebar.classList.contains('active')) {
+                    hideSidebar();
+                } else {
+                    showSidebar();
+                }
+            });
+            
+            if (closeBtn) {
+                closeBtn.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    hideSidebar();
+                });
+            }
+            
+            if (overlay) {
+                overlay.addEventListener('click', function() {
+                    hideSidebar();
+                });
+            }
+            
+            // Escape para cerrar
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape' && sidebar.classList.contains('active')) {
+                    hideSidebar();
+                }
+            });
+
+            // Cerrar sidebar al hacer clic en enlaces (excepto contacto externo)
+            const sidebarLinks = sidebar.querySelectorAll('a[href^="#"]');
+            sidebarLinks.forEach(link => {
+                link.addEventListener('click', function() {
+                    hideSidebar();
+                });
+            });
+            
+            console.log('✅ Sidebar configurado correctamente');
+            
+            // Inicializar resto de funcionalidades
+            createParticles();
+            smoothScroll();
+            handleContactForm();
+            revealOnScroll();
+            
+            // Event listeners adicionales
+            window.addEventListener('scroll', revealOnScroll);
+            
+            // Scroll indicator functionality
+            const scrollIndicator = document.querySelector('.scroll-indicator');
+            if (scrollIndicator) {
+                scrollIndicator.addEventListener('click', function() {
+                    const serviciosSection = document.getElementById('servicios');
+                    if (serviciosSection) {
+                        serviciosSection.scrollIntoView({ 
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+                });
+            }
+            
+            console.log('🎉 SKYN3T website loaded successfully!');
+        });
+
+        // Crear partículas animadas sutiles
+        function createParticles() {
+            const particlesContainer = document.getElementById('particles');
+            const particleCount = 15;
+
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                
+                const size = Math.random() * 3 + 1;
+                particle.style.width = size + 'px';
+                particle.style.height = size + 'px';
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.animationDelay = Math.random() * 20 + 's';
+                particle.style.animationDuration = (Math.random() * 15 + 20) + 's';
+                
+                particlesContainer.appendChild(particle);
+            }
+        }
+
+        // Revelar elementos en scroll
+        function revealOnScroll() {
+            const reveals = document.querySelectorAll('.reveal');
+            
+            reveals.forEach(element => {
+                const elementTop = element.getBoundingClientRect().top;
+                const elementVisible = 150;
+                
+                if (elementTop < window.innerHeight - elementVisible) {
+                    element.classList.add('revealed');
+                }
+            });
+        }
+
+        // Scroll suave para navegación
+        function smoothScroll() {
+            const links = document.querySelectorAll('a[href^="#"]');
+            
+            links.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    const targetId = this.getAttribute('href');
+                    const targetElement = document.querySelector(targetId);
+                    
+                    if (targetElement) {
+                        const offsetTop = targetElement.offsetTop - 0;
+                        window.scrollTo({
+                            top: offsetTop,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+        }
+
+        // Manejar formulario de contacto
+        function handleContactForm() {
+            const form = document.getElementById('contactForm');
+            
+            form.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                const submitBtn = form.querySelector('button[type="submit"]');
+                const originalText = submitBtn.innerHTML;
+                
+                submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Enviando...';
+                submitBtn.disabled = true;
+                
+                // Simular envío
+                setTimeout(() => {
+                    alert('¡Mensaje enviado correctamente! Te contactaremos pronto.');
+                    form.reset();
+                    submitBtn.innerHTML = originalText;
+                    submitBtn.disabled = false;
+                }, 2000);
+            });
+        }
+
+        // Efecto parallax suave para el fondo
+        window.addEventListener('scroll', function() {
+            const scrolled = window.pageYOffset;
+            const background = document.getElementById('background');
+            background.style.transform = `translateY(${scrolled * 0.1}px)`;
+        });
+    </script>
+</body>
+</html>

@@ -490,6 +490,7 @@
         /* Sección Acerca de */
         .about {
             background: rgba(0, 0, 0, 0.1);
+            padding: 80px 0;
         }
 
         .about-content {
@@ -540,6 +541,13 @@
             margin: 50px auto;
             max-width: 600px;
             box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .technology-section:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 60px rgba(33, 153, 234, 0.2);
+            border-color: rgba(33, 153, 234, 0.5);
         }
 
         .technology-section i {
@@ -604,10 +612,7 @@
             font-size: 14px;
             text-transform: uppercase;
             letter-spacing: 1px;
-        }
-
-        .about-image {
-            position: relative;
+            font-weight: 500;
         }
 
         /* Sección de contacto */
@@ -1046,7 +1051,7 @@
             </li>
             <li class="separator"></li>
             <li>
-                <a href="../login/index_login.html"><i class="fas fa-sign-in-alt"></i> Acceso Clientes</a>
+                <a href="./login/index_login.html"><i class="fas fa-sign-in-alt"></i> Acceso Clientes</a>
             </li>
             <li>
                 <a href="/rele/dashboard.html"><i class="fas fa-tachometer-alt"></i> Dashboard</a>
@@ -1070,7 +1075,7 @@
     </button>
     
     <!-- Botón de acceso clientes flotante -->
-    <a href="../login/index_login.html" class="floating-login">
+    <a href="./login/index_login.html" class="floating-login">
         <i class="fas fa-sign-in-alt"></i>
         Acceso Clientes
     </a>

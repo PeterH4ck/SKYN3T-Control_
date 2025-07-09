@@ -575,6 +575,32 @@
             transform: translateX(10px);
         }
 
+        /* Estilos específicos para botones de contacto */
+        .contact-button {
+            text-decoration: none;
+            color: inherit;
+            cursor: pointer;
+        }
+
+        .contact-button:hover {
+            background: rgba(33, 153, 234, 0.2);
+            transform: translateX(15px);
+            box-shadow: 0 8px 25px rgba(33, 153, 234, 0.3);
+        }
+
+        .contact-button:hover .contact-icon {
+            background: linear-gradient(135deg, #2199ea, #137DC5);
+            transform: scale(1.1);
+        }
+
+        .contact-button:hover .contact-details h4 {
+            color: #ffffff;
+        }
+
+        .contact-button:active {
+            transform: translateX(12px) scale(0.98);
+        }
+
         .contact-icon {
             width: 50px;
             height: 50px;
@@ -652,11 +678,14 @@
 
         /* Footer */
         .footer {
-            background: rgba(15, 23, 42, 0.9);
-            backdrop-filter: blur(10px);
+            background: rgba(15, 23, 42, 0.1);
+            backdrop-filter: blur(25px);
+            -webkit-backdrop-filter: blur(25px);
             border-top: 1px solid rgba(33, 153, 234, 0.3);
+            border-radius: 20px 20px 0 0;
             padding: 40px 20px 20px;
             text-align: center;
+            box-shadow: 0 -8px 32px rgba(13, 15, 19, 0.3);
         }
 
         .footer-content {
@@ -922,7 +951,7 @@
                 <a href="mailto:contacto@skyn3t.cl"><i class="fas fa-envelope"></i> Email</a>
             </li>
             <li>
-                <a href="tel:+56930393014"><i class="fas fa-phone"></i> Teléfono</a>
+                <a href="tel:+56229145248"><i class="fas fa-phone"></i> Teléfono</a>
             </li>
         </ul>
     </div>
@@ -1112,7 +1141,7 @@
             
             <div class="contact-content">
                 <div class="contact-info">
-                    <div class="contact-item reveal">
+                    <a href="mailto:contacto@skyn3t.cl" class="contact-item contact-button">
                         <div class="contact-icon">
                             <i class="fas fa-envelope"></i>
                         </div>
@@ -1120,9 +1149,9 @@
                             <h4>Email</h4>
                             <p>contacto@skyn3t.cl</p>
                         </div>
-                    </div>
+                    </a>
                     
-                    <div class="contact-item reveal">
+                    <a href="tel:+56229145248" class="contact-item contact-button">
                         <div class="contact-icon">
                             <i class="fas fa-phone"></i>
                         </div>
@@ -1130,9 +1159,9 @@
                             <h4>Teléfono</h4>
                             <p>+562 29145248</p>
                         </div>
-                    </div>
+                    </a>
                     
-                    <div class="contact-item reveal">
+                    <div class="contact-item">
                         <div class="contact-icon">
                             <i class="fas fa-map-marker-alt"></i>
                         </div>
@@ -1142,7 +1171,7 @@
                         </div>
                     </div>
                     
-                    <div class="contact-item reveal">
+                    <div class="contact-item">
                         <div class="contact-icon">
                             <i class="fas fa-clock"></i>
                         </div>
@@ -1208,7 +1237,7 @@
             </div>
             
             <div class="footer-bottom">
-                <p>&copy; 2025 SKYN3T. Todos los derechos reservados. | Diseñado con ❤️ por SKYN3T</p>
+                <p>&copy; | 2024 SKYN3T.cl | Todos los derechos reservados. |</p>
             </div>
         </div>
     </footer>

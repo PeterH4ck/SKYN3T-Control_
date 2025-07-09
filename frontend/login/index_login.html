@@ -1,10 +1,9 @@
-<!DOCTYPE html>
+<!DOCTYPE html> 
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SKYN3T - Acceso Clientes</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>SKYN3T - Control de Acceso</title>
     <style>
         * {
             margin: 0;
@@ -26,7 +25,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: url('../images/login-background.jpeg') center/cover no-repeat, 
+            background: url('../public/images/login-background.jpeg') center/cover no-repeat, 
                         linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
             background-size: cover;
             background-position: center;
@@ -56,7 +55,7 @@
             backdrop-filter: blur(20px);
             -webkit-backdrop-filter: blur(20px);
             border-radius: 20px;
-            padding: 40px;
+            padding: 30px 40px 30px 40px;
             width: 400px;
             box-shadow: 0 8px 32px rgba(13, 15, 19, 0.3);
             border: 1px solid rgba(33, 153, 234, 0.2);
@@ -83,50 +82,31 @@
         /* Logo */
         .logo-header {
             text-align: center;
-            margin-bottom: 30px;
+            margin-bottom: 5px;
+            user-select: none;
         }
 
         .logo-header img {
-            max-width: 200px;
+            max-width: 250px;
             height: auto;
             filter: drop-shadow(0 0 10px rgba(19, 125, 197, 0.5));
             transition: all 0.3s ease;
+            user-select: none;
         }
 
         .logo-header img:hover {
-            transform: scale(1.05);
-            filter: drop-shadow(0 0 20px rgba(19, 125, 197, 0.8));
+            transform: scale(1.03);
+            filter: drop-shadow(0 0 55px rgba(19, 125, 197, 0.8));
+            user-select: none;
         }
 
-        /* Si no carga el logo */
-        .logo-fallback {
-            color: #2199ea;
-            font-size: 32px;
-            font-weight: 700;
-            text-align: center;
-            margin-bottom: 30px;
-            text-shadow: 0 0 20px rgba(19, 125, 197, 0.5);
-        }
-
-        /* Formulario */
-        .form-group {
+        /* Grupo de input */
+        .input-group {
             position: relative;
             margin-bottom: 25px;
         }
 
-        .form-group label {
-            position: absolute;
-            top: -12px;
-            left: 15px;
-            background: #222831;
-            padding: 0 8px;
-            color: #2199ea;
-            font-size: 14px;
-            border-radius: 4px;
-            font-weight: 600;
-        }
-
-        .form-group input {
+        .input-group input {
             width: 100%;
             padding: 15px 20px;
             background: rgba(15, 95, 150, 0.1);
@@ -138,48 +118,95 @@
             transition: all 0.3s ease;
         }
 
-        .form-group input::placeholder {
+        .input-group input[type="password"] {
+            padding-right: 50px;
+        }
+
+        .input-group input::placeholder {
             color: rgba(255, 255, 255, 0.6);
         }
 
-        .form-group input:focus {
+        .input-group input:focus {
             background: rgba(33, 153, 234, 0.15);
             border-color: #137DC5;
             box-shadow: 0 0 15px rgba(19, 125, 197, 0.3);
         }
 
-        .form-group input:focus + label {
-            color: #137DC5;
-            text-shadow: 0 0 5px rgba(19, 125, 197, 0.5);
+        .input-group label {
+            position: absolute;
+            top: -12px;
+            left: 15px;
+            background: #222831;
+            padding: 0 8px;
+            color: #2199ea;
+            font-size: 14px;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+            user-select: none;
         }
 
-        /* Checkbox y enlaces */
-        .form-options {
+        /* Botón toggle password */
+        .toggle-password {
+            position: absolute;
+            right: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: none;
+            border: none;
+            cursor: pointer;
+            color: #2199ea;
+            padding: 5px;
+            transition: all 0.3s ease;
+            opacity: 0.7;
+            user-select: none;
+        }
+
+        .toggle-password:hover {
+            opacity: 1;
+            color: #137DC5;
+        }
+
+        .toggle-password:active {
+            transform: translateY(-50%) scale(0.95);
+        }
+
+        .toggle-password svg {
+            display: block;
+            width: 22px;
+            height: 22px;
+        }
+
+        /* Checkbox recuérdame */
+        .remember-forgot {
             display: flex;
             justify-content: space-between;
             align-items: center;
             margin-bottom: 25px;
+            color: #ffffff;
             font-size: 14px;
+            user-select: none;
         }
 
-        .remember-me {
+        .remember-forgot label {
             display: flex;
             align-items: center;
-            color: rgba(255, 255, 255, 0.8);
+            cursor: pointer;
+            user-select: none;
         }
 
-        .remember-me input {
+        .remember-forgot input[type="checkbox"] {
             margin-right: 8px;
+            cursor: pointer;
             accent-color: #137DC5;
         }
 
-        .forgot-password {
+        .remember-forgot a {
             color: #2199ea;
             text-decoration: none;
             transition: color 0.3s ease;
         }
 
-        .forgot-password:hover {
+        .remember-forgot a:hover {
             color: #0f5f96;
             text-decoration: underline;
         }
@@ -200,6 +227,7 @@
             letter-spacing: 1px;
             position: relative;
             overflow: hidden;
+            user-select: none;
         }
 
         .login-btn:before {
@@ -211,6 +239,7 @@
             height: 100%;
             background: rgba(255, 255, 255, 0.3);
             transition: left 0.5s ease;
+            user-select: none;
         }
 
         .login-btn:hover:before {
@@ -220,6 +249,10 @@
         .login-btn:hover {
             transform: scale(1.02);
             box-shadow: 0 5px 20px rgba(19, 125, 197, 0.4);
+        }
+
+        .login-btn:active {
+            transform: scale(0.98);
         }
 
         .login-btn:disabled {
@@ -234,8 +267,9 @@
         .extra-links {
             text-align: center;
             margin-top: 25px;
-            color: rgba(255, 255, 255, 0.8);
+            color: #ffffff;
             font-size: 14px;
+            user-select: none;
         }
 
         .extra-links a {
@@ -243,39 +277,11 @@
             text-decoration: none;
             font-weight: 600;
             transition: color 0.3s ease;
+            user-select: none;
         }
 
         .extra-links a:hover {
             color: #0f5f96;
-            text-decoration: underline;
-        }
-
-        /* Botón volver */
-        .back-button {
-            position: fixed;
-            top: 20px;
-            left: 20px;
-            background: rgba(55, 65, 79, 0.8);
-            backdrop-filter: blur(16px);
-            border: 2px solid rgba(33, 153, 234, 0.5);
-            color: #2199ea;
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            cursor: pointer;
-            font-size: 20px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: all 0.3s ease;
-            text-decoration: none;
-            z-index: 1000;
-        }
-
-        .back-button:hover {
-            background: rgba(33, 153, 234, 0.4);
-            transform: scale(1.1);
-            color: #ffffff;
         }
 
         /* Footer */
@@ -284,6 +290,8 @@
             padding-top: 20px;
             border-top: 1px solid rgba(33, 153, 234, 0.2);
             text-align: center;
+            position: relative;
+            user-select: none;
         }
 
         .footer-text {
@@ -293,9 +301,49 @@
             letter-spacing: 2px;
             font-weight: 500;
             opacity: 0.8;
+            transition: all 0.3s ease;
+            position: relative;
+            display: inline-block;
+            cursor: pointer;
+            user-select: none;
         }
 
-        /* Mensaje de estado */
+        .footer-text:before {
+            content: '◆';
+            position: absolute;
+            left: -20px;
+            color: #137DC5;
+            animation: pulse 2s infinite;
+            user-select: none;
+        }
+
+        .footer-text:after {
+            content: '◆';
+            position: absolute;
+            right: -20px;
+            color: #137DC5;
+            animation: pulse 2s infinite;
+            user-select: none;
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                opacity: 0.3;
+                transform: scale(0.8);
+            }
+            50% {
+                opacity: 0.8;
+                transform: scale(1.2);
+            }
+        }
+
+        .footer:hover .footer-text {
+            opacity: 1;
+            color: #137DC5;
+            text-shadow: 0 0 10px rgba(19, 125, 197, 0.5);
+        }
+
+        /* Mensaje de error/éxito */
         .message {
             padding: 12px;
             border-radius: 8px;
@@ -324,7 +372,7 @@
             border: 1px solid rgba(19, 125, 197, 0.3);
         }
 
-        /* Partículas */
+        /* Efecto de partículas */
         .particles {
             position: fixed;
             top: 0;
@@ -337,7 +385,7 @@
 
         .particle {
             position: absolute;
-            background: rgba(19, 125, 197, 0.4);
+            background: rgba(19, 125, 197, 0.6);
             border-radius: 50%;
             pointer-events: none;
             animation: float 15s infinite linear;
@@ -360,6 +408,26 @@
             }
         }
 
+        /* Animación glitch */
+        @keyframes glitch {
+            0%, 100% { transform: translate(0); }
+            20% { transform: translate(-2px, 2px); }
+            40% { transform: translate(-2px, -2px); }
+            60% { transform: translate(2px, 2px); }
+            80% { transform: translate(2px, -2px); }
+        }
+
+        /* Animación shake para formulario */
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            10%, 30%, 50%, 70%, 90% { transform: translateX(-5px); }
+            20%, 40%, 60%, 80% { transform: translateX(5px); }
+        }
+
+        .login-box.shake {
+            animation: shake 0.5s ease-in-out;
+        }
+
         /* Loading spinner */
         .loading-spinner {
             display: inline-block;
@@ -380,33 +448,34 @@
         @media (max-width: 480px) {
             .login-box {
                 width: 90%;
-                padding: 30px 25px;
+                padding: 25px 20px 20px 20px;
             }
 
             .logo-header img {
-                max-width: 180px;
+                max-width: 260px;
             }
 
-            .back-button {
-                width: 45px;
-                height: 45px;
-                font-size: 18px;
+            .footer-text {
+                font-size: 10px;
+            }
+
+            .footer-text:before,
+            .footer-text:after {
+                display: none;
             }
         }
 
-        /* Debug info */
-        .debug-info {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            background: rgba(0, 0, 0, 0.8);
-            color: #00ff00;
-            padding: 10px;
-            border-radius: 8px;
-            font-size: 12px;
-            font-family: monospace;
-            z-index: 2000;
-            border: 1px solid #00ff00;
+        /* Mejoras de accesibilidad */
+        .input-group input:focus + label {
+            color: #137DC5;
+            text-shadow: 0 0 5px rgba(19, 125, 197, 0.5);
+        }
+
+        /* Rate limiting message */
+        .rate-limit-warning {
+            background: rgba(255, 193, 7, 0.2);
+            color: #ffc107;
+            border: 1px solid rgba(255, 193, 7, 0.3);
         }
     </style>
 </head>
@@ -414,92 +483,169 @@
     <div class="background" id="background"></div>
     <div class="particles" id="particles"></div>
     
-    <!-- Debug info -->
-    <div class="debug-info">
-        ✅ LOGIN PAGE LOADED<br>
-        🔗 URL: <span id="current-url"></span><br>
-        ⏰ <span id="current-time"></span>
-    </div>
-    
-    <!-- Botón volver -->
-    <a href="../index.html" class="back-button" title="Volver al inicio">
-        <i class="fas fa-arrow-left"></i>
-    </a>
-    
     <div class="container">
         <div class="login-box">
             <div class="logo-header">
-                <img src="../images/logo.png" alt="SKYN3T Logo" 
-                     onerror="this.style.display='none'; document.querySelector('.logo-fallback').style.display='block';">
-                <div class="logo-fallback" style="display: none;">SKYN3T</div>
+                <img src="../public/images/logo.png" alt="SKYN3T Logo">
             </div>
             
             <div class="message" id="message"></div>
             
             <form id="loginForm">
-                <div class="form-group">
-                    <input type="text" id="username" name="username" placeholder="Ingresa tu usuario" required>
+                <div class="input-group">
                     <label for="username">Usuario</label>
+                    <input type="text" id="username" name="username" placeholder="Ingresa tu usuario" required autocomplete="username" maxlength="50">
                 </div>
                 
-                <div class="form-group">
-                    <input type="password" id="password" name="password" placeholder="Ingresa tu contraseña" required>
+                <div class="input-group">
                     <label for="password">Contraseña</label>
+                    <input type="password" id="password" name="password" placeholder="Ingresa tu contraseña" required autocomplete="current-password" maxlength="255">
+                    <button type="button" class="toggle-password" id="togglePassword" tabindex="-1">
+                        <svg class="eye-icon" id="eyeIcon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                            <circle cx="12" cy="12" r="3"></circle>
+                        </svg>
+                        <svg class="eye-off-icon" id="eyeOffIcon" style="display: none;" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"></path>
+                            <line x1="1" y1="1" x2="23" y2="23"></line>
+                        </svg>
+                    </button>
                 </div>
                 
-                <div class="form-options">
-                    <label class="remember-me">
-                        <input type="checkbox" id="remember" name="remember">
-                        Recuérdame
+                <div class="remember-forgot">
+                    <label>
+                        <input type="checkbox" id="remember" name="remember"> Recuérdame
                     </label>
-                    <a href="#" class="forgot-password">¿Olvidaste tu contraseña?</a>
+                    <a href="forgot_password.html" id="forgotPasswordLink">¿Olvidaste tu contraseña?</a>
                 </div>
                 
-                <button type="submit" class="login-btn" id="loginBtn">
-                    Ingresar
-                </button>
+                <button type="submit" class="login-btn" id="loginBtn">Ingresar</button>
             </form>
             
             <div class="extra-links">
-                ¿No tienes cuenta? <a href="#" onclick="showMessage('Función de registro en desarrollo', 'error')">Regístrate aquí</a>
+                ¿No tienes cuenta? <a href="register.html" id="registerLink">Regístrate aquí</a>
             </div>
             
             <div class="footer">
-                <div class="footer-text">SKYN3T - ACCESS CONTROL</div>
+                <span class="footer-text">SKYN3T - IT & NETWORK SOLUTIONS</span>
             </div>
         </div>
     </div>
 
     <script>
-        console.log('🚀 LOGIN PAGE: Script iniciado correctamente');
-        
         // Variables globales
         let loginAttempts = 0;
         const maxAttempts = 5;
         let isSubmitting = false;
 
-        // Actualizar debug info
-        document.getElementById('current-url').textContent = window.location.href;
-        document.getElementById('current-time').textContent = new Date().toLocaleTimeString();
-
-        // Crear partículas
+        // Crear partículas animadas
         function createParticles() {
             const particlesContainer = document.getElementById('particles');
-            const particleCount = 15;
+            const particleCount = 20;
 
             for (let i = 0; i < particleCount; i++) {
                 const particle = document.createElement('div');
                 particle.className = 'particle';
                 
-                const size = Math.random() * 4 + 2;
+                // Tamaño aleatorio
+                const size = Math.random() * 5 + 2;
                 particle.style.width = size + 'px';
                 particle.style.height = size + 'px';
+                
+                // Posición horizontal aleatoria
                 particle.style.left = Math.random() * 100 + '%';
+                
+                // Retraso aleatorio
                 particle.style.animationDelay = Math.random() * 15 + 's';
+                
+                // Duración aleatoria
                 particle.style.animationDuration = (Math.random() * 10 + 15) + 's';
                 
                 particlesContainer.appendChild(particle);
             }
+        }
+
+        // Inicializar página
+        document.addEventListener('DOMContentLoaded', function() {
+            createParticles();
+            checkExistingSession();
+            initializeEventListeners();
+            
+            // Enfocar campo de usuario
+            document.getElementById('username').focus();
+        });
+
+        // Verificar sesión existente
+        function checkExistingSession() {
+            fetch('check_session.php', {
+                method: 'GET',
+                credentials: 'same-origin',
+                headers: {
+                    'X-Requested-With': 'XMLHttpRequest'
+                }
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.authenticated) {
+                    // Si ya está autenticado, redirigir según el rol
+                    const redirectUrl = data.redirect || '/rele/index_rele.html';
+                    window.location.href = redirectUrl;
+                }
+            })
+            .catch(error => {
+                console.log('No hay sesión activa');
+            });
+        }
+
+        // Inicializar event listeners
+        function initializeEventListeners() {
+            const loginForm = document.getElementById('loginForm');
+            const togglePassword = document.getElementById('togglePassword');
+            const passwordInput = document.getElementById('password');
+            const usernameInput = document.getElementById('username');
+            const background = document.getElementById('background');
+            const loginBox = document.querySelector('.login-box');
+            const footerText = document.querySelector('.footer-text');
+
+            // Manejar envío del formulario
+            loginForm.addEventListener('submit', handleFormSubmit);
+
+            // Toggle mostrar/ocultar contraseña
+            togglePassword.addEventListener('click', togglePasswordVisibility);
+
+            // Efectos de enfoque en inputs
+            setupInputEffects();
+
+            // Manejar teclas
+            usernameInput.addEventListener('keypress', function(e) {
+                if (e.key === 'Enter' && this.value.trim()) {
+                    e.preventDefault();
+                    passwordInput.focus();
+                }
+            });
+
+            passwordInput.addEventListener('keypress', function(e) {
+                if (e.key === 'Enter' && this.value) {
+                    e.preventDefault();
+                    if (!isSubmitting) {
+                        loginForm.dispatchEvent(new Event('submit'));
+                    }
+                }
+            });
+
+            // Limpiar mensajes cuando el usuario escriba
+            [usernameInput, passwordInput].forEach(input => {
+                input.addEventListener('input', clearErrorMessages);
+            });
+
+            // Efectos visuales
+            setupVisualEffects();
+
+            // Prevenir pegado en contraseña (opcional)
+            passwordInput.addEventListener('paste', function(e) {
+                e.preventDefault();
+                showMessage('Por seguridad, no se permite pegar en el campo de contraseña', 'error');
+            });
         }
 
         // Manejar envío del formulario
@@ -510,65 +656,171 @@
 
             const username = document.getElementById('username').value.trim();
             const password = document.getElementById('password').value;
+            const remember = document.getElementById('remember').checked;
             
+            // Validaciones
             if (!username || !password) {
                 showMessage('Por favor completa todos los campos', 'error');
+                shakeLoginBox();
                 return;
             }
 
+            if (username.length > 50 || password.length > 255) {
+                showMessage('Datos inválidos', 'error');
+                return;
+            }
+
+            // Verificar límite de intentos
             if (loginAttempts >= maxAttempts) {
-                showMessage('Demasiados intentos fallidos. Intenta más tarde.', 'error');
+                showMessage('Demasiados intentos fallidos. Intenta más tarde.', 'rate-limit-warning');
                 return;
             }
 
-            // Simular proceso de login
+            // Iniciar proceso de login
+            startLoginProcess(username, password, remember);
+        }
+
+        // Iniciar proceso de login
+        function startLoginProcess(username, password, remember) {
             isSubmitting = true;
             const submitButton = document.getElementById('loginBtn');
+            const background = document.getElementById('background');
             
+            // Efectos visuales
+            background.classList.add('blur-more');
             submitButton.disabled = true;
             submitButton.innerHTML = '<span class="loading-spinner"></span>VERIFICANDO...';
             
             showMessage('Verificando credenciales...', 'success');
             
-            // Simular llamada al servidor
-            setTimeout(() => {
-                // Aquí iría la lógica real de autenticación
-                if (username === 'admin' && password === 'admin') {
-                    showMessage('Autenticación exitosa. Redirigiendo...', 'success');
-                    setTimeout(() => {
-                        // Aquí redirigiría al dashboard
-                        alert('Login exitoso! (En desarrollo - falta backend)');
-                        resetLoginButton();
-                    }, 1500);
-                } else {
-                    loginAttempts++;
-                    showMessage('Credenciales incorrectas', 'error');
-                    resetLoginButton();
-                    document.getElementById('password').value = '';
-                }
-            }, 2000);
-        }
-
-        // Mostrar mensaje
-        function showMessage(text, type) {
-            const messageDiv = document.getElementById('message');
-            messageDiv.textContent = text;
-            messageDiv.className = `message ${type} show`;
+            // Crear FormData
+            const formData = new FormData();
+            formData.append('username', username);
+            formData.append('password', password);
+            formData.append('remember', remember ? '1' : '0');
             
-            setTimeout(() => {
-                messageDiv.classList.remove('show');
-            }, 5000);
+            // Agregar token CSRF si existe
+            const csrfToken = getCSRFToken();
+            if (csrfToken) {
+                formData.append('csrf_token', csrfToken);
+            }
+            
+            // Realizar petición
+            fetch('login.php', {
+                method: 'POST',
+                body: formData,
+                credentials: 'same-origin',
+                headers: {
+                    'X-Requested-With': 'XMLHttpRequest'
+                }
+            })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+                }
+                return response.json();
+            })
+            .then(data => {
+                handleLoginResponse(data);
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                handleLoginError(error);
+            })
+            .finally(() => {
+                isSubmitting = false;
+                resetLoginButton();
+                setTimeout(() => {
+                    document.getElementById('background').classList.remove('blur-more');
+                }, 1000);
+            });
         }
 
-        // Resetear botón
+        // Manejar respuesta del login
+        function handleLoginResponse(data) {
+            if (data.success) {
+                loginAttempts = 0; // Resetear intentos
+                showMessage(data.message || 'Autenticación exitosa. Redirigiendo...', 'success');
+                
+                // Efecto visual de éxito
+                const loginBox = document.querySelector('.login-box');
+                loginBox.style.transform = 'scale(0.95)';
+                setTimeout(() => {
+                    loginBox.style.transform = 'scale(1)';
+                }, 200);
+                
+                // Redirigir
+                setTimeout(() => {
+                    window.location.href = data.redirect || '/rele/index_rele.html';
+                }, 1500);
+            } else {
+                // Error de autenticación
+                loginAttempts++;
+                showMessage(data.message || 'Credenciales incorrectas', 'error');
+                shakeLoginBox();
+                
+                // Limpiar contraseña
+                document.getElementById('password').value = '';
+                document.getElementById('password').focus();
+                
+                // Mostrar advertencia si quedan pocos intentos
+                const remaining = maxAttempts - loginAttempts;
+                if (remaining <= 2 && remaining > 0) {
+                    setTimeout(() => {
+                        showMessage(`Quedan ${remaining} intentos`, 'rate-limit-warning');
+                    }, 2000);
+                }
+            }
+        }
+
+        // Manejar error de login
+        function handleLoginError(error) {
+            loginAttempts++;
+            
+            if (error.message.includes('429')) {
+                showMessage('Demasiados intentos. Intenta más tarde.', 'rate-limit-warning');
+            } else if (error.message.includes('403')) {
+                showMessage('Acceso denegado. Verifica tus credenciales.', 'error');
+            } else {
+                showMessage('Error de conexión con el servidor', 'error');
+            }
+            
+            document.getElementById('password').value = '';
+            document.getElementById('password').focus();
+        }
+
+        // Resetear botón de login
         function resetLoginButton() {
-            isSubmitting = false;
             const submitButton = document.getElementById('loginBtn');
             submitButton.disabled = false;
             submitButton.textContent = 'INGRESAR';
         }
 
-        // Efectos de input
+        // Toggle contraseña visible
+        function togglePasswordVisibility() {
+            const passwordInput = document.getElementById('password');
+            const eyeIcon = document.getElementById('eyeIcon');
+            const eyeOffIcon = document.getElementById('eyeOffIcon');
+            const toggleBtn = document.getElementById('togglePassword');
+            
+            const isPassword = passwordInput.type === 'password';
+            
+            passwordInput.type = isPassword ? 'text' : 'password';
+            
+            if (isPassword) {
+                eyeIcon.style.display = 'none';
+                eyeOffIcon.style.display = 'block';
+                toggleBtn.style.color = '#137DC5';
+            } else {
+                eyeIcon.style.display = 'block';
+                eyeOffIcon.style.display = 'none';
+                toggleBtn.style.color = '#2199ea';
+            }
+            
+            passwordInput.focus();
+        }
+
+        // Configurar efectos de inputs
         function setupInputEffects() {
             const inputs = document.querySelectorAll('input[type="text"], input[type="password"]');
             const background = document.getElementById('background');
@@ -579,49 +831,101 @@
                 });
                 
                 input.addEventListener('blur', function() {
-                    if (!document.querySelector('input:focus')) {
-                        background.classList.remove('blur-more');
-                    }
+                    setTimeout(() => {
+                        if (!document.activeElement.matches('input') && 
+                            !document.activeElement.matches('.toggle-password')) {
+                            background.classList.remove('blur-more');
+                        }
+                    }, 100);
                 });
             });
         }
 
-        // Navegación con teclado
-        document.getElementById('username').addEventListener('keypress', function(e) {
-            if (e.key === 'Enter' && this.value.trim()) {
-                e.preventDefault();
-                document.getElementById('password').focus();
-            }
-        });
+        // Configurar efectos visuales
+        function setupVisualEffects() {
+            const loginBox = document.querySelector('.login-box');
+            const footerText = document.querySelector('.footer-text');
 
-        document.getElementById('password').addEventListener('keypress', function(e) {
-            if (e.key === 'Enter' && this.value) {
-                e.preventDefault();
-                if (!isSubmitting) {
-                    document.getElementById('loginForm').dispatchEvent(new Event('submit'));
+            // Efecto hover en login box
+            loginBox.addEventListener('mouseenter', function() {
+                for (let i = 0; i < 5; i++) {
+                    const particle = document.createElement('div');
+                    particle.className = 'particle';
+                    particle.style.width = '3px';
+                    particle.style.height = '3px';
+                    particle.style.left = Math.random() * 100 + '%';
+                    particle.style.animationDuration = '5s';
+                    document.getElementById('particles').appendChild(particle);
+                    
+                    setTimeout(() => {
+                        particle.remove();
+                    }, 5000);
                 }
+            });
+
+            // Efecto glitch en footer
+            footerText.addEventListener('click', function() {
+                this.style.animation = 'glitch 0.3s';
+                setTimeout(() => {
+                    this.style.animation = '';
+                }, 300);
+            });
+        }
+
+        // Funciones auxiliares
+        function showMessage(text, type) {
+            const messageDiv = document.getElementById('message');
+            messageDiv.textContent = text;
+            messageDiv.className = `message ${type} show`;
+            
+            setTimeout(() => {
+                messageDiv.classList.remove('show');
+            }, 5000);
+        }
+
+        function clearErrorMessages() {
+            const messageDiv = document.getElementById('message');
+            if (messageDiv.classList.contains('error') && messageDiv.classList.contains('show')) {
+                messageDiv.classList.remove('show');
             }
-        });
+        }
 
-        // Inicializar página
-        document.addEventListener('DOMContentLoaded', function() {
-            console.log('🔧 LOGIN: Página cargada - configurando eventos...');
-            
-            createParticles();
-            setupInputEffects();
-            
-            // Event listeners
-            document.getElementById('loginForm').addEventListener('submit', handleFormSubmit);
-            document.getElementById('username').focus();
-            
-            console.log('✅ LOGIN: Configuración completada!');
-        });
+        function shakeLoginBox() {
+            const loginBox = document.querySelector('.login-box');
+            loginBox.classList.add('shake');
+            setTimeout(() => {
+                loginBox.classList.remove('shake');
+            }, 500);
+        }
 
-        // Log para debugging
-        console.log('📍 LOGIN DEBUG INFO:');
-        console.log('- URL actual:', window.location.href);
-        console.log('- Timestamp:', new Date().toISOString());
-        console.log('- User Agent:', navigator.userAgent);
+        function getCSRFToken() {
+            const metaToken = document.querySelector('meta[name="csrf-token"]');
+            return metaToken ? metaToken.getAttribute('content') : null;
+        }
+
+        // Función de logout para usar en otras páginas
+        function logout() {
+            fetch('logout.php', {
+                method: 'POST',
+                credentials: 'same-origin',
+                headers: {
+                    'X-Requested-With': 'XMLHttpRequest'
+                }
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    window.location.href = data.redirect || '/login/index_login.html';
+                }
+            })
+            .catch(error => {
+                console.error('Error al cerrar sesión:', error);
+                window.location.href = '/login/index_login.html';
+            });
+        }
+
+        // Exportar funciones globales
+        window.logout = logout;
     </script>
 </body>
 </html>

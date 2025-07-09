@@ -14,12 +14,8 @@
 
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, 
-#1a1a2e 0%, 
-#16213e 50%, 
-#0f3460 100%);
-            color: 
-#ffffff;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+            color: #ffffff;
             min-height: 100vh;
             padding: 20px;
         }
@@ -44,8 +40,7 @@
         }
 
         .header h1 {
-            color: 
-#2199ea;
+            color: #2199ea;
             font-size: 32px;
             margin-bottom: 10px;
             text-shadow: 0 0 20px rgba(33, 153, 234, 0.5);
@@ -65,9 +60,7 @@
         }
 
         .btn {
-            background: linear-gradient(135deg, 
-#137DC5, 
-#2199ea);
+            background: linear-gradient(135deg, #137DC5, #2199ea);
             border: none;
             border-radius: 10px;
             color: white;
@@ -103,8 +96,7 @@
             height: 16px;
             border: 2px solid rgba(255, 255, 255, 0.3);
             border-radius: 50%;
-            border-top-color: 
-#ffffff;
+            border-top-color: #ffffff;
             animation: spin 1s linear infinite;
         }
 
@@ -133,8 +125,7 @@
         }
 
         .section-title {
-            color: 
-#2199ea;
+            color: #2199ea;
             font-size: 18px;
             font-weight: 600;
             margin-bottom: 15px;
@@ -171,29 +162,25 @@
 
         .status-success {
             background: rgba(40, 167, 69, 0.2);
-            color: 
-#28a745;
+            color: #28a745;
             border: 1px solid rgba(40, 167, 69, 0.5);
         }
 
         .status-error {
             background: rgba(220, 53, 69, 0.2);
-            color: 
-#dc3545;
+            color: #dc3545;
             border: 1px solid rgba(220, 53, 69, 0.5);
         }
 
         .status-warning {
             background: rgba(255, 193, 7, 0.2);
-            color: 
-#ffc107;
+            color: #ffc107;
             border: 1px solid rgba(255, 193, 7, 0.5);
         }
 
         .status-info {
             background: rgba(23, 162, 184, 0.2);
-            color: 
-#17a2b8;
+            color: #17a2b8;
             border: 1px solid rgba(23, 162, 184, 0.5);
         }
 
@@ -221,8 +208,7 @@
         }
 
         .stat-number {
-            color: 
-#2199ea;
+            color: #2199ea;
             font-size: 24px;
             font-weight: 700;
             display: block;
@@ -252,14 +238,10 @@
             padding: 2px 0;
         }
 
-        .log-error { color: 
-#ff6b6b; }
-        .log-warning { color: 
-#ffc107; }
-        .log-success { color: 
-#28a745; }
-        .log-info { color: 
-#17a2b8; }
+        .log-error { color: #ff6b6b; }
+        .log-warning { color: #ffc107; }
+        .log-success { color: #28a745; }
+        .log-info { color: #17a2b8; }
 
         .recommendations {
             background: rgba(40, 167, 69, 0.1);
@@ -274,8 +256,7 @@
             border-radius: 8px;
             padding: 12px;
             margin-bottom: 10px;
-            border-left: 4px solid 
-#28a745;
+            border-left: 4px solid #28a745;
         }
 
         .current-info {
@@ -286,27 +267,6 @@
             margin-bottom: 20px;
             font-family: 'Courier New', monospace;
             font-size: 12px;
-        }
-
-        .expand-btn {
-            background: none;
-            border: none;
-            color: 
-#2199ea;
-            cursor: pointer;
-            font-size: 12px;
-            margin-top: 10px;
-        }
-
-        .hidden-details {
-            display: none;
-            margin-top: 10px;
-            padding-top: 10px;
-            border-top: 1px solid rgba(33, 153, 234, 0.2);
-        }
-
-        .hidden-details.show {
-            display: block;
         }
 
         @media (max-width: 768px) {
@@ -381,7 +341,7 @@
 
     <script>
         // Variables globales para el diagnóstico
-        let diagnosticResults = {
+        var diagnosticResults = {
             currentPage: {},
             routes: [],
             images: [],
@@ -392,17 +352,16 @@
         };
 
         // Configuración basada en la estructura del proyecto
-        const PROJECT_STRUCTURE = {
+        var PROJECT_STRUCTURE = {
             expectedFiles: [
-                'frontend/public/index.html',
+                'index.html',
                 'frontend/login/index_login.html',
                 'frontend/public/images/logo.png',
                 'frontend/public/images/login-background.jpeg'
             ],
             routes: [
-                { name: 'Homepage', path: '/', file: 'frontend/public/index.html' },
-                { name: 'Login', path: '/login/', file: 'frontend/login/index_login.html' },
-                { name: 'Login (index)', path: '/login/index_login.html', file: 'frontend/login/index_login.html' }
+                { name: 'Homepage', path: '/', file: 'index.html' },
+                { name: 'Login', path: '/frontend/login/', file: 'frontend/login/index_login.html' }
             ],
             images: [
                 { name: 'Logo', path: 'frontend/public/images/logo.png', usedIn: ['homepage', 'login'] },
@@ -412,14 +371,14 @@
 
         // Inicializar información actual
         function initCurrentInfo() {
-            document.getElementById('currentUrl').textContent = URL: ${window.location.href};
-            document.getElementById('currentTime').textContent = Timestamp: ${new Date().toISOString()};
-            document.getElementById('userAgent').textContent = User Agent: ${navigator.userAgent.substring(0, 80)}...;
+            document.getElementById('currentUrl').textContent = 'URL: ' + window.location.href;
+            document.getElementById('currentTime').textContent = 'Timestamp: ' + new Date().toISOString();
+            document.getElementById('userAgent').textContent = 'User Agent: ' + navigator.userAgent.substring(0, 80) + '...';
         }
 
         // Función principal de diagnóstico
-        async function runFullDiagnostic() {
-            const btn = document.getElementById('fullDiagnosticBtn');
+        function runFullDiagnostic() {
+            var btn = document.getElementById('fullDiagnosticBtn');
             btn.disabled = true;
             btn.innerHTML = '<div class="loading"></div> Ejecutando diagnóstico...';
 
@@ -438,76 +397,84 @@
                 };
 
                 // Ejecutar todas las pruebas
-                await checkCurrentPage();
-                await testAllRoutes();
-                await validateImages();
-                await checkRedirects();
-                await analyzePageContent();
+                setTimeout(function() {
+                    checkCurrentPage();
+                    setTimeout(function() {
+                        testAllRoutes();
+                        setTimeout(function() {
+                            validateImages();
+                            setTimeout(function() {
+                                checkRedirects();
+                                setTimeout(function() {
+                                    analyzePageContent();
+                                    generateRecommendations();
+                                    displaySummary();
+                                    
+                                    btn.disabled = false;
+                                    btn.innerHTML = '<i class="fas fa-play"></i> Diagnóstico Completo';
+                                    log('✅ Diagnóstico completo finalizado', 'success');
+                                }, 500);
+                            }, 500);
+                        }, 500);
+                    }, 500);
+                }, 500);
 
-                // Generar recomendaciones
-                generateRecommendations();
-
-                // Mostrar resumen
-                displaySummary();
-
-                log('✅ Diagnóstico completo finalizado', 'success');
             } catch (error) {
-                log(❌ Error en diagnóstico: ${error.message}, 'error');
-                diagnosticResults.errors.push(Diagnóstico: ${error.message});
-            } finally {
+                log('❌ Error en diagnóstico: ' + error.message, 'error');
+                diagnosticResults.errors.push('Diagnóstico: ' + error.message);
                 btn.disabled = false;
                 btn.innerHTML = '<i class="fas fa-play"></i> Diagnóstico Completo';
             }
         }
 
         // Analizar página actual
-        async function checkCurrentPage() {
+        function checkCurrentPage() {
             log('📄 Analizando página actual...', 'info');
 
-            const currentUrl = window.location.href;
-            const currentPath = window.location.pathname;
-
+            var currentUrl = window.location.href;
+            var currentPath = window.location.pathname;
+            
             diagnosticResults.currentPage = {
                 url: currentUrl,
                 path: currentPath,
                 title: document.title,
-                hasLogo: !!document.querySelector('img[src="logo"]'),
+                hasLogo: !!document.querySelector('img[src*="logo"]'),
                 hasNavigation: !!document.querySelector('nav, .sidebar, .floating-menu'),
-                hasLoginButton: !!document.querySelector('a[href="login"], button[onclick*="login"]'),
+                hasLoginButton: !!document.querySelector('a[href*="login"], button[onclick*="login"]'),
                 scripts: document.scripts.length,
                 stylesheets: document.styleSheets.length,
                 images: document.images.length,
                 links: document.links.length
             };
 
-            updateResultSection('current-page', 'Página Actual', [
+            var items = [
                 { label: 'URL', value: currentUrl, status: 'info' },
                 { label: 'Título', value: document.title, status: 'success' },
-                { label: 'Scripts cargados', value: ${document.scripts.length}, status: 'info' },
-                { label: 'Hojas de estilo', value: ${document.styleSheets.length}, status: 'info' },
-                { label: 'Imágenes', value: ${document.images.length}, status: 'info' },
-                { label: 'Enlaces', value: ${document.links.length}, status: 'info' },
+                { label: 'Scripts cargados', value: document.scripts.length.toString(), status: 'info' },
+                { label: 'Hojas de estilo', value: document.styleSheets.length.toString(), status: 'info' },
+                { label: 'Imágenes', value: document.images.length.toString(), status: 'info' },
+                { label: 'Enlaces', value: document.links.length.toString(), status: 'info' },
                 { label: 'Logo detectado', value: diagnosticResults.currentPage.hasLogo ? 'Sí' : 'No', status: diagnosticResults.currentPage.hasLogo ? 'success' : 'warning' },
                 { label: 'Navegación detectada', value: diagnosticResults.currentPage.hasNavigation ? 'Sí' : 'No', status: diagnosticResults.currentPage.hasNavigation ? 'success' : 'warning' }
-            ]);
+            ];
 
-            log(✅ Página actual analizada: ${currentPath}, 'success');
+            updateResultSection('current-page', 'Página Actual', items);
+            log('✅ Página actual analizada: ' + currentPath, 'success');
         }
 
         // Probar todas las rutas
-        async function testAllRoutes() {
+        function testAllRoutes() {
             log('🛣️ Probando rutas de navegación...', 'info');
 
-            const routes = [];
-
-            // Analizar enlaces en la página actual
-            const links = Array.from(document.querySelectorAll('a[href]'));
-
-            for (const link of links) {
-                const href = link.getAttribute('href');
+            var routes = [];
+            var links = Array.from(document.querySelectorAll('a[href]'));
+            
+            for (var i = 0; i < links.length; i++) {
+                var link = links[i];
+                var href = link.getAttribute('href');
                 if (!href || href.startsWith('#') || href.startsWith('mailto:') || href.startsWith('tel:')) continue;
 
-                const routeInfo = {
+                var routeInfo = {
                     element: link.textContent.trim() || link.title || 'Sin texto',
                     href: href,
                     isRelative: !href.startsWith('http'),
@@ -515,8 +482,7 @@
                 };
 
                 try {
-                    // Intentar resolver la URL
-                    const resolvedUrl = new URL(href, window.location.href);
+                    var resolvedUrl = new URL(href, window.location.href);
                     routeInfo.resolvedUrl = resolvedUrl.href;
                     routeInfo.status = 'resolved';
                 } catch (error) {
@@ -529,97 +495,68 @@
 
             diagnosticResults.routes = routes;
 
-            const routeItems = routes.map(route => ({
-                label: route.element,
-                value: route.href,
-                status: route.status === 'resolved' ? 'success' : route.status === 'invalid' ? 'error' : 'warning',
-                details: route.resolvedUrl || route.error
-            }));
+            var routeItems = routes.map(function(route) {
+                return {
+                    label: route.element,
+                    value: route.href,
+                    status: route.status === 'resolved' ? 'success' : route.status === 'invalid' ? 'error' : 'warning',
+                    details: route.resolvedUrl || route.error
+                };
+            });
 
             updateResultSection('routes', 'Rutas de Navegación', routeItems);
-
-            log(✅ ${routes.length} rutas analizadas, 'success');
+            log('✅ ' + routes.length + ' rutas analizadas', 'success');
         }
 
         // Validar imágenes
-        async function validateImages() {
+        function validateImages() {
             log('🖼️ Validando imágenes...', 'info');
 
-            const images = [];
-            const imageElements = Array.from(document.querySelectorAll('img'));
+            var images = [];
+            var imageElements = Array.from(document.querySelectorAll('img'));
 
-            for (const img of imageElements) {
-                const imageInfo = {
+            for (var i = 0; i < imageElements.length; i++) {
+                var img = imageElements[i];
+                var imageInfo = {
                     src: img.src,
                     alt: img.alt || 'Sin alt',
                     naturalWidth: img.naturalWidth,
                     naturalHeight: img.naturalHeight,
                     status: img.complete && img.naturalHeight > 0 ? 'loaded' : 'error'
                 };
-
                 images.push(imageInfo);
             }
 
             diagnosticResults.images = images;
 
-            const imageItems = images.map(img => ({
-                label: img.alt,
-                value: img.src.substring(img.src.lastIndexOf('/') + 1),
-                status: img.status === 'loaded' ? 'success' : 'error',
-                details: ${img.naturalWidth}x${img.naturalHeight}px
-            }));
+            var imageItems = images.map(function(img) {
+                return {
+                    label: img.alt,
+                    value: img.src.substring(img.src.lastIndexOf('/') + 1),
+                    status: img.status === 'loaded' ? 'success' : 'error',
+                    details: img.naturalWidth + 'x' + img.naturalHeight + 'px'
+                };
+            });
 
             updateResultSection('images', 'Estado de Imágenes', imageItems);
-
-            // Verificar imágenes específicas del proyecto
-            await checkProjectImages();
-
-            log(✅ ${images.length} imágenes validadas, 'success');
-        }
-
-        // Verificar imágenes específicas del proyecto
-        async function checkProjectImages() {
-            const expectedImages = [
-                { name: 'Logo', paths: ['./images/logo.png', '../images/logo.png', '/images/logo.png'] },
-                { name: 'Background', paths: ['./images/login-background.jpeg', '../images/login-background.jpeg', '/images/login-background.jpeg'] }
-            ];
-
-            for (const img of expectedImages) {
-                let found = false;
-                for (const path of img.paths) {
-                    try {
-                        const response = await fetch(path, { method: 'HEAD' });
-                        if (response.ok) {
-                            log(✅ ${img.name} encontrado en: ${path}, 'success');
-                            found = true;
-                            break;
-                        }
-                    } catch (error) {
-                        // Continuar con la siguiente ruta
-                    }
-                }
-
-                if (!found) {
-                    log(❌ ${img.name} NO encontrado en ninguna ruta, 'error');
-                    diagnosticResults.errors.push(Imagen ${img.name} no encontrada);
-                }
-            }
+            log('✅ ' + images.length + ' imágenes validadas', 'success');
         }
 
         // Verificar redirecciones
-        async function checkRedirects() {
+        function checkRedirects() {
             log('🔄 Verificando redirecciones...', 'info');
 
-            const redirectButtons = [
+            var redirectButtons = [
                 document.querySelector('.floating-login'),
-                document.querySelector('a[href="login"]'),
-                document.querySelector('button[onclick="goToLogin"]')
-            ].filter(Boolean);
+                document.querySelector('a[href*="login"]'),
+                document.querySelector('button[onclick*="goToLogin"]')
+            ].filter(function(el) { return el !== null; });
 
-            const redirectInfo = [];
+            var redirectInfo = [];
 
-            for (const element of redirectButtons) {
-                const info = {
+            for (var i = 0; i < redirectButtons.length; i++) {
+                var element = redirectButtons[i];
+                var info = {
                     type: element.tagName.toLowerCase(),
                     text: element.textContent.trim(),
                     href: element.getAttribute('href'),
@@ -629,7 +566,7 @@
 
                 if (info.href) {
                     try {
-                        const resolvedUrl = new URL(info.href, window.location.href);
+                        var resolvedUrl = new URL(info.href, window.location.href);
                         info.resolvedUrl = resolvedUrl.href;
                         info.status = 'has-href';
                     } catch (error) {
@@ -645,23 +582,24 @@
 
             diagnosticResults.redirects = redirectInfo;
 
-            const redirectItems = redirectInfo.map(redirect => ({
-                label: redirect.text,
-                value: redirect.href || redirect.onclick || 'Sin acción',
-                status: redirect.status === 'has-href' || redirect.status === 'has-onclick' ? 'success' : 'error'
-            }));
+            var redirectItems = redirectInfo.map(function(redirect) {
+                return {
+                    label: redirect.text,
+                    value: redirect.href || redirect.onclick || 'Sin acción',
+                    status: redirect.status === 'has-href' || redirect.status === 'has-onclick' ? 'success' : 'error'
+                };
+            });
 
             updateResultSection('redirects', 'Botones de Redirección', redirectItems);
-
-            log(✅ ${redirectInfo.length} elementos de redirección verificados, 'success');
+            log('✅ ' + redirectInfo.length + ' elementos de redirección verificados', 'success');
         }
 
         // Analizar contenido de la página
-        async function analyzePageContent() {
+        function analyzePageContent() {
             log('🔍 Analizando contenido...', 'info');
 
-            const analysis = {
-                hasGlassmorphism: !!document.querySelector('[style="backdrop-filter"], [style="glassmorphism"]'),
+            var analysis = {
+                hasGlassmorphism: !!document.querySelector('[style*="backdrop-filter"], [style*="glassmorphism"]'),
                 hasMenuButton: !!document.querySelector('.floating-menu, #menu-toggle'),
                 hasSidebar: !!document.querySelector('#sidebar, .sidebar'),
                 hasParticles: !!document.querySelector('.particles, #particles'),
@@ -670,48 +608,42 @@
                 hasCSS: document.styleSheets.length > 0
             };
 
-            const contentItems = [
+            var contentItems = [
                 { label: 'Diseño Glassmorphism', value: analysis.hasGlassmorphism ? 'Presente' : 'Ausente', status: analysis.hasGlassmorphism ? 'success' : 'warning' },
                 { label: 'Botón de menú', value: analysis.hasMenuButton ? 'Presente' : 'Ausente', status: analysis.hasMenuButton ? 'success' : 'warning' },
                 { label: 'Sidebar', value: analysis.hasSidebar ? 'Presente' : 'Ausente', status: analysis.hasSidebar ? 'success' : 'warning' },
                 { label: 'Efectos de partículas', value: analysis.hasParticles ? 'Presente' : 'Ausente', status: analysis.hasParticles ? 'success' : 'info' },
                 { label: 'Diseño responsive', value: analysis.responsiveDesign ? 'Configurado' : 'No configurado', status: analysis.responsiveDesign ? 'success' : 'error' },
-                { label: 'JavaScript', value: ${document.scripts.length} scripts, status: analysis.hasJavaScript ? 'success' : 'warning' },
-                { label: 'CSS', value: ${document.styleSheets.length} hojas de estilo, status: analysis.hasCSS ? 'success' : 'warning' }
+                { label: 'JavaScript', value: document.scripts.length + ' scripts', status: analysis.hasJavaScript ? 'success' : 'warning' },
+                { label: 'CSS', value: document.styleSheets.length + ' hojas de estilo', status: analysis.hasCSS ? 'success' : 'warning' }
             ];
 
             updateResultSection('content', 'Análisis de Contenido', contentItems);
-
             log('✅ Análisis de contenido completado', 'success');
         }
 
         // Generar recomendaciones
         function generateRecommendations() {
-            const recommendations = [];
+            var recommendations = [];
 
-            // Verificar estructura de archivos
             if (diagnosticResults.errors.length > 0) {
                 recommendations.push('🔧 Corregir errores detectados en imágenes y rutas');
             }
 
-            // Verificar redirecciones
             if (diagnosticResults.redirects.length === 0) {
                 recommendations.push('🔗 Agregar botones de navegación y redirección');
             }
 
-            // Verificar imágenes
-            const brokenImages = diagnosticResults.images.filter(img => img.status === 'error');
+            var brokenImages = diagnosticResults.images.filter(function(img) { return img.status === 'error'; });
             if (brokenImages.length > 0) {
-                recommendations.push(🖼️ Reparar ${brokenImages.length} imagen(es) que no cargan correctamente);
+                recommendations.push('🖼️ Reparar ' + brokenImages.length + ' imagen(es) que no cargan correctamente');
             }
 
-            // Verificar rutas
-            const invalidRoutes = diagnosticResults.routes.filter(route => route.status === 'invalid');
+            var invalidRoutes = diagnosticResults.routes.filter(function(route) { return route.status === 'invalid'; });
             if (invalidRoutes.length > 0) {
-                recommendations.push(🛣️ Corregir ${invalidRoutes.length} ruta(s) inválida(s));
+                recommendations.push('🛣️ Corregir ' + invalidRoutes.length + ' ruta(s) inválida(s)');
             }
 
-            // Estructura de proyecto recomendada
             if (!diagnosticResults.currentPage.hasNavigation) {
                 recommendations.push('📱 Implementar sistema de navegación (sidebar/menú)');
             }
@@ -720,7 +652,6 @@
                 recommendations.push('🎨 Agregar logo y elementos visuales de marca');
             }
 
-            // Recomendaciones específicas basadas en la URL actual
             if (window.location.pathname.includes('login')) {
                 recommendations.push('🔐 Implementar funcionalidad de autenticación backend');
                 recommendations.push('🔄 Agregar botón "Volver al inicio" funcional');
@@ -731,16 +662,12 @@
             diagnosticResults.recommendations = recommendations;
 
             if (recommendations.length > 0) {
-                const recommendationsSection = document.createElement('div');
+                var recommendationsSection = document.createElement('div');
                 recommendationsSection.className = 'recommendations';
-                recommendationsSection.innerHTML = 
-                    <div class="section-title">
-                        <i class="fas fa-lightbulb"></i> Recomendaciones
-                    </div>
-                    ${recommendations.map(rec => 
-                        <div class="recommendation-item">${rec}</div>
-                    ).join('')}
-                ;
+                recommendationsSection.innerHTML = '<div class="section-title"><i class="fas fa-lightbulb"></i> Recomendaciones</div>' + 
+                    recommendations.map(function(rec) {
+                        return '<div class="recommendation-item">' + rec + '</div>';
+                    }).join('');
 
                 document.getElementById('resultsContainer').appendChild(recommendationsSection);
             }
@@ -748,94 +675,66 @@
 
         // Mostrar resumen
         function displaySummary() {
-            const summary = document.getElementById('summary');
-            const summaryStats = document.getElementById('summaryStats');
+            var summary = document.getElementById('summary');
+            var summaryStats = document.getElementById('summaryStats');
 
-            const totalRoutes = diagnosticResults.routes.length;
-            const validRoutes = diagnosticResults.routes.filter(r => r.status === 'resolved').length;
-            const totalImages = diagnosticResults.images.length;
-            const loadedImages = diagnosticResults.images.filter(i => i.status === 'loaded').length;
-            const totalErrors = diagnosticResults.errors.length;
-            const totalWarnings = diagnosticResults.warnings.length;
+            var totalRoutes = diagnosticResults.routes.length;
+            var validRoutes = diagnosticResults.routes.filter(function(r) { return r.status === 'resolved'; }).length;
+            var totalImages = diagnosticResults.images.length;
+            var loadedImages = diagnosticResults.images.filter(function(i) { return i.status === 'loaded'; }).length;
+            var totalErrors = diagnosticResults.errors.length;
 
             summaryStats.innerHTML = 
-                <div class="stat-card">
-                    <span class="stat-number">${validRoutes}/${totalRoutes}</span>
-                    <span class="stat-label">Rutas Válidas</span>
-                </div>
-                <div class="stat-card">
-                    <span class="stat-number">${loadedImages}/${totalImages}</span>
-                    <span class="stat-label">Imágenes OK</span>
-                </div>
-                <div class="stat-card">
-                    <span class="stat-number">${totalErrors}</span>
-                    <span class="stat-label">Errores</span>
-                </div>
-                <div class="stat-card">
-                    <span class="stat-number">${diagnosticResults.recommendations.length}</span>
-                    <span class="stat-label">Recomendaciones</span>
-                </div>
-            ;
+                '<div class="stat-card"><span class="stat-number">' + validRoutes + '/' + totalRoutes + '</span><span class="stat-label">Rutas Válidas</span></div>' +
+                '<div class="stat-card"><span class="stat-number">' + loadedImages + '/' + totalImages + '</span><span class="stat-label">Imágenes OK</span></div>' +
+                '<div class="stat-card"><span class="stat-number">' + totalErrors + '</span><span class="stat-label">Errores</span></div>' +
+                '<div class="stat-card"><span class="stat-number">' + diagnosticResults.recommendations.length + '</span><span class="stat-label">Recomendaciones</span></div>';
 
             summary.style.display = 'block';
         }
 
         // Actualizar sección de resultados
         function updateResultSection(id, title, items) {
-            let section = document.getElementById(section-${id});
-
+            var section = document.getElementById('section-' + id);
+            
             if (!section) {
                 section = document.createElement('div');
-                section.id = section-${id};
+                section.id = 'section-' + id;
                 section.className = 'result-section';
                 document.getElementById('resultsContainer').appendChild(section);
             }
 
-            section.innerHTML = 
-                <div class="section-title">
-                    <i class="fas fa-${getSectionIcon(id)}"></i> ${title}
-                </div>
-                ${items.map(item => 
-                    <div class="status-item">
-                        <span class="path">${item.label}: ${item.value}</span>
-                        <span class="status-badge status-${item.status}">${getStatusText(item.status)}</span>
-                    </div>
-                    ${item.details ? <div class="hidden-details" id="details-${id}-${items.indexOf(item)}">
-                        <small style="color: rgba(255,255,255,0.7);">${item.details}</small>
-                    </div> : ''}
-                ).join('')}
-            ;
-        }
-
-        // Obtener icono de sección
-        function getSectionIcon(id) {
-            const icons = {
+            var sectionIcons = {
                 'current-page': 'file-alt',
                 'routes': 'route',
                 'images': 'images',
                 'redirects': 'external-link-alt',
                 'content': 'code'
             };
-            return icons[id] || 'info-circle';
-        }
 
-        // Obtener texto de estado
-        function getStatusText(status) {
-            const texts = {
+            var statusTexts = {
                 'success': '✅ OK',
                 'error': '❌ Error',
                 'warning': '⚠️ Advertencia',
                 'info': 'ℹ️ Info'
             };
-            return texts[status] || status;
+
+            section.innerHTML = '<div class="section-title"><i class="fas fa-' + (sectionIcons[id] || 'info-circle') + '"></i> ' + title + '</div>' +
+                items.map(function(item) {
+                    return '<div class="status-item">' +
+                        '<span class="path">' + item.label + ': ' + item.value + '</span>' +
+                        '<span class="status-badge status-' + item.status + '">' + (statusTexts[item.status] || item.status) + '</span>' +
+                        '</div>';
+                }).join('');
         }
 
         // Logging
-        function log(message, type = 'info') {
-            const logContainer = document.getElementById('logContainer');
-            const logEntry = document.createElement('div');
-            logEntry.className = log-entry log-${type};
-            logEntry.textContent = [${new Date().toLocaleTimeString()}] ${message};
+        function log(message, type) {
+            type = type || 'info';
+            var logContainer = document.getElementById('logContainer');
+            var logEntry = document.createElement('div');
+            logEntry.className = 'log-entry log-' + type;
+            logEntry.textContent = '[' + new Date().toLocaleTimeString() + '] ' + message;
             logContainer.appendChild(logEntry);
             logContainer.scrollTop = logContainer.scrollHeight;
 
@@ -850,27 +749,27 @@
 
         // Exportar reporte
         function exportReport() {
-            const report = {
+            var report = {
                 timestamp: new Date().toISOString(),
                 url: window.location.href,
                 userAgent: navigator.userAgent,
                 results: diagnosticResults,
                 summary: {
                     totalRoutes: diagnosticResults.routes.length,
-                    validRoutes: diagnosticResults.routes.filter(r => r.status === 'resolved').length,
+                    validRoutes: diagnosticResults.routes.filter(function(r) { return r.status === 'resolved'; }).length,
                     totalImages: diagnosticResults.images.length,
-                    loadedImages: diagnosticResults.images.filter(i => i.status === 'loaded').length,
+                    loadedImages: diagnosticResults.images.filter(function(i) { return i.status === 'loaded'; }).length,
                     totalErrors: diagnosticResults.errors.length,
                     recommendations: diagnosticResults.recommendations
                 }
             };
 
-            const dataStr = JSON.stringify(report, null, 2);
-            const dataBlob = new Blob([dataStr], {type: 'application/json'});
-
-            const link = document.createElement('a');
+            var dataStr = JSON.stringify(report, null, 2);
+            var dataBlob = new Blob([dataStr], {type: 'application/json'});
+            
+            var link = document.createElement('a');
             link.href = URL.createObjectURL(dataBlob);
-            link.download = skyn3t-diagnostic-report-${new Date().toISOString().split('T')[0]}.json;
+            link.download = 'skyn3t-diagnostic-report-' + new Date().toISOString().split('T')[0] + '.json';
             link.click();
 
             log('📄 Reporte exportado exitosamente', 'success');
